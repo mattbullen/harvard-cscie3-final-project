@@ -54,7 +54,7 @@ block content
                         for (var i = 0; i < response.items.length; i++) {
                            var img = response.items[i].link;
                            console.log(img);
-                           document.getElementById("gallery").innerHTML += '<a href="' + img + '"></a>';
+                           document.getElementById("gallery").innerHTML += '<a href="' + img + '" style="height: 100px; width: 100px;"></a>';
                         }
                     }
                 });
