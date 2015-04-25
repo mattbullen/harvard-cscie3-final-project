@@ -65,13 +65,13 @@ $(document).ready(function() {
                             $("div.slide-box").removeClass("slide-selected");
                             
                             var href = $(this).attr("src");
-                            console.log(href);
+                            console.log("\nHref from thumbnail selection:", href);
                                 
                             $("#imageURL").val(href);
-                            console.log($("#imageURL").val());
+                            console.log("\nHref passed to hidden form field:", $("#imageURL").val());
                             
                             var index = $(this).attr("data-index");
-                            console.log(index);
+                            console.log("\nImage index:", index);
                             
                             $("#slide-" + index).toggleClass("slide-selected");
                         });
@@ -88,30 +88,20 @@ $(document).ready(function() {
         
     }); // End $("#search").click();
     
-    $("img.slide-content").load(function() {
-        console.log("loaded");
-        $("img.slide-content").click(function() {
-            
-            $("div.slide-box").removeClass("slide-selected");
-                                
-            var href = $(this).attr("src");
-            console.log(href);
-                                    
-            $("#imageURL").val(href);
-            console.log($("#imageURL").val());
-                                
-            var index = $(this).parent().attr("data-index");
-            console.log(index);
-                                
-            $("#slide-" + index).toggleClass("slide-selected");
-
-        });
-    });
-    
     $("#modal-select-image-button").click(function() {
         
         var selected = $("li.active");
-        var title = $(selected).attr("title"); console.log(title);
+        
+        var href = $(selected).attr("title"); 
+        console.log("\nHref from modal selection:", href);
+        
+        $("#imageURL").val(href);
+        console.log("\nHref passed to hidden form field:", $("#imageURL").val());
+        
+        var index = $(selected).attr("data-index");
+        console.log("\nImage index:", index);
+                                
+        $("#slide-" + index).toggleClass("slide-selected");
     
     });
     
