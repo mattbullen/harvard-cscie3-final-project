@@ -33,7 +33,7 @@ $(document).ready(function() {
                 // Template out the gallery slides.
                 var images = response.items;
                 var template = Handlebars.compile($("#template").html());
-                console.log(template);
+                console.log(template(images));
                 $("#gallery").html(template(images));
                 
             },
