@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        
+        <!-- Meta -->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3">
+        <meta name="description" content="CSCI E-3 Final Project">
+        <meta name="author" content="Matthew Bullen">
+        
+        <!-- Title & Favicon -->
+        <title>CSCI E-3 Final Project</title>
+        <link rel="shortcut icon" href="/image/favicon.png">
+        
+        <!-- CSS -->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="/css/main.css">
+        
+        <!-- JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"> </script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"> </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.min.js"> </script>
+        
+    </head>
+    
+    <body>
+
+        <div id="main" class="container">
+          
+            <div class="message-list"></div>
+          
+            <form action="/message/send" method="POST">
+        
+                <div class="form-group">
+                    <label for="message">Add an optional note?</label>
+                    <input class="form-control" type="text" name="message" placeholder="This note will be texted to you with the image you selected.">
+                </div>
+        
+                <div class="form-group">
+                    <label for="confirm">Confirm your phone number:</label>
+                    <input class="form-control" type="text" name="confirm" placeholder="Confirm your phone number to send yourself texts.">
+                </div>
+                
+                <button id="send" type="submit" class="btn btn-primary">Text me!</button>
+                
+                <input type="hidden" id="imageURL" name="imageURL">
+                
+            </form>
+            
+            <div>
+                <input id="search" class="form-control" type="text" name="search" placeholder="Enter a search term to search Google Images.">
+                <button id="search">Search Google Images</button>
+            </div>
+            
+            <div id="gallery">
+            
+                <script id="template" type="text/x-handlebars-template">
+
+                    {{#images}}
+                    
+                        <div id="slide-{{file}}" class="slide">
+                        
+                            <a class="slideshow" href="{{url}}" title="{{file}}">
+                                
+                                <img class="thumbnail" src="{{url}}" alt="{{file}}" />
+                            
+                            </a>
+                            
+                        </div>
+                    
+                    {{/images}}
+
+                </script>
+            
+            </div> 
+            
+            <script>
+              
+                $(document).ready(function() {
+                
+                    // Google Custom Search API: https://developers.google.com/custom-search/json-api/v1/reference/cse/list
+                    
+                    $("#search").click(function() {
+                    
+                        $.ajax({
+                            url: 'https://www.googleapis.com/customsearch/v1?key=AIzaSyBcb5-Y-_4xba-AKItQOm9EixY51bV7VNY&cx=007271074161097264321:keiwv-_atxe&num=10&imgType=photo&searchType=image&q=' + $("#search").val(),
+                            type: 'GET',
+                            dataType: 'json',
+                            success: function(response) {
+                            
+                                console.log("\nGoogle Custom Search returned:", response);
+                                
+                                for (var i = 0; i < response.items.length; i++) {
+                                    var image = new Image();
+                                    image.src = response.items[i].link;
+                                    image.style.width = "100px";
+                                    image.onclick = function(event){
+                                        console.log(event.target.src);
+                                        $("#send").val(event.target.src);
+                                    };
+                                    document.getElementById("gallery").appendChild(image);
+                                }
+                                
+                                // Template out the gallery slides.
+                                // var template = Handlebars.compile($("#template").html());
+                                // $("#gallery").html(template(images));
+                                
+                            }
+                        });
+                    });
+                });    
+              
+            </script>
+            
+        </div>
+    
+    </body>
+  
+</html>
