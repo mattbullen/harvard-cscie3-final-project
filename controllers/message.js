@@ -90,7 +90,7 @@ exports.sendMessages = function(request, response) {
         if (err) {
             request.flash('errors', err.message);
         } else {
-            request.flash('successes', 'Messages on their way!');
+            request.flash('successes', 'Texting the image to your phone right now!');
         }
 
         response.redirect('/');
