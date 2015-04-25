@@ -89,6 +89,7 @@ $(document).ready(function() {
     }); // End $("#search").click();
     
     $("img.slide-content").load(function() {
+        console.log("loaded");
         $("img.slide-content").click(function() {
             
             $("div.slide-box").removeClass("slide-selected");
