@@ -61,17 +61,16 @@ $(document).ready(function() {
                             }, 500);
                         }, 500);
                         
-                        $("img.slide-image").click(function(e) {
+                        $("img.slide-image").click(function() {
                             $("div.slide-box").removeClass("slide-selected");
                             
-                            //var href = e.target.src;
                             var href = $(this).attr("src");
                             console.log(href);
                                 
                             $("#imageURL").val(href);
                             console.log($("#imageURL").val());
                             
-                            var index = $(e.target).attr("data-index");
+                            var index = $(this).attr("data-index");
                             console.log(index);
                             
                             $("#slide-" + index).toggleClass("slide-selected");
