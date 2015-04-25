@@ -51,26 +51,16 @@ $(document).ready(function() {
                     
                     ++loaded;
                     document.getElementById("gallery-progress-stripe").style.width = "" + (loaded * 10) + "%";
-                    /*
-                    var height = $(this).attr("data-height");
-                    var height = $(this).attr("data-width"); console.log(width + " x " + height);
-                    //var height = $(this).height(); console.log(height);
-                    if (height < 110) {
-                        $(this).css({
-                            "margin-top": function() {
-                                var scale = (110 * height) / width;
-                                return (110 - scale) * 0.5;
-                            }
-                        });
-                    }
-                    */
+
                     if (loaded === 10) {
+                        
                         window.setTimeout(function() {
                             $("#gallery-progress").fadeToggle();
                             window.setTimeout(function() {
                                 $("#gallery-content").fadeToggle();
                             }, 500);
                         }, 500);
+                        
                         $("img.slide-image").click(function(e) {
                             $("div.slide-box").removeClass("slide-selected");
                             

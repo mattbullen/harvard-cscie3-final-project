@@ -48,10 +48,12 @@
 .slide-href {
     
 }
-
+/*
+    Horizontally and vertically center images. Source:
+        http://stackoverflow.com/questions/15443230/vertically-center-responsive-image
+*/
 .slide-image {
     display: block;
-    
     max-height: 110px;
     max-width: 110px;
     position: absolute;
