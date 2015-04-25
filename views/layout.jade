@@ -72,11 +72,11 @@ html(lang='en').
 
                             {{#images}}
                             
-                                <div id="slide-{{file}}" class="slide">
+                                <div id="slide-{{@index}}" class="slide">
                                 
-                                    <a class="thumbnail" href="{{url}}" title="{{file}}">
+                                    <a class="thumbnail slide-thumbnail" href="{{link}}" title="{{link}}">
                                         
-                                        <img class="retrieved-image" src="{{url}}" alt="{{file}}" />
+                                        <img class="slide-image" src="{{image.thumbnailLink}}" alt="{{width}}px x {{height}}px" />
                                     
                                     </a>
                                     

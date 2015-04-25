@@ -17,7 +17,7 @@ $(document).ready(function() {
             success: function(response) {
             
                 console.log("\nGoogle Custom Search returned:", response);
-                
+                /*
                 for (var i = 0; i < response.items.length; i++) {
                     var image = new Image();
                     image.src = response.items[i].link;
@@ -29,10 +29,11 @@ $(document).ready(function() {
                     };
                     document.getElementById("gallery").appendChild(image);
                 }
-                
+                */
                 // Template out the gallery slides.
-                // var template = Handlebars.compile($("#template").html());
-                // $("#gallery").html(template(images));
+                var images = response.items;
+                var template = Handlebars.compile($("#template").html());
+                $("#gallery").html(template(images));
                 
             },
             
