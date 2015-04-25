@@ -44,9 +44,17 @@ block content
                         document.getElementById("gallery").innerHTML = "";
                         console.log(response);
                         for (var i = 0; i < response.items.length; i++) {
-                           var img = response.items[i].link;
-                           console.log(img);
-                           document.getElementById("gallery").innerHTML += '<img class="mms" onclick="loadImage(event);" src="' + img + '" style="display: block; height: 100px; width: 100px;"/>';
+                           var image = new Image();
+                           image.src = response.items[i].link;
+                           image.style.width = "100px";
+                           image.onclick = function(event){
+                             console.log(event.target.src);
+                             $("#send").val(event.target.src);
+                           };
+                         
+                            document.getElementById("gallery").appendChild(image);
+                           
+                           //.innerHTML += '<img class="mms" onclick="loadImage(event);" src="' + img + '" style="display: block; height: 100px; width: 100px;"/>';
                         }
                     }
                 });
