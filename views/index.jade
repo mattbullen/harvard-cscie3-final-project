@@ -23,6 +23,10 @@ block content
     button.btn.btn-primary(type='submit') Send Yourself a Message!
     
     div.
+    
+        <input size="30" placeholder="Search" name="search" id="search" type="text" title="Search">
+        <button type="submit" id="submit" name="submit">Search</button>
+          
         <script>
             function gcseCallback(response) {
                 console.log(response);
@@ -37,6 +41,19 @@ block content
             var s = document.getElementsByTagName('script')[0];
             s.parentNode.insertBefore(gcse, s);
           })();
+
+          $(document).ready(function (){
+            $("#submit").click(function (){  
+                $.ajax({
+                    url: 'https://www.googleapis.com/customsearch/v1?key=AIzaSyBcb5-Y-_4xba-AKItQOm9EixY51bV7VNY&cx=007271074161097264321:keiwv-_atxe&q=' + $("#search").val(),
+                    dataType: 'json',
+                    success: function(response){
+                        console.log(response);
+                    }); 
+                });
+            });    
+          });
+          
         </script>
         <gcse:search></gcse:search>
         **<gcse:searchresults enableImageSearch="true" defaultToImageSearch="true">**
