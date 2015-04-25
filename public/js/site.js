@@ -90,6 +90,8 @@ $(document).ready(function() {
     
     $("#modal-select-image-button").click(function() {
         
+        $("div.slide-box").removeClass("slide-selected");
+        
         var selected = $("li.active");
         
         var href = $(selected).attr("title"); 
