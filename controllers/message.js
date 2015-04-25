@@ -83,10 +83,10 @@ exports.webhook = function(request, response) {
 exports.sendMessages = function(request, response) {
     // Get message info from form submission
     var message = request.body.message;
-    var imageUrl = request.body.imageUrl;
+    var imageURL = request.body.imageURL;
 
     // Use model function to send messages to all subscribers
-    Subscriber.sendMessage(message, imageUrl, function(err) {
+    Subscriber.sendMessage(message, imageURL, function(err) {
         if (err) {
             request.flash('errors', err.message);
         } else {
