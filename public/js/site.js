@@ -48,10 +48,11 @@ $(document).ready(function() {
                 // Modified from: http://stackoverflow.com/questions/3670823/how-to-run-a-jquery-code-after-loading-all-the-images-in-my-page
                 var loaded = 0;
                 $("img.slide-image").load(function() {
+                    
                     ++loaded;
                     document.getElementById("gallery-progress-stripe").style.width = "" + (loaded * 10) + "%";
                     
-                    var height = $(this).height();
+                    var height = $(this).attr("data-height"); console.log(height);
                     if (height < 110) {
                         $(this).css({
                             "margin-top": function() {
