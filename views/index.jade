@@ -17,7 +17,7 @@ block content
     // An optional image URL
     .form-group
       label(for='imageUrl') (Optional) Image URL to send in an MMS
-      input.form-control(type='text', name='imageUrl',
+      input.form-control(type='text', id='send', name='imageUrl',
         placeholder='http://fake.twilio.com/some_image.png')
 
     button.btn.btn-primary(type='submit') Send Yourself a Message!
@@ -42,11 +42,17 @@ block content
                         for (var i = 0; i < response.items.length; i++) {
                            var img = response.items[i].link;
                            console.log(img);
-                           document.getElementById("gallery").innerHTML += '<img src="' + img + '" style="display: block; height: 100px; width: 100px;"/>';
+                           document.getElementById("gallery").innerHTML += '<img class="mms" src="' + img + '" style="display: block; height: 100px; width: 100px;"/>';
                         }
                     }
                 });
-            });    
+            });
+            
+            $(".mms").click(function() {
+                console.log(this.attr('src'));
+                $("#send").val(this.attr('src'));
+            });
+            
         });
           
         </script>
