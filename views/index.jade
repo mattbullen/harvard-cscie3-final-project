@@ -21,20 +21,3 @@ block content
         placeholder='http://fake.twilio.com/some_image.png')
 
     button.btn.btn-primary(type='submit') Send Yourself a Message!
-    div
-         script(type='text/javascript', async='', src='http://cse.google.com/cse.js?cx=007271074161097264321:keiwv-_atxe')
-         script
-              (function() {
-              var cx = '007271074161097264321:keiwv-_atxe';
-              var gcse = document.createElement('script');
-              gcse.type = 'text/javascript';
-              gcse.async = true;
-              gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-              '//cse.google.com/cse.js?cx=' + cx;
-              var s = document.getElementsByTagName('script')[0];
-              s.parentNode.insertBefore(gcse, s);
-              })();
-         gcse:search
-         | **
-         gcse:searchresults(enableimagesearch='true', defaulttoimagesearch='true')
-              | **
