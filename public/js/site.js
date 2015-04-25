@@ -55,19 +55,20 @@ $(document).ready(function() {
                             $("#gallery-content").fadeToggle();
                             $("#gallery-display").fadeToggle();
                         }, 500);
-                        $("div.slide-box").click(function(e) {
+                        $("img.slide-image").click(function(e) {
                             $("div.slide-box").removeClass("slide-selected");
                             
-                            var href = $(this).find("img.slide-image").attr("src");
+                            //var href = $(this).find("img.slide-image").attr("src");
+                            var href = e.target.src;
                             console.log(href);
                                 
                             $("#imageURL").val(href);
                             console.log($("#imageURL").val());
                             
-                            //var index = $(e.target).attr("data-index");
-                            //console.log(index);
+                            var index = $(e.target).attr("data-index");
+                            console.log(index);
                             
-                            $(this).toggleClass("slide-selected");
+                            $("#slide-" + index).toggleClass("slide-selected");
                         });
                     }
                 });
