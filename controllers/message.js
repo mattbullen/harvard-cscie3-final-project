@@ -84,7 +84,7 @@ exports.sendMessages = function(request, response) {
     // Get message info from form submission
     var message = request.body.message;
     var imageURL = request.body.imageURL;
-    var user = request.body.phone;
+    var user = request.body.confirm;
     
     console.log(request);
     

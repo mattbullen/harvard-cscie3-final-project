@@ -15,6 +15,9 @@ var SubscriberSchema = new mongoose.Schema({
 
 // Static function to send a message to all current subscribers
 SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
+    
+    console.log(message, url, user);
+    
     // Find all subscribed users
     Subscriber.find({
         subscribed: true,
@@ -45,6 +48,9 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
             
             // Send the message!
             client.sendMessage(options, function(err, response) {
+                
+                console.log(options);
+                
                 if (err) {
                     // Just log it for now
                     console.error(err);
