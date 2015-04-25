@@ -29,14 +29,8 @@
     border: 1px solid rgb(51, 115, 169) !important;
 }
 
-/* Source: http://stackoverflow.com/questions/7273338/how-to-vertically-align-an-image-inside-div */
-.vertical-align {
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-}
-
 .slide-box {
+    position: relative;
     box-sizing: border-box;
     float: left;
     height: 120px;
@@ -57,7 +51,12 @@
 
 .slide-image {
     display: block;
-    margin: auto;
+    
     max-height: 110px;
     max-width: 110px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }

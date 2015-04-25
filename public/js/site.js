@@ -51,7 +51,7 @@ $(document).ready(function() {
                     
                     ++loaded;
                     document.getElementById("gallery-progress-stripe").style.width = "" + (loaded * 10) + "%";
-                    
+                    /*
                     var height = $(this).attr("data-height");
                     var height = $(this).attr("data-width"); console.log(width + " x " + height);
                     //var height = $(this).height(); console.log(height);
@@ -63,7 +63,7 @@ $(document).ready(function() {
                             }
                         });
                     }
-                    
+                    */
                     if (loaded === 10) {
                         window.setTimeout(function() {
                             $("#gallery-progress").fadeToggle();
