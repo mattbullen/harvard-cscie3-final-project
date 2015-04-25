@@ -51,7 +51,7 @@ block content
                     dataType: 'json',
                     success: function(response){
                         console.log(response);
-                        for (var i = 0; i < response.items; i++) {
+                        for (var i = 0; i < response.items.length; i++) {
                            var img = response.items[i].link;
                            console.log(img);
                            document.getElementById("gallery").innerHTML += '<a href="' + img + '"></a>';
