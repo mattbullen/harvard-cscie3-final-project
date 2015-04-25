@@ -37,6 +37,7 @@ block content
                     type: 'GET',
                     dataType: 'json',
                     success: function(response){
+                        document.getElementById("gallery").innerHTML = "";
                         console.log(response);
                         for (var i = 0; i < response.items.length; i++) {
                            var img = response.items[i].link;
