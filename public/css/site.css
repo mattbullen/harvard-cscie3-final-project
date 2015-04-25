@@ -6,6 +6,16 @@
     
 }
 
+#search-google-input {
+    float: left;
+    width: 480px;
+    margin: 0px 16px 0px 0px;
+}
+
+#search-google-button {
+    float: left;
+}
+
 .gallery {
     margin-top: 30px;
 }
