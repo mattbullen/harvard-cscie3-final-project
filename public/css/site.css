@@ -6,6 +6,10 @@
     
 }
 
+#search-bar {
+    margin: 0px 0px 24px 0px;
+}
+
 #search-google-input {
     float: left;
     width: 480px;
@@ -29,7 +33,7 @@
     float: left;
     height: 130px;
     width: 130px;
-    margin: 0px 17px 17px 0px;
+    margin: 0px 16px 16px 0px;
     padding: 5px;
     border: 1px solid rgb(204, 204, 204);
     overflow: hidden;
