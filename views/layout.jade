@@ -41,7 +41,7 @@ html(lang='en').
             
             <div class="row">
             
-                <div class="col-md-5">
+                <div id="panel-left" class="col-md-5 panel">
             
                     <form action="/message/send" method="POST">
                         
@@ -61,9 +61,9 @@ html(lang='en').
                         
                     </form>
             
-                </div><!-- div.col-md-5 -->
+                </div><!-- div#panel-left.col-md-5 -->
                 
-                <div class="col-md-7">
+                <div id="panel-right" class="col-md-7 panel">
             
                     <div id="search-bar">
                         <input id="search-google-input" class="form-control" name="search-google-input" type="text" placeholder="Enter a search term to search Google Images.">
@@ -84,9 +84,9 @@ html(lang='en').
                                 
                                     <div id="slide-{{@index}}" class="slide">
                                     
-                                        <a class="slide-thumbnail" href="{{link}}" title="{{link}}" data-gallery>
+                                        <a class="slide-href" href="{{link}}" title="{{link}}" data-gallery>
                                             
-                                            <img class="slide-image" src="{{image.thumbnailLink}}" alt="{{width}}px x {{height}}px" />
+                                            <img class="slide-image" src="{{image.thumbnailLink}}" alt="{{width}}px x {{height}}px" data-index="{{@index}}"/>
                                         
                                         </a>
                                         
@@ -102,7 +102,7 @@ html(lang='en').
                         
                     </div><!-- div#gallery -->
             
-                </div><!-- div.col-md-7 -->
+                </div><!-- div#panel-right.col-md-7 -->
             
             </div><!-- div.row -->
             

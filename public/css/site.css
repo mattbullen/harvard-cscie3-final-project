@@ -2,6 +2,35 @@
     padding: 70px 0px 0px 0px;
 }
 
+.panel {
+    
+}
+
+.gallery {
+    padding: 15px;
+    border: 1px solid rgb(51, 115, 169);
+}
+
 .slide-selected {
     border: 1px solid rgb(51, 115, 169);
+}
+
+.slide {
+    box-sizing: border-box;
+    float: left;
+    height: 120px;
+    width: 120px;
+    margin: 0px 10px 10px 0px;
+    padding: 5px;
+    border: 1px solid #ffffff;
+}
+
+.slide-href {
+    
+}
+
+.slide-image {
+    display: block;
+    margin: auto;
+    max-width: 110px;
 }

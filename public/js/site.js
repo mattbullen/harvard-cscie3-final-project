@@ -56,13 +56,13 @@ $(document).ready(function() {
                             $("#gallery-display").fadeToggle();
                         }, 500);
                         $("img.slide-image").click(function(e) {
-                            $("a.slide-thumbnail").removeClass("slide-selected");
-                            //e.preventDefault();
-                            //e.stopPropagation();
-                            console.log(e.target.src);
+                            $("div.slide").removeClass("slide-selected");
+                                console.log(e.target.src);
                             $("#imageURL").val(e.target.src);
-                            console.log($("#imageURL").val());
-                            $(e.target).parent().toggleClass("slide-selected");
+                                console.log($("#imageURL").val());
+                            var index = $(e.target).attr("data-index");
+                                console.log(index);
+                            $("div#slide-" + index).toggleClass("slide-selected");
                         });
                     }
                 });
