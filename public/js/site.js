@@ -52,12 +52,14 @@ $(document).ready(function() {
                     ++loaded;
                     document.getElementById("gallery-progress-stripe").style.width = "" + (loaded * 10) + "%";
                     
-                    //var height = $(this).attr("data-height"); console.log(height);
-                    var height = $(this).height(); console.log(height);
+                    var height = $(this).attr("data-height");
+                    var height = $(this).attr("data-width"); console.log(width + " x " + height);
+                    //var height = $(this).height(); console.log(height);
                     if (height < 110) {
                         $(this).css({
                             "margin-top": function() {
-                                return (110 - height) * 0.5;
+                                var scale = (110 * height) / width;
+                                return (110 - scale) * 0.5;
                             }
                         });
                     }
