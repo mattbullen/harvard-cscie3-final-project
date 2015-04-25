@@ -7,6 +7,7 @@ $(document).ready(function() {
     $("#search-google-button").click(function() {
         
         $("#gallery-content").fadeToggle();
+        $("#gallery-progress").fadeToggle();
         
         $.ajax({
             
@@ -40,11 +41,14 @@ $(document).ready(function() {
                 var template = Handlebars.compile($("#template").html());
                 $("#gallery-content").html(template(slides));
                 
+                // Modified from: http://stackoverflow.com/questions/3670823/how-to-run-a-jquery-code-after-loading-all-the-images-in-my-page
                 var loaded = 10;
                 $("img.slide-image").load(function() {
                     ++loaded;
+                    $("#gallery-progress-stripe").css({ "width", (loaded * 10) + "%" });
                     console.log(loaded);
                     if (loaded === 10) {
+                        $("#gallery-progress").fadeToggle();
                         $("#gallery-content").fadeToggle();
                     }
                 });
