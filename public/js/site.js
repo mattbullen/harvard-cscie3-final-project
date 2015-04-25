@@ -51,7 +51,7 @@ $(document).ready(function() {
                     $("#gallery-progress-stripe").css({ 
                         "width": function(loaded) { return "" + (loaded * 10) + "%"; } 
                     });
-                    if (loaded === 10) {
+                    if (loaded === 11) {
                         $("#gallery-progress").fadeToggle();
                         $("#gallery-content").fadeToggle();
                         $("#gallery-display").fadeToggle();
