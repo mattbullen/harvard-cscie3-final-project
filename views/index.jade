@@ -24,13 +24,16 @@ block content
     
     div.
         <script>
+            function gcseCallback(response) {
+                console.log(response);
+            }
           (function() {
             var cx = '007271074161097264321:keiwv-_atxe';
             var gcse = document.createElement('script');
             gcse.type = 'text/javascript';
             gcse.async = true;
             gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-                '//cse.google.com/cse.js?cx=' + cx;
+                '//cse.google.com/cse.js?cx=' + cx + '&amp;callback=gcseCallback';
             var s = document.getElementsByTagName('script')[0];
             s.parentNode.insertBefore(gcse, s);
           })();
