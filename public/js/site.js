@@ -1,7 +1,7 @@
 // Main page loading function.
 $(document).ready(function() {
     
-    $("#gallery-progress").fadeToggle();
+    $("#gallery-progress").fadeToggle(0);
     
     /*
         Google Custom Search API: https://developers.google.com/custom-search/json-api/v1/reference/cse/list
@@ -54,7 +54,7 @@ $(document).ready(function() {
                             $("#gallery-progress").fadeToggle();
                             $("#gallery-content").fadeToggle();
                             $("#gallery-display").fadeToggle();
-                        }, 300);
+                        }, 500);
                     }
                 });
     
