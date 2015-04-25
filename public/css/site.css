@@ -62,3 +62,13 @@
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
+
+#modal-select-image-button {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
+
+h3.title {
+    left: 155px !important;
+}
