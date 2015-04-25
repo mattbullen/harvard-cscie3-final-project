@@ -1,3 +1,6 @@
+// New Relic monitoring
+require('newrelic');
+
 var http = require('http');
 var mongoose = require('mongoose');
 var config = require('./config');
