@@ -61,7 +61,7 @@ $(document).ready(function() {
                             console.log(e.target.src);
                             $("#imageURL").val(e.target.src);
                             console.log($("#imageURL").val());
-                            $(e.target).toggleClass("slide-selected");
+                            $(e.target).parent().toggleClass("slide-selected");
                         });
                     }
                 });
