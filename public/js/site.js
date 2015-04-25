@@ -56,7 +56,7 @@ $(document).ready(function() {
                             $("#gallery-display").fadeToggle();
                         }, 500);
                         $("img.slide-image").click(function(e) {
-                            $("img.slide-thumbnail").removeClass("slide-selected");
+                            $("a.slide-thumbnail").removeClass("slide-selected");
                             //e.preventDefault();
                             //e.stopPropagation();
                             console.log(e.target.src);
