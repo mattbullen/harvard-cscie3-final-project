@@ -32,15 +32,15 @@ block content
         
         $(document).ready(function (){
             $("#submit").click(function (){
-                function loadImage(event) {
-                    console.log(event.target.src);
-                    $("#send").val(event.target.src);
-                };
                 $.ajax({
                     url: 'https://www.googleapis.com/customsearch/v1?key=AIzaSyBcb5-Y-_4xba-AKItQOm9EixY51bV7VNY&cx=007271074161097264321:keiwv-_atxe&num=10&imgType=photo&searchType=image&q=' + $("#search").val(),
                     type: 'GET',
                     dataType: 'json',
-                    success: function(response){
+                    success: function(response) {
+                        function loadImage(event) {
+                            console.log(event.target.src);
+                            $("#send").val(event.target.src);
+                        };
                         document.getElementById("gallery").innerHTML = "";
                         console.log(response);
                         for (var i = 0; i < response.items.length; i++) {
