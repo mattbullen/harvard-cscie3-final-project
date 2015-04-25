@@ -88,4 +88,52 @@ $(document).ready(function() {
         
     }); // End $("#search").click();
 
+    $(".slide-content").click(function() {
+        
+        $("div.slide-box").removeClass("slide-selected");
+                            
+        var href = $(this).attr("src");
+        console.log(href);
+                                
+        $("#imageURL").val(href);
+        console.log($("#imageURL").val());
+                            
+        var index = $(this).parent().attr("data-index");
+        console.log(index);
+                            
+        $("#slide-" + index).toggleClass("slide-selected");
+
+    });
+    
+    
 }); // End $(document).ready();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
