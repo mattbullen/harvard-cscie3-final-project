@@ -86,6 +86,8 @@ exports.sendMessages = function(request, response) {
     var imageURL = request.body.imageURL;
     var user = request.body.phone;
     
+    console.log(request);
+    
     // Use model function to send messages to all subscribers
     Subscriber.sendMessage(message, imageURL, user, function(err) {
         if (err) {
