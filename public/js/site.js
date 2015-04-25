@@ -48,9 +48,10 @@ $(document).ready(function() {
                 var loaded = 0;
                 $("img.slide-image").load(function() {
                     ++loaded; console.log(loaded);
-                    $("#gallery-progress-stripe").css({ 
-                        "width": function(loaded) { return "" + (loaded * 10) + "%"; } 
-                    });
+                    //$("#gallery-progress-stripe").css({ 
+                    //    "width": function(loaded) { return "" + (loaded * 10) + "%"; } 
+                    //});
+                    document.getElementById("gallery-progress-stripe").style.width = "" + (loaded * 10) + "%";
                     if (loaded === 11) {
                         $("#gallery-progress").fadeToggle();
                         $("#gallery-content").fadeToggle();
