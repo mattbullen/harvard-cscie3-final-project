@@ -1,3 +1,6 @@
+// New Relic monitoring
+var newRelic = require('newrelic');
+
 var path = require('path');
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -9,6 +12,8 @@ var config = require('./config');
 // Create Express web app
 var app = express();
 app.set('view engine', 'jade');
+
+app.use(newRelic);
 
 // Use morgan for HTTP request logging
 app.use(morgan('combined'));
