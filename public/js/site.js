@@ -52,7 +52,8 @@ $(document).ready(function() {
                     ++loaded;
                     document.getElementById("gallery-progress-stripe").style.width = "" + (loaded * 10) + "%";
                     
-                    var height = $(this).attr("data-height"); console.log(height);
+                    //var height = $(this).attr("data-height"); console.log(height);
+                    var height = $(this).height(); console.log(height);
                     if (height < 110) {
                         $(this).css({
                             "margin-top": function() {
