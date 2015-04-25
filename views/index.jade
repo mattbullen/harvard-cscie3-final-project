@@ -45,7 +45,7 @@ block content
           $(document).ready(function (){
             $("#submit").click(function (){  
                 $.ajax({
-                    url: 'https://www.googleapis.com/customsearch/v1?key=AIzaSyBcb5-Y-_4xba-AKItQOm9EixY51bV7VNY&cx=007271074161097264321:keiwv-_atxe&q=' + $("#search").val() + '?imgType="photo"?searchType="image"',
+                    url: 'https://www.googleapis.com/customsearch/v1?key=AIzaSyBcb5-Y-_4xba-AKItQOm9EixY51bV7VNY&cx=007271074161097264321:keiwv-_atxe&?num=10?imgType=photo?searchType=image?q=' + $("#search").val(),
                     dataType: 'json',
                     success: function(response){
                         console.log(response);
