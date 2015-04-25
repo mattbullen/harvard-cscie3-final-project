@@ -41,13 +41,13 @@
     float: left;
     height: 120px;
     width: 120px;
-    margin: 0px 16px 16px 0px;
+    margin: 0px 17px 17px 0px;
     padding: 5px;
     border: 1px solid rgb(204, 204, 204);
 }
 
-#gallery-content:nth-child(5),
-#gallery-content:nth-child(10) {
+#gallery-content div:nth-child(5),
+#gallery-content div:nth-child(10) {
     margin-right: 0px;
 }
 
