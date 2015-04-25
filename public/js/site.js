@@ -4,11 +4,11 @@ $(document).ready(function() {
     /*
         Google Custom Search API: https://developers.google.com/custom-search/json-api/v1/reference/cse/list
     */
-    $("#search").click(function() {
+    $("#search-google-button").click(function() {
 
         $.ajax({
             
-            url: 'https://www.googleapis.com/customsearch/v1?key=AIzaSyBcb5-Y-_4xba-AKItQOm9EixY51bV7VNY&cx=007271074161097264321:keiwv-_atxe&num=10&imgType=photo&searchType=image&q=' + $("#search").val(),
+            url: 'https://www.googleapis.com/customsearch/v1?key=AIzaSyBcb5-Y-_4xba-AKItQOm9EixY51bV7VNY&cx=007271074161097264321:keiwv-_atxe&num=10&imgType=photo&searchType=image&q=' + $("#search-google-input").val(),
             
             type: 'GET',
            
