@@ -26,6 +26,7 @@ block content
     
         <input size="30" placeholder="Search" name="search" id="search" type="text" title="Search">
         <div id="submit">Search</div>
+        <div id="gallery">Search</div>
         
         <script>
             function gcseCallback(response) {
@@ -50,6 +51,10 @@ block content
                     dataType: 'json',
                     success: function(response){
                         console.log(response);
+                        for (var i = 0; i < response.items; i++) {
+                           var img = response.items[i].link;
+                           document.getElementById("gallery").innerHTML += '<img src="' + img + '"/>';
+                        }
                     }
                 });
             });    
