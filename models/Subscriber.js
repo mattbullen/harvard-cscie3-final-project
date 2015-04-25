@@ -30,6 +30,7 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
         }
 
         // Otherwise send messages to all subscribers
+        console.log(docs);
         sendMessages(docs);
     });
 
