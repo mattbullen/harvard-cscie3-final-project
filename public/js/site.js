@@ -108,6 +108,13 @@ $(document).ready(function() {
         });
     });
     
+    $("#modal-select-image-button").click(function() {
+        
+        var selected = $("li.active");
+        var title = $(selected).attr("title"); console.log(title);
+    
+    });
+    
 }); // End $(document).ready();
 
 
