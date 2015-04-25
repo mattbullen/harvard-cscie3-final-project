@@ -7,6 +7,7 @@
 }
 
 .gallery {
+    min-height: 300px;
     padding: 15px;
     border: 1px solid rgb(51, 115, 169);
 }
@@ -32,5 +33,5 @@
 .slide-image {
     display: block;
     margin: auto;
-    max-width: 110px;
+    max-height: 110px;
 }
