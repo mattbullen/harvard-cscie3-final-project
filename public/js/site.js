@@ -15,28 +15,16 @@ $(document).ready(function() {
         
         $.ajax({
             
-            url: 'https://www.googleapis.com/customsearch/v1?key=AIzaSyBcb5-Y-_4xba-AKItQOm9EixY51bV7VNY&cx=007271074161097264321:keiwv-_atxe&num=10&imgType=photo&searchType=image&q=' + $("#search-google-input").val(),
+            url: "https://www.googleapis.com/customsearch/v1?key=AIzaSyBcb5-Y-_4xba-AKItQOm9EixY51bV7VNY&cx=007271074161097264321:keiwv-_atxe&num=10&imgType=photo&searchType=image&q=" + $("#search-google-input").val(),
             
-            type: 'GET',
+            type: "GET",
            
-            dataType: 'json',
+            dataType: "json",
             
             success: function(response) {
             
                 console.log("\nGoogle Custom Search returned:", response);
-                /*
-                for (var i = 0; i < response.items.length; i++) {
-                    var image = new Image();
-                    image.src = response.items[i].link;
-                    image.style.width = "100px";
-                    image.onclick = function(event){
-                        console.log(event.target.src);
-                        $("#imageURL").val(event.target.src);
-                        console.log($("#imageURL").val());
-                    };
-                    document.getElementById("gallery").appendChild(image);
-                }
-                */
+
                 // Template out the gallery slides.
                 var slides = {
                     "images": response.items
@@ -105,6 +93,25 @@ $(document).ready(function() {
                                 
         $("#slide-" + index).toggleClass("slide-selected");
     
+    });
+    
+    /*
+        Submit the form without reloading the page. Source:
+            http://stackoverflow.com/questions/22163220/prevent-page-reload-after-form-submit-node-no-ajax-available
+    */
+    $("#textMessageForm").submit(function(e) {
+        e.preventDefault();
+        var fd = new FormData($(this)[0]);
+        $.ajax({
+            url: "/message/send",
+            data: fd,
+            processData: false,
+            contentType: false,
+            type: "POST",
+            success: function(data){
+                console.log(data);
+            }
+        });
     });
     
 }); // End $(document).ready();

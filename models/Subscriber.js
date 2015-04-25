@@ -14,10 +14,11 @@ var SubscriberSchema = new mongoose.Schema({
 });
 
 // Static function to send a message to all current subscribers
-SubscriberSchema.statics.sendMessage = function(message, url, callback) {
+SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
     // Find all subscribed users
     Subscriber.find({
-        subscribed: true
+        subscribed: true,
+        phone: user
     }, function(err, docs) {
         if (err || docs.length == 0) {
             return callback.call(this, {
@@ -41,7 +42,7 @@ SubscriberSchema.statics.sendMessage = function(message, url, callback) {
 
             // Include media URL if one was given for MMS
             if (url) options.mediaUrl = url;
-
+            
             // Send the message!
             client.sendMessage(options, function(err, response) {
                 if (err) {
@@ -49,8 +50,7 @@ SubscriberSchema.statics.sendMessage = function(message, url, callback) {
                     console.error(err);
                 } else {
                     // Log the last few digits of a phone number
-                    var masked = subscriber.phone.substr(0, 
-                        subscriber.phone.length - 5);
+                    var masked = subscriber.phone.substr(0, subscriber.phone.length - 5);
                     masked += '*****'; 
                     console.log('Message sent to ' + masked);
                 }

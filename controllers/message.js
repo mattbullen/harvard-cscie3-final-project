@@ -84,9 +84,10 @@ exports.sendMessages = function(request, response) {
     // Get message info from form submission
     var message = request.body.message;
     var imageURL = request.body.imageURL;
-
+    var user = request.body.phone;
+    
     // Use model function to send messages to all subscribers
-    Subscriber.sendMessage(message, imageURL, function(err) {
+    Subscriber.sendMessage(message, imageURL, user, function(err) {
         if (err) {
             request.flash('errors', err.message);
         } else {
