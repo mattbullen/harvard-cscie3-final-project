@@ -64,7 +64,8 @@ $(document).ready(function() {
                         $("img.slide-image").click(function(e) {
                             $("div.slide-box").removeClass("slide-selected");
                             
-                            var href = e.target.src;
+                            //var href = e.target.src;
+                            var href = $(this).attr("src");
                             console.log(href);
                                 
                             $("#imageURL").val(href);
