@@ -56,7 +56,12 @@ $(document).ready(function() {
                             $("#gallery-display").fadeToggle();
                         }, 500);
                         $("img.slide-image").click(function(e) {
+                            e.preventDefault();
+                            e.stopPropagation();
                             console.log(e.target.src);
+                            $("#imageURL").val(e.target.src);
+                            console.log($("#imageURL").val());
+                            $(e.target).toggleClass("slide-selected");
                         });
                     }
                 });
