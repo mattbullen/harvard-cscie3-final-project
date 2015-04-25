@@ -41,10 +41,10 @@
     float: left;
     height: 120px;
     width: 120px;
-    margin: 0px 17px 17px 0px;
+    margin: 0px 14px 14px 0px;
     padding: 5px;
     border: 1px solid rgb(204, 204, 204);
-    overflow: hidden;
+    overflow: visible;
 }
 
 .slide-href {
