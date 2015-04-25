@@ -1,12 +1,15 @@
 // Main page loading function.
 $(document).ready(function() {
-                        
+    
+    $("#gallery-progress").fadeToggle();
+    
     /*
         Google Custom Search API: https://developers.google.com/custom-search/json-api/v1/reference/cse/list
     */
     $("#search-google-button").click(function() {
         
         $("#gallery-content").fadeToggle();
+        $("#gallery-display").fadeToggle();
         $("#gallery-progress").fadeToggle();
         
         $.ajax({
@@ -45,10 +48,13 @@ $(document).ready(function() {
                 var loaded = 10;
                 $("img.slide-image").load(function() {
                     ++loaded; console.log(loaded);
-                    $("#gallery-progress-stripe").css({ "width", function(loaded) { return "" + (loaded * 10) + "%"; } });
+                    $("#gallery-progress-stripe").css({ 
+                        "width": function(loaded) { return "" + (loaded * 10) + "%"; } 
+                    });
                     if (loaded === 10) {
                         $("#gallery-progress").fadeToggle();
                         $("#gallery-content").fadeToggle();
+                        $("#gallery-display").fadeToggle();
                     }
                 });
     
