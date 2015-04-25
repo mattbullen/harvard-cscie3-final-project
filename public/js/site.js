@@ -55,14 +55,19 @@ $(document).ready(function() {
                             $("#gallery-content").fadeToggle();
                             $("#gallery-display").fadeToggle();
                         }, 500);
-                        $("img.slide-image").click(function(e) {
-                            $("div.slide").removeClass("slide-selected");
-                                console.log(e.target.src);
-                            $("#imageURL").val(e.target.src);
-                                console.log($("#imageURL").val());
-                            var index = $(e.target).attr("data-index");
-                                console.log(index);
-                            $("div#slide-" + index).toggleClass("slide-selected");
+                        $("div.slide-box").click(function(e) {
+                            $("div.slide-box").removeClass("slide-selected");
+                            
+                            var href = $(this).find("img.slide-image").attr("src");
+                            console.log(href);
+                                
+                            $("#imageURL").val(href);
+                            console.log($("#imageURL").val());
+                            
+                            //var index = $(e.target).attr("data-index");
+                            //console.log(index);
+                            
+                            $(this).toggleClass("slide-selected");
                         });
                     }
                 });

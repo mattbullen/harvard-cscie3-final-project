@@ -7,21 +7,19 @@
 }
 
 .gallery {
-    height: 300px;
-    padding: 15px;
-    border: 1px solid rgb(51, 115, 169);
+    margin-top: 30px;
 }
 
 .slide-selected {
     border: 1px solid rgb(51, 115, 169);
 }
 
-.slide {
+.slide-box {
     box-sizing: border-box;
     float: left;
-    height: 120px;
-    width: 120px;
-    margin: 0px 10px 10px 0px;
+    height: 130px;
+    width: 130px;
+    margin: 0px 17px 17px 0px;
     padding: 5px;
     border: 1px solid rgb(204, 204, 204);
     overflow: hidden;
