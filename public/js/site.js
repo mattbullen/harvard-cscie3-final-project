@@ -45,7 +45,7 @@ $(document).ready(function() {
                 $("#gallery-content").html(template(slides));
                 
                 // Modified from: http://stackoverflow.com/questions/3670823/how-to-run-a-jquery-code-after-loading-all-the-images-in-my-page
-                var loaded = 10;
+                var loaded = 0;
                 $("img.slide-image").load(function() {
                     ++loaded; console.log(loaded);
                     $("#gallery-progress-stripe").css({ 
