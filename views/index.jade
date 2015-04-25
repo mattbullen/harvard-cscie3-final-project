@@ -44,15 +44,17 @@ block content
                            console.log(img);
                            document.getElementById("gallery").innerHTML += '<img class="mms" src="' + img + '" style="display: block; height: 100px; width: 100px;"/>';
                         }
+                        $(".mms").click(function() {
+                            console.log($(this));
+                            console.log($(this).attr('src'));
+                            $("#send").val($(this).attr('src'));
+                        });
                     }
                 });
             });
+        });    
+     
             
-            $(".mms").click(function() {
-                console.log($(this));
-                console.log($(this).attr('src'));
-                $("#send").val($(this).attr('src'));
-            });
             
         });
           
