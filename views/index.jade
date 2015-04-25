@@ -26,41 +26,26 @@ block content
     
         <input size="30" placeholder="Search" name="search" id="search" type="text" title="Search">
         <div id="submit">Search</div>
-        <div id="gallery">Search</div>
+        <div id="gallery"></div>
         
         <script>
-            function gcseCallback(response) {
-                console.log(response);
-            }
-          (function() {
-            var cx = '007271074161097264321:keiwv-_atxe';
-            var gcse = document.createElement('script');
-            gcse.type = 'text/javascript';
-            gcse.async = true;
-            gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-                '//cse.google.com/cse.js?cx=' + cx + '&amp;callback=gcseCallback';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(gcse, s);
-          })();
-
-          $(document).ready(function (){
+        
+        $(document).ready(function (){
             $("#submit").click(function (){  
                 $.ajax({
                     url: 'https://www.googleapis.com/customsearch/v1?key=AIzaSyBcb5-Y-_4xba-AKItQOm9EixY51bV7VNY&cx=007271074161097264321:keiwv-_atxe&num=10&imgType=photo&searchType=image&q=' + $("#search").val(),
-                    type: "GET",
+                    type: 'GET',
                     dataType: 'json',
                     success: function(response){
                         console.log(response);
                         for (var i = 0; i < response.items.length; i++) {
                            var img = response.items[i].link;
                            console.log(img);
-                           document.getElementById("gallery").innerHTML += '<a href="' + img + '" style="height: 100px; width: 100px;"></a>';
+                           document.getElementById("gallery").innerHTML += '<img src="' + img + '" style="display: block; height: 100px; width: 100px;"/>';
                         }
                     }
                 });
             });    
-          });
+        });
           
         </script>
-        <gcse:search></gcse:search>
-        **<gcse:searchresults enableImageSearch="true" defaultToImageSearch="true">**
