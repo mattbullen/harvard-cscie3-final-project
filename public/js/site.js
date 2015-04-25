@@ -31,9 +31,12 @@ $(document).ready(function() {
                 }
                 */
                 // Template out the gallery slides.
-                var images = response.items; console.log(images);
+                var slides = {
+                    "images": response.items; 
+                };
+                console.log("\nSlides to template:", slides);
                 var template = Handlebars.compile($("#template").html());
-                $("#gallery").html(template(images));
+                $("#gallery").html(template(slides));
                 
             },
             
