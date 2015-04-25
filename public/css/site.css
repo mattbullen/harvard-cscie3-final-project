@@ -8,6 +8,7 @@
 
 #search-bar {
     margin: 0px 0px 24px 0px;
+    overflow: hidden;
 }
 
 #search-google-input {
@@ -21,7 +22,7 @@
 }
 
 .gallery {
-    margin-top: 30px;
+    overflow: hidden;
 }
 
 .slide-selected {
@@ -31,9 +32,9 @@
 .slide-box {
     box-sizing: border-box;
     float: left;
-    height: 130px;
-    width: 130px;
-    margin: 0px 16px 16px 0px;
+    height: 120px;
+    width: 120px;
+    margin: 0px 17px 17px 0px;
     padding: 5px;
     border: 1px solid rgb(204, 204, 204);
     overflow: hidden;
