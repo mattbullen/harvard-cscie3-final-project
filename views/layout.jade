@@ -67,25 +67,29 @@ html(lang='en').
                     </div>
                     
                     <div id="gallery">
-                    
-                        <script id="template" type="text/x-handlebars-template">
+                        
+                        <div id="gallery-content">
+                        
+                            <script id="template" type="text/x-handlebars-template">
 
-                            {{#images}}
-                            
-                                <div id="slide-{{@index}}" class="slide">
+                                {{#images}}
                                 
-                                    <a class="thumbnail slide-thumbnail" href="{{link}}" title="{{link}}">
+                                    <div id="slide-{{@index}}" class="slide">
+                                    
+                                        <a class="thumbnail slide-thumbnail" href="{{link}}" title="{{link}}">
+                                            
+                                            <img class="slide-image" src="{{image.thumbnailLink}}" alt="{{width}}px x {{height}}px" />
                                         
-                                        <img class="slide-image" src="{{image.thumbnailLink}}" alt="{{width}}px x {{height}}px" />
-                                    
-                                    </a>
-                                    
-                                </div>
-                            
-                            {{/images}}
+                                        </a>
+                                        
+                                    </div>
+                                
+                                {{/images}}
 
-                        </script>
-                    
+                            </script>
+                        
+                        </div>
+                        
                     </div><!-- div#gallery -->
             
                 </div><!-- div.col-md-7 -->

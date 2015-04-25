@@ -5,7 +5,9 @@ $(document).ready(function() {
         Google Custom Search API: https://developers.google.com/custom-search/json-api/v1/reference/cse/list
     */
     $("#search-google-button").click(function() {
-
+        
+        $("#gallery-content").fadeToggle();
+        
         $.ajax({
             
             url: 'https://www.googleapis.com/customsearch/v1?key=AIzaSyBcb5-Y-_4xba-AKItQOm9EixY51bV7VNY&cx=007271074161097264321:keiwv-_atxe&num=10&imgType=photo&searchType=image&q=' + $("#search-google-input").val(),
@@ -36,8 +38,17 @@ $(document).ready(function() {
                 };
                 console.log("\nSlides to template:", slides);
                 var template = Handlebars.compile($("#template").html());
-                $("#gallery").html(template(slides));
+                $("#gallery-content").html(template(slides));
                 
+                var loaded = 10;
+                $("img.slide-image").load(function() {
+                    ++loaded;
+                    console.log(loaded);
+                    if (loaded === 10) {
+                        $("#gallery-content").fadeToggle();
+                    }
+                });
+    
             },
             
             error: function(response) {
