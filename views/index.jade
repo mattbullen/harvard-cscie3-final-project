@@ -49,8 +49,9 @@ block content
             });
             
             $(".mms").click(function() {
-                console.log(this.attr('src'));
-                $("#send").val(this.attr('src'));
+                console.log($(this));
+                console.log($(this).attr('src'));
+                $("#send").val($(this).attr('src'));
             });
             
         });
