@@ -97,7 +97,5 @@ exports.sendMessages = function(request, response) {
         }
 
         //response.redirect('/');
-        
-        response.end();
     });
 };
