@@ -175,7 +175,7 @@ function validatePhone() {
             url: "/message/validate",
             data: {
                 "confirm": $("#confirm").val()
-            }
+            },
             type: "POST",
             success: function(data){
                 console.log('validatePhone():', data.message);
