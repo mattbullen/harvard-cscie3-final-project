@@ -67,7 +67,7 @@ $(document).ready(function() {
                             
                             $("#slide-" + index).toggleClass("slide-selected");
                             
-                            $("#message-container").fadeToggle({ duration: 500 });
+                            $("#message-container").fadeToggle();
                         });
                     }
                 });
@@ -100,7 +100,6 @@ $(document).ready(function() {
                                 
         $("#slide-" + index).toggleClass("slide-selected");
         
-        $("#message-container").fadeToggle({ duration: 500 });
     });
     
     /*
