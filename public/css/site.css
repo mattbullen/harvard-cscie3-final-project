@@ -11,6 +11,10 @@ h2 {
     margin: 0px 0px 30px 0px;
 }
 
+#panel-right {
+    background-color: rgb(143, 201, 235);
+}
+
 #instructions-container {
     width: 454px;
     padding-right: 16px;

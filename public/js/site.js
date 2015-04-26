@@ -173,7 +173,9 @@ function validatePhone() {
 		
         $.ajax({
             url: "/message/validate",
-            data: $("#confirm").val().serialize(),
+            data: {
+                "confirm": $("#confirm").val()
+            }
             type: "POST",
             success: function(data){
                 console.log('validatePhone():', data.message);
