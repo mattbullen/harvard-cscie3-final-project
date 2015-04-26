@@ -2,6 +2,7 @@
 $(document).ready(function() {
     
     // Make sure the loading progress bar and message input are hidden on page load.
+    $("#search-google-container").fadeToggle(0);
     $("#gallery-progress").fadeToggle(0);
     $("#message-container").fadeToggle(0);
     
@@ -179,10 +180,18 @@ function validatePhone() {
             type: "POST",
             success: function(data){
                 console.log('validatePhone():', data.message);
-                toggleResponseMessage("Phone number confirmed. On to the next step!", true);
+                if (data.message.valid) {
+                    toggleResponseMessage("Phone number confirmed. On to the next step!", true);
+                    $("#search-google-container").fadeToggle();
+                } else {
+                    toggleResponseMessage("Check for typos . . . or have you started the app yet?", true);
+                    $("#confirm").focus();
+                }
             },
             error: function(data){
-                console.log('validatePhone:', data.message);
+                console.log('validatePhone():', data.message);
+                toggleResponseMessage("Check for typos . . . or have you started the app yet?", true);
+                $("#confirm").focus();
             }
         });
         

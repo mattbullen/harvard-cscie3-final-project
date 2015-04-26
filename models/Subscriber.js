@@ -33,13 +33,15 @@ SubscriberSchema.statics.validatePhone = function(user, callback) {
                 }
             });
         } else {
-            return callback.call(this, {
+            /*return callback.call(this, {
                 "message": {
                     "docs": docs,
                     "user": user,
                     "valid": true
                 }
-            });
+            });*/
+            
+            return callback.call(this);
         }
         console.log("Subscriber.find():", docs);
     });

@@ -57,7 +57,11 @@ input {
 
 #validation {
     float: left;
+    height: 34px;
     width: 326px;
+    line-height: 34px;
+    color: #ffffff;
+    background-color: rgb(66, 139, 202);
 }
 
 #search-google-container {
