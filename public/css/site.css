@@ -30,6 +30,7 @@ input {
 }
 
 #confirm-container {
+    height: 50px;
     width: 670px;
 }
 
