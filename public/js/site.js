@@ -147,7 +147,7 @@ function validatePhone(event) {
         $("#confirm").val("");
         $("#validation").fadeOut();
         $("#search-google-container").fadeOut();
-        $("#gallery-container").fadeOut();
+        $("#gallery-content").fadeOut();
         $("#message-container").fadeOut();
         return false;
     }
