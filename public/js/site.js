@@ -140,17 +140,31 @@ function toggleResponseMessage(text, fade) {
 	return false;
 }
 
-// Validate each password input field as the user types.
-function validatePhone(event) {
-    
-    if (event.keyCode === 8) {
-        $("#confirm").val("");
-        $("#validation").fadeOut();
-        $("#search-google-container").fadeOut();
-        $("#gallery-content").fadeOut();
-        $("#message-container").fadeOut();
-        return false;
+// Fade out the form elements.
+function fadeOutForm() {
+    $("#confirm").val("");
+    $("#validation").fadeOut();
+    $("#search-google-container").fadeOut();
+    $("#gallery-content").fadeOut();
+    $("#message-container").fadeOut();
+    return false;
+}
+
+// Fade in the form elements based on the level of interaction the user has had with the form.
+function fadeInForm() {
+    $("#search-google-container").fadeIn();
+    var galleryContent = $("#gallery-content").children();
+    if (galleryContent.length > 0) {
+        $("#gallery-content").fadeIn();
+        if (galleryContent.find(".selected-slide")) {
+            $("#message-container").fadeIn();
+        }
     }
+    return false;
+}
+
+// Check and format the phone number's value in the user-visible input field.
+function checkPhonePattern() {
     
     // Get the input value.
 	var source = document.getElementById("confirm-visible");
@@ -160,7 +174,7 @@ function validatePhone(event) {
     // If we have all 10 numerical digits, fill the hidden form field's value.
     if (length === 10) {
         $("#confirm").val("+1" + phone);
-        console.log($("#confirm").val());
+        console.log("\ncheckPhonePattern() stored this phone number in input#confirm:", $("#confirm").val());
     }
     
     // Format the look of the phone string in the user-visible input field.
@@ -177,45 +191,53 @@ function validatePhone(event) {
 		length = phone.length;
 	}
 	source.value = phone;
-    
-    // Test if the final value is usable.
-	var test = source.validity.patternMismatch;
     length = phone.length;
-	if (test === false && length === 12) {
-		
-        $.ajax({
-            url: "/message/validate",
-            data: {
-                "confirm": $("#confirm").val()
-            },
-            type: "POST",
-            success: function(data){
-                console.log("\nvalidatePhone(success) returned:", data.message);
-                if (data.message.valid) {
-                    toggleResponseMessage("Confirmed. On to the next step!", false);
-                    window.setTimeout(function() {
-                        $("#search-google-container").fadeIn();
-                        var galleryContent = $("#gallery-content").children();
-                        if (galleryContent.length > 0) {
-                            $("#gallery-content").fadeIn();
-                            var selectedSlide = galleryContent.find(".selected-slide"); console.log(selectedSlide);
-                            if (selectedSlide) {
-                                $("#message-container").fadeIn();
-                            }
-                        }
-                    }, 1000);
-                } else {
-                    toggleResponseMessage("Typo? Have you started the app?", true);
-                    $("#confirm").focus();
-                }
-            },
-            error: function(data){
-                console.log("\nvalidatePhone(error) returned:", data.message);
+    
+	return (source.validity.patternMismatch === false && length === 12);
+}
+
+// Server-check to see if the user entered a valid phone number (on the list of subscribed users).
+function serverValidatePhone() {
+    $.ajax({
+        url: "/message/validate",
+        data: {
+            "confirm": $("#confirm").val()
+        },
+        type: "POST",
+        success: function(data){
+            console.log("\nvalidatePhone(success) returned:", data.message);
+            if (data.message.valid) {
+                toggleResponseMessage("Confirmed. On to the next step!", false);
+                window.setTimeout(function() {
+                    fadeInForm();
+                }, 1000);
+            } else {
                 toggleResponseMessage("Typo? Have you started the app?", true);
                 $("#confirm").focus();
             }
-        });
-        
-	}
-	return test;
+        },
+        error: function(data){
+            console.log("\nvalidatePhone(error) returned:", data.message);
+            toggleResponseMessage("Typo? Have you started the app?", true);
+            $("#confirm").focus();
+        }
+    });
+    return false;
+}
+
+// Validate each password input field as the user types.
+function validatePhone(event) {
+    
+    // Capture the backspace keyboard event and hide the form elements until the user supplies a valid phone number.
+    if (event.keyCode === 8) {
+        fadeOutForm();
+        return false;
+    }
+    
+    // Check that the phone number is usable (on the list of subscribed user phone numbers).
+    if (checkPhonePattern()) {
+        serverValidatePhone();
+    }
+    
+    return false;
 }
