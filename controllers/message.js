@@ -98,6 +98,6 @@ exports.sendMessages = function(request, response) {
 
         //response.redirect('/');
         
-        res.end();
+        response.end();
     });
 };
