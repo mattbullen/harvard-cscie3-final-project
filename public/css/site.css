@@ -28,17 +28,17 @@ h2 {
 }
 
 #panel-left {
-    background-color: rgb(146, 212, 254);
+    /*background-color: rgb(146, 212, 254);*/
 }
 
 #instructions-container {
     width: 454px;
-    padding-right: 16px;
-    border: 1px solid rgb(66, 139, 202);
+    padding-right: 15px;
+    /*border: 1px solid rgb(66, 139, 202);*/
 }
 
 #instructions-container ol li {
-    margin-bottom: 16px;
+    margin-bottom: 15px;
     font-size: 14px;
 }
 
@@ -67,8 +67,8 @@ input {
 
 #confirm-visible {
     float: left;
-    width: 326px;
-    margin-right: 16px;
+    width: 327px;
+    margin-right: 15px;
 }
 
 #validation {
@@ -90,8 +90,8 @@ input {
 
 #search-google-input {
     float: left;
-    width: 482px;
-    margin: 0px 16px 0px 0px;
+    width: 483px;
+    margin: 0px 15px 0px 0px;
 }
 
 #search-google-button {
@@ -155,8 +155,8 @@ h3.title {
 
 #message {
     float: left;
-    width: 580px;
-    margin-right: 16px;
+    width: 595px;
+    margin-right: 15px;
 }
 
 #send-text {
