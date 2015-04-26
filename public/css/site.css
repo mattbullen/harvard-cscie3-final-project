@@ -7,21 +7,24 @@
     margin-bottom: 50px;
 }
 
-#panel-left h3 {
-    margin-top: 0px;
+#panel-left h2 {
+    margin: 0px 0px 16px 0px;
 }
 
 #panel-left ol li {
     margin-bottom: 16px;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 div.form-group {
     margin-bottom: 30px;
 }
 
+form {
+    margin-bottom: 30px;
+}
+
 #form-fieldset {
-    margin-bottom: 15px;
     border: 1px solid rgb(204, 204, 204);
 }
 
@@ -57,6 +60,10 @@ input {
 
 .gallery {
     overflow: hidden;
+}
+
+#gallery-progress {
+    margin-top: 30px;
 }
 
 .slide-selected {
