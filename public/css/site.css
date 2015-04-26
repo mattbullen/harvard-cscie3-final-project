@@ -31,13 +31,13 @@
 }
 
 #header h1 {
-    font-family: Museo, Equip, Arial, sans-serif;
+    font-family: Museo, Equip, Arial, sans-serif !important;
     text-align: center;
     margin-bottom: 50px;
 }
 
 h2 {
-    font-family: Museo, Equip, Arial, sans-serif;
+    font-family: Museo, Equip, Arial, sans-serif !important;
     margin: 0px 0px 30px 0px;
 }
 
