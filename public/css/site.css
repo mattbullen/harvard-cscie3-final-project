@@ -21,6 +21,7 @@ input {
 }
 
 #message {
+    float: left;
     width: 570px;
     margin-right: 16px;
 }
