@@ -12,7 +12,8 @@ h2 {
 }
 
 #instructions-container {
-    padding: 0px 16px;
+    width: 454px;
+    padding-right: 16px;
     border: 1px solid rgb(66, 139, 202);
 }
 
