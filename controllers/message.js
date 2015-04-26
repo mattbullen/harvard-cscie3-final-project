@@ -77,7 +77,32 @@ exports.webhook = function(request, response) {
     }
 };
 
-// Handle form submission
+// Handle form submission for validating a user's phone number.
+exports.validatePhone = function(request, response) {
+    
+    // Get phone number from form submission.
+    console.log("exports.validatePhone():", request.body);
+    var user = request.body.confirm;
+    
+    // Use model function to validate a user's phone number.
+    Subscriber.sendMessage(user, function(err) {
+        if (err) {
+            response.send({
+                "message": err,
+                "valid": false
+            });
+        } else {
+            response.send({
+                "message": {
+                    "user": user,
+                    "valid": true
+                }
+            });
+        }
+    });
+};
+
+// Handle form submission for sending a multimedia text message to a subscribed user.
 exports.sendMessages = function(request, response) {
     
     // Get message info from form submission.
@@ -86,15 +111,13 @@ exports.sendMessages = function(request, response) {
     var imageURL = request.body.imageURL;
     var user = request.body.confirm;
     
-    // Use model function to send messages to all subscribers.
+    // Use model function to send a multimedia text message to a subscribed user.
     Subscriber.sendMessage(message, imageURL, user, function(err) {
         if (err) {
-            // request.flash("errors", err.message);
             response.send({
                 "message": err
             });
         } else {
-            // request.flash("successes", "Your text is on the way!");
             response.send({
                 "message": {
                     "user": user,

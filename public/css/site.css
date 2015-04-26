@@ -45,7 +45,7 @@ input {
     width: 100%;
 }
 
-#confirm {
+#confirm-visible {
     float: left;
     width: 326px;
     margin-right: 16px;

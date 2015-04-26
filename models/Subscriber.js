@@ -14,6 +14,39 @@ var SubscriberSchema = new mongoose.Schema({
 });
 
 // Static function to send a message to a subscribed user.
+SubscriberSchema.statics.validatePhone = function(user, callback) {
+    
+    console.log("SubscriberSchema.statics.validatePhone: " + user);
+    
+    // Check if a submitted phone number is on the list of subscribed user phone numbers.
+    Subscriber.find({
+        subscribed: true,
+        phone: user
+    }, function(err, docs) {
+        if (err || docs.length === 0) {
+            return callback.call(this, {
+                "message": {
+                    "error": err,
+                    "docs": docs,
+                    "user": user,
+                    "valid": false
+                }
+            });
+        } else {
+            return callback.call(this, {
+                "message": {
+                    "docs": docs,
+                    "user": user,
+                    "valid": true
+                }
+            });
+        }
+        console.log("Subscriber.find():", docs);
+    });
+
+};
+
+// Static function to send a message to a subscribed user.
 SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
     
     console.log("SubscriberSchema.statics.sendMessage(): " + message + " " + url + " " + user);

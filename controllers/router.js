@@ -10,6 +10,9 @@ module.exports = function(app) {
     // Render the page HTML from its Jade template:
     app.get("/", pages.showForm);
 
-    // Form submission and texting messages to subscribed users:
+    // Form submission for texting multimedia messages to subscribed users:
     app.post("/message/send", message.sendMessages);
+    
+    // Form submission for texting multimedia messages to subscribed users:
+    app.post("/message/validate", message.validatePhone);
 };

@@ -121,3 +121,69 @@ $(document).ready(function() {
     });
     
 }); // End $(document).ready();
+
+// Toggles a server response message.
+function toggleResponseMessage(text, fade) {
+	var message = $("#validation");
+	message.html(text);
+	message.fadeToggle();
+	if (fade) {
+		window.setTimeout(function() {
+			message.fadeToggle({ duration: 500 });
+		}, 3500);
+	}
+	return false;
+}
+
+// Validate each password input field as the user types.
+function validatePhone() {
+    
+    // Get the input value.
+	var source = document.getElementById("confirm-visible");
+	var phone, hiddenPhone = source.value.replace(/\D*/g, "");
+    
+    // If we have all 10 numerical digits, fill the hidden form field's value.
+    if (hiddenPhone.length === 10) {
+        $("#confirm").val("+1" + hiddenPhone);
+        console.log($("#confirm").val());
+    }
+    
+    // Update the visible phone string in the user input field.
+	var length = phone.length;
+	if (length < 1) {
+		source.value = phone;
+		return true;
+	}
+	if (length > 2) {
+		phone = phone.substring(0, 3) + "-" + phone.substring(3, length);
+		length = phone.length;
+	}
+	if (length > 6) {
+		phone = phone.substring(0, 7) + "-" + phone.substring(7, length);
+		length = phone.length;
+	}
+	source.value = phone;
+    
+    // Test if the final value is usable.
+	var test = source.validity.patternMismatch;
+	if (test === false && length === 12 && hiddenPhone.length === 10) {
+		
+        $.ajax({
+            url: "/message/validate",
+            data: $("#confirm").val().serialize(),
+            type: "POST",
+            success: function(data){
+                console.log('validatePhone():', data.message);
+                toggleResponseMessage("Phone number confirmed. On to the next step!", true);
+            },
+            error: function(data){
+                console.log('validatePhone:', data.message);
+            }
+        });
+        
+	}
+	return test;
+}
+
+// Add an event listener to the phone number input field.
+document.getElementById("phone").addEventListener("keyup", validatePhone, false);
