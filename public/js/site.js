@@ -101,12 +101,17 @@ $(document).ready(function() {
     */
     $("#text-message-form").submit(function(e) {
         e.preventDefault();
-        var fd = new FormData($(this)[0]);
+        //var fd = new FormData($(this)[0]);
+        var fd = {
+            "message": $("#message").val(),
+            "confirm": $("#confirm").val(),
+            "imageURL": $("#imageURL").val()
+        }
         $.ajax({
             url: "/message/send",
             data: fd,
             processData: false,
-            contentType: "x-www-form-urlencoded",
+            contentType: "application/json",
             type: "POST",
             success: function(data){
                 console.log(data);
