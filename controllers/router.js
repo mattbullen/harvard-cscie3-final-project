@@ -1,15 +1,15 @@
-var pages = require('./pages');
-var message = require('./message');
+var pages = require("./pages");
+var message = require("./message");
 
-// Map routes to controller functions
+// Map routes to controller functions:
 module.exports = function(app) {
-    // Twilio SMS webhook route
-    app.post('/message', message.webhook);
+    
+    // Twilio SMS webhook route:
+    app.post("/message", message.webhook);
 
-    // Render a page that will allow an administrator to send out a message
-    // to all subscribers
-    app.get('/', pages.showForm);
+    // Render the page HTML from its Jade template:
+    app.get("/", pages.showForm);
 
-    // Handle form submission and send messages to subscribers
-    app.post('/message/send', message.sendMessages);
+    // Form submission and texting messages to subscribed users:
+    app.post("/message/send", message.sendMessages);
 };

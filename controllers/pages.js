@@ -1,8 +1,7 @@
-// Render a form to send an MMS message
+// Render the page from its Jade template:
 exports.showForm = function(request, response) {
-    // Render form, with any success or error flash messages
-    response.render('layout', {
-        errors: request.flash('errors'),
-        successes: request.flash('successes')
+    response.render("layout", {
+        errors: request.flash("errors"),
+        successes: request.flash("successes")
     });
 };

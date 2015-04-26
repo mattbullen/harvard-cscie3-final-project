@@ -1,8 +1,8 @@
-var mongoose = require('mongoose');
-var twilio = require('twilio');
-var config = require('../config');
+var mongoose = require("mongoose");
+var twilio = require("twilio");
+var config = require("../config");
 
-// create an authenticated Twilio REST API client
+// Create an authenticated Twilio REST API client.
 var client = twilio(config.accountSid, config.authToken);
 
 var SubscriberSchema = new mongoose.Schema({
@@ -13,58 +13,56 @@ var SubscriberSchema = new mongoose.Schema({
     }
 });
 
-// Static function to send a message to all current subscribers
+// Static function to send a message to a subscribed user.
 SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
     
     console.log("SubscriberSchema.statics.sendMessage(): " + message + " " + url + " " + user);
     
-    // Find all subscribed users
+    // Find all subscribed users.
     Subscriber.find({
         subscribed: true,
         phone: user
     }, function(err, docs) {
         if (err || docs.length == 0) {
             return callback.call(this, {
-                message: 'Couldn\'t find any subscribers!'
+                message: "Failed to find a valid user entry!"
             });
         }
-
-        // Otherwise send messages to all subscribers
         console.log("Subscriber.find():", docs);
         sendMessages(docs);
     });
 
-    // Send messages to all subscribers via Twilio
+    // Send a text message to a matched user.
     function sendMessages(docs) {
         docs.forEach(function(subscriber) {
-            // Create options to send the message
+            
+            // Message contents:
             var options = {
                 to: subscriber.phone,
                 from: config.twilioNumber,
                 body: message
             };
 
-            // Include media URL if one was given for MMS
-            if (url) options.mediaUrl = url;
+            // Include the image URL, if the user chose an image.
+            if (url) {
+                options.mediaUrl = url;
+            }
             
-            // Send the message!
+            // Send the message.
             client.sendMessage(options, function(err, response) {
-                
                 console.log("client.sendMessage():", options);
-                
                 if (err) {
                     console.error(err);
                 } else {
-                    console.log("client.sendMessage() sent the message to: " + subscriber.phone);
+                    console.log("client.sendMessage() sent a text to: " + subscriber.phone);
                 }
             });
         });
 
-        // Don't wait on success/failure, just indicate all messages have been
-        // queued for delivery
+        // Don't wait on success/failure, just indicate that the queue is ready for delivery.
         callback.call(this);
     }
 };
 
-var Subscriber = mongoose.model('Subscriber', SubscriberSchema);
+var Subscriber = mongoose.model("Subscriber", SubscriberSchema);
 module.exports = Subscriber;

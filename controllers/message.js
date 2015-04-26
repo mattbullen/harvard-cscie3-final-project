@@ -1,68 +1,68 @@
-var Subscriber = require('../models/Subscriber');
+var Subscriber = require("../models/Subscriber");
 
-// Create a function to handle Twilio SMS / MMS webhook requests
+// Handle Twilio SMS / MMS webhook requests:
 exports.webhook = function(request, response) {
 
-    // Get the user's phone number
+    // Get the user's phone number.
     var phone = request.body.From;
 
-    // Try to find a subscriber with the given phone number
+    // Look for a user with the given phone number.
     Subscriber.findOne({
         phone: phone
     }, function(err, sub) {
         if (err) {
-            return respond('Whoops, please try again.');
+            return respond("Whoops, please try again.");
         }
         if (!sub) {
             
-            // If there's no subscriber associated with this phone number, create one.
+            // If there's no user associated with this phone number, create an entry for one.
             var newSubscriber = new Subscriber({
                 phone: phone
             });
 
             newSubscriber.save(function(err, newSub) {
                 if (err || !newSub) {
-                    return respond('Whoops, please try again.');
+                    return respond("Whoops, please try again.");
                 }
                 
-                // We're signed up but not subscribed - prompt to subscribe.
+                // A non-subscribed user sends a text; prompt to subscribe.
                 respond('Text "subscribe" to begin using the app.');
             });
         } else {
-            // For an existing user, process any input message they sent and send back an appropriate message.
+            // For an existing user, process any message they send and send back a message.
             processMessage(sub);
         }
     });
 
-    // Process any message the user sent to us
+    // Process any message the user sends.
     function processMessage(subscriber) {
         
         // Get the text message command sent by the user.
-        var msg = request.body.Body || '';
+        var msg = request.body.Body || "";
         msg = msg.toLowerCase().trim();
 
-        // Conditional logic to do different things based on the command from the user.
-        if (msg === 'subscribe' || msg === 'unsubscribe') {
+        // Handle valid user commands: subscribe or unsubscribe.
+        if (msg === "subscribe" || msg === "unsubscribe") {
             
-            // If the user has elected to subscribe for messages, flip the bit and indicate that they have done so.
-            subscriber.subscribed = msg === 'subscribe';
+            // Save users that send a "subscribe" command.
+            subscriber.subscribed = msg === "subscribe";
             subscriber.save(function(err) {
                 
                 if (err) {
-                    return respond('Whoops, please try again.');
+                    return respond("Whoops, please try again.");
                 }
                 
-                // Otherwise, our subscription has been updated.
-                var responseMessage = 'You are now subscribed.';
+                // Otherwise, the subscription list is updated.
+                var responseMessage = "You're ready to use the app!";
                 if (!subscriber.subscribed)
-                    responseMessage = 'You are now unsubscribed. Reply with "subscribe" to subscribe again.';
+                    responseMessage = 'You are now unsubscribed. Reply with "subscribe" to use the app again.';
 
                 respond(responseMessage);
             });
         } else {
             
-            // If we don't recognize the command, text back with the list of available commands.
-            var responseMessage = 'Sorry, there must have been a typo. Choose either "subscribe" or "unsubscribe" and try again.';
+            // Handle invalid commands by prompting for a usable command.
+            var responseMessage = 'Sorry, choose either "subscribe" or "unsubscribe" and try again.';
 
             respond(responseMessage);
         }
@@ -89,17 +89,18 @@ exports.sendMessages = function(request, response) {
     // Use model function to send messages to all subscribers.
     Subscriber.sendMessage(message, imageURL, user, function(err) {
         if (err) {
-            //request.flash('errors', err.message);
+            // request.flash("errors", err.message);
             response.send({
                 "message": err
             });
         } else {
-            //request.flash('successes', 'Your text is on the way!');
+            // request.flash("successes", "Your text is on the way!");
             response.send({
                 "message": "Your text is on the way!"
             });
         }
-
-        //response.redirect('/');
+        
+        // Uncomment to allow page reloading after form submission.
+        // response.redirect("/");
     });
 };

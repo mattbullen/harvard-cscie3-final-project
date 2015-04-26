@@ -78,23 +78,23 @@ html(lang='en').
 
                         <div id="gallery-content"></div>
                         
-                            <script id="template" type="text/x-handlebars-template">
+                        <script id="gallery-template" type="text/x-handlebars-template">
 
-                                {{#images}}
+                            {{#images}}
                                 
-                                    <div id="slide-{{@index}}" class="slide-box">
+                                <div id="slide-{{@index}}" class="slide-box">
                                     
-                                        <a class="slide-href" href="{{link}}" title="{{link}}" data-gallery>
+                                    <a class="slide-href" href="{{link}}" title="{{link}}" data-gallery>
                                             
-                                            <img class="slide-image" src="{{image.thumbnailLink}}" alt="{{width}}px x {{height}}px" data-index="{{@index}}" />
+                                        <img class="slide-image" src="{{image.thumbnailLink}}" alt="{{width}}px x {{height}}px" data-index="{{@index}}" />
                                                 
-                                        </a>
+                                    </a>
                                         
-                                    </div>
+                                </div>
                                 
-                                {{/images}}
+                            {{/images}}
 
-                            </script>
+                        </script>
                         
                     </div><!-- div#gallery -->
             
