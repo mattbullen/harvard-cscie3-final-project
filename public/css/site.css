@@ -2,10 +2,6 @@
     padding: 70px 0px 0px 0px;
 }
 
-.panel {
-    
-}
-
 #search-bar {
     margin: 0px 0px 24px 0px;
     overflow: hidden;
@@ -45,9 +41,6 @@
     margin-right: 0px;
 }
 
-.slide-href {
-    
-}
 /*
     Horizontally and vertically center images. Source:
         http://stackoverflow.com/questions/15443230/vertically-center-responsive-image

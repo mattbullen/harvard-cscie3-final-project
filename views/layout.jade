@@ -37,12 +37,35 @@ html(lang='en').
 
         <div id="main" class="container">
           
-            <div class="message-list"></div>
+            <div class="row">
+            
+                <div id="header" class="col-md-12">
+            
+                    <h1>CSCI E-3 Final Project</h1>
+                    
+                </div>
+            
+            </div><!-- div#panel-left.col-md-12 -->
             
             <div class="row">
             
-                <div id="panel-left" class="col-md-5 panel">
+                <div id="panel-left" class="col-md-5">
             
+                    <h3>How it works:</h3>
+                    
+                    <ol>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ol>
+            
+                </div><!-- div#panel-left.col-md-5 -->
+                
+                <div id="panel-right" class="col-md-7">
+                    
                     <!--<form id="text-message-form" action="/message/send" method="POST">-->
                     <form id="text-message-form">
                         <div class="form-group">
@@ -60,11 +83,7 @@ html(lang='en').
                         <input id="imageURL" name="imageURL" type="hidden">
                         
                     </form>
-            
-                </div><!-- div#panel-left.col-md-5 -->
-                
-                <div id="panel-right" class="col-md-7 panel">
-            
+                    
                     <div id="search-bar">
                         <input id="search-google-input" class="form-control" name="search-google-input" type="text" placeholder="Enter a search term to search Google Images.">
                         <button id="search-google-button" class="btn btn-primary" type="button">Search Google Images</button>
