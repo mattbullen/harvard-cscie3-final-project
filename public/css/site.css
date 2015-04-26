@@ -31,7 +31,11 @@ input {
 
 #confirm-container {
     height: 50px;
-    width: 670px;
+    width: 100%;
+}
+
+#confirm-label {
+    width: 100%;
 }
 
 #confirm {
@@ -40,16 +44,13 @@ input {
     margin-right: 16px;
 }
 
-#confirm-label {
-    float: left;
-}
-
 #validation {
     float: left;
     width: 326px;
 }
 
 #search-google-container {
+    width: 100%;
     margin: 0px 0px 24px 0px;
     overflow: hidden;
 }
