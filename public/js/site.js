@@ -185,13 +185,13 @@ function validatePhone() {
                     toggleResponseMessage("Phone number confirmed. On to the next step!", true);
                     $("#search-google-container").fadeToggle();
                 } else {
-                    toggleResponseMessage("Check for typos . . . or have you started the app yet?", true);
+                    toggleResponseMessage("Typo? Have you registered yet?", true);
                     $("#confirm").focus();
                 }
             },
             error: function(data){
                 console.log('validatePhone():', data.message);
-                toggleResponseMessage("Check for typos . . . or have you started the app yet?", true);
+                toggleResponseMessage("Typo? Have you registered yet?", true);
                 $("#confirm").focus();
             }
         });
