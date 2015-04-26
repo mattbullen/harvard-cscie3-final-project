@@ -86,6 +86,7 @@ exports.sendMessages = function(request, response) {
     var imageURL = request.body.imageURL;
     var user = request.body.confirm;
     
+    console.log(request);
     console.log(message, imageURL, user);
     
     // Use model function to send messages to all subscribers
