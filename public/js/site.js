@@ -195,9 +195,13 @@ function validatePhone(event) {
                     toggleResponseMessage("Confirmed. On to the next step!", false);
                     window.setTimeout(function() {
                         $("#search-google-container").fadeIn();
-                        var galleryContent = $("#gallery-content").children().length;
-                        if (galleryContent > 0) {
+                        var galleryContent = $("#gallery-content").children();
+                        if (galleryContent.length > 0) {
                             $("#gallery-content").fadeIn();
+                            var selectedSlide = galleryContent.find(".selected-slide").length;
+                            if (selectedSlide > 0) {
+                                $("#message-container").fadeIn();
+                            }
                         }
                     }, 1000);
                 } else {
