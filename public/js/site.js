@@ -2,6 +2,7 @@
 $(document).ready(function() {
     
     // Make sure the loading progress bar and message input are hidden on page load.
+    $("#validation").fadeToggle(0);
     $("#search-google-container").fadeToggle(0);
     $("#gallery-progress").fadeToggle(0);
     $("#message-container").fadeToggle(0);
