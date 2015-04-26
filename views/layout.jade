@@ -43,8 +43,8 @@ html(lang='en').
             
                 <div id="panel-left" class="col-md-5 panel">
             
-                    <form id="text-message-form" action="/message/send" method="POST">
-                    <!--<form id="text-message-form"> -->
+                    <!--<form id="text-message-form" action="/message/send" method="POST">-->
+                    <form id="text-message-form">
                         <div class="form-group">
                             <label for="confirm">Confirm your phone number:</label>
                             <input id="confirm" class="form-control" name="confirm" type="text" placeholder="Confirm your phone number to text images to your phone.">
@@ -55,7 +55,7 @@ html(lang='en').
                             <input id="message" class="form-control" name="message" type="text" placeholder="This note will be sent with the image you selected.">
                         </div>
                         
-                        <button id="send-text" class="btn btn-primary" name="send-text" type="submit">Text me!</button>
+                        <button id="send-text" class="btn btn-primary" name="send-text" type="button">Text me!</button>
                         
                         <input id="imageURL" name="imageURL" type="hidden">
                         
