@@ -155,8 +155,8 @@ function fadeInForm() {
     $("#search-google-container").fadeIn();
     var galleryContent = $("#gallery-content").children();
     if (galleryContent.length > 0) {
-        $("#gallery-content").fadeIn();
-        if (galleryContent.find(".selected-slide")) {
+        $("#gallery-content").fadeIn(); console.log(galleryContent.find(".selected-slide"));
+        if (galleryContent.find(".selected-slide").length > 0) {
             $("#message-container").fadeIn();
         }
     }
