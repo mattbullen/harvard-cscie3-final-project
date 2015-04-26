@@ -118,7 +118,7 @@ exports.sendMessages = function(request, response) {
     Subscriber.sendMessage(message, imageURL, user, function(err) {
         if (err) {
             response.send({
-                "message": err
+                "fail": err
             });
         } else {
             response.send({
