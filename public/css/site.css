@@ -34,22 +34,16 @@ input {
     margin-right: 16px;
 }
 
+#confirm-label {
+    float: left;
+}
+
 #validation {
     float: left;
     width: 326px;
 }
 
-#message {
-    float: left;
-    width: 572px;
-    margin-right: 16px;
-}
-
-#send-text {
-    float: left;
-}
-
-#search-bar {
+#search-google-container {
     margin: 0px 0px 24px 0px;
     overflow: hidden;
 }
@@ -66,6 +60,7 @@ input {
 
 .gallery {
     overflow: hidden;
+    margin-bottom: 30px;
 }
 
 #gallery-progress {
@@ -115,4 +110,14 @@ input {
 
 h3.title {
     left: 170px !important;
+}
+
+#message {
+    float: left;
+    width: 618px;
+    margin-right: 16px;
+}
+
+#send-text {
+    float: left;
 }

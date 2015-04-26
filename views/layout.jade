@@ -67,26 +67,15 @@ html(lang='en').
                 
                 <div id="panel-right" class="col-md-7">
                     
-                    <!--<form id="text-message-form" action="/message/send" method="POST">
-                    <form id="text-message-form">
-                    
-                        <fieldset id="form-fieldset">-->
-                        
-                            <div class="form-group">
-                                <label for="confirm">Confirm your phone number:</label>
-                                <input id="confirm" class="form-control" name="confirm" type="text" placeholder="Confirm your phone number to text images to your phone.">
-                                <div id="validation"></div>
-                            </div>
-                            
-                            
-                            
-                            
-                            
-                        <!--</fieldset>
-                        
-                    </form>-->
-                    
-                    <div id="search-bar" class="form-group">
+                    <form id="page-form">
+ 
+                    <div id="confirm-container" class="form-group">
+                        <label id="confirm-label" for="confirm">Confirm your phone number:</label>
+                        <input id="confirm" class="form-control" name="confirm" type="text" placeholder="Include your area code.">
+                        <div id="validation"></div>
+                    </div>
+
+                    <div id="search-google-container" class="form-group">
                         <input id="search-google-input" class="form-control" name="search-google-input" type="text" placeholder="Enter a search term to search Google Images.">
                         <button id="search-google-button" class="btn btn-primary" type="button">Search Google Images</button>
                     </div>
@@ -100,35 +89,26 @@ html(lang='en').
                         <div id="gallery-content"></div>
                         
                         <script id="gallery-template" type="text/x-handlebars-template">
-
                             {{#images}}
-                                
                                 <div id="slide-{{@index}}" class="slide-box">
-                                    
-                                    <a class="slide-href" href="{{link}}" title="{{link}}" data-gallery>
-                                            
-                                        <img class="slide-image" src="{{image.thumbnailLink}}" alt="{{width}}px x {{height}}px" data-index="{{@index}}" />
-                                                
-                                    </a>
-                                        
+                                    <a class="slide-href" href="{{link}}" title="{{link}}" data-gallery>    
+                                        <img class="slide-image" src="{{image.thumbnailLink}}" alt="{{width}}px x {{height}}px" data-index="{{@index}}" />    
+                                    </a> 
                                 </div>
-                                
                             {{/images}}
-
                         </script>
                         
                     </div><!-- div#gallery -->
                     
-                    <div class="form-group">
-                                <label for="message">Add an optional note?</label>
-                                <input id="message" class="form-control" name="message" type="text" placeholder="This note will be sent with the image you selected.">
-                            
-                            
-                                <button id="send-text" class="btn btn-primary" name="send-text" type="button">Send it!</button>
-                            
-                                <input id="imageURL" name="imageURL" type="hidden">
-                            </div>
+                    <div id="message-container" class="form-group">
+                        <label id="message-label" for="message">Add an optional note?</label>
+                        <input id="message" class="form-control" name="message" type="text" placeholder="This note will be sent with the image you selected.">
+                        <button id="send-text" class="btn btn-primary" name="send-text" type="button">Send it!</button> 
+                        <input id="imageURL" name="imageURL" type="hidden">
+                    </div>
             
+                    </form>
+                    
                 </div><!-- div#panel-right.col-md-7 -->
             
             </div><!-- div.row -->

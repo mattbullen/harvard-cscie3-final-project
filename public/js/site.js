@@ -1,8 +1,9 @@
 // Main page loading function.
 $(document).ready(function() {
     
-    // Make sure the loading progress bar is hidden on page load.
+    // Make sure the loading progress bar and message input are hidden on page load.
     $("#gallery-progress").fadeToggle(0);
+    $("#message-container").fadeToggle(0);
     
     /*
         Run a Google Custom Search for images. Reference API: 
@@ -63,6 +64,8 @@ $(document).ready(function() {
                             console.log("\nImage index:", index);
                             
                             $("#slide-" + index).toggleClass("slide-selected");
+                            
+                            $("#message-container").fadeToggle();
                         });
                     }
                 });
@@ -94,7 +97,8 @@ $(document).ready(function() {
         console.log("\nImage index:", index);
                                 
         $("#slide-" + index).toggleClass("slide-selected");
-    
+        
+        $("#message-container").fadeToggle();
     });
     
     /*
@@ -105,7 +109,7 @@ $(document).ready(function() {
         e.preventDefault();
         $.ajax({
             url: "/message/send",
-            data: $("#text-message-form").serialize(),
+            data: $("#page-form").serialize(),
             type: "POST",
             success: function(data){
                 console.log('$("#send-text").click():', data.message);
