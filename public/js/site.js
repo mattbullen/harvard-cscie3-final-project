@@ -101,17 +101,17 @@ $(document).ready(function() {
     */
     $("#send-text").click(function(e) {
         e.preventDefault();
-        //var fd = new FormData($(this)[0]);
-        var fd = {
+        //var fd = new FormData($("#text-message-form").serialize(),);
+        /*var fd = {
             "message": $("#message").val(),
             "confirm": $("#confirm").val(),
             "imageURL": $("#imageURL").val()
-        }
+        }*/
         $.ajax({
             url: "/message/send",
-            data: fd,
-            processData: false,
-            contentType: "application/json",
+            data: $("#text-message-form").serialize(),
+            //processData: false,
+            //contentType: "application/json",
             type: "POST",
             success: function(data){
                 console.log(data);
