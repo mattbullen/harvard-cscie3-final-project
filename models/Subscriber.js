@@ -33,7 +33,7 @@ SubscriberSchema.statics.validatePhone = function(user, callback) {
             if (err) {
                 content.message.fail = err;
             }
-            return callback.call(this);
+            return callback.call(this, "Phone Number Not Found");
         } else {
             /*return callback.call(this, {
                 "message": {
