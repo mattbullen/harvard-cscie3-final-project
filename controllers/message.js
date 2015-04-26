@@ -96,6 +96,6 @@ exports.sendMessages = function(request, response) {
             request.flash('successes', 'Texting the image to your phone right now!');
         }
 
-        //response.redirect('/');
+        response.redirect('/');
     });
 };
