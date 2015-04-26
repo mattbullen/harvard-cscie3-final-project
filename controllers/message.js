@@ -89,7 +89,7 @@ exports.validatePhone = function(request, response) {
         if (err) {
             response.send({
                 "message": {
-                    "error": err,
+                    "fail": err,
                     "user": user,
                     "valid": false
                 }
