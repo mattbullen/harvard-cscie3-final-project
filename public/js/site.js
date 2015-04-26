@@ -190,10 +190,10 @@ function validatePhone(e) {
                     window.setTimeout(function() {
                         $("#search-google-container").fadeToggle();
                     }, 1000);
-                } else {
-                    toggleResponseMessage("Invalid! Typo? Have you started the app?", true);
-                    $("#confirm").focus();
-                }
+                } //else {
+                  //  toggleResponseMessage("Invalid! Typo? Have you started the app?", true);
+                  //  $("#confirm").focus();
+                //}
             },
             error: function(data){
                 console.log("\nvalidatePhone() returned:", data.message);
