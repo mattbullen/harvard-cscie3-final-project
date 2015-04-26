@@ -1,5 +1,5 @@
 #main {
-    padding: 70px 0px 0px 0px;
+    padding: 50px 0px 0px 0px;
 }
 
 #header h1 {
@@ -113,7 +113,7 @@ input {
 
 #modal-select-image-button {
     position: absolute;
-    top: 15px;
+    top: 13px;
     left: 15px;
 }
 
