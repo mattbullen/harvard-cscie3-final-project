@@ -131,13 +131,12 @@ $(document).ready(function() {
 // Toggles a server response message.
 function toggleResponseMessage(text, fade) {
 	var message = $("#validation").html(text);
+    message.fadeToggle();
 	if (fade === true) {
 		window.setTimeout(function() {
 			message.fadeToggle({ duration: 500 });
 		}, 3500);
-	} else {
-        message.fadeToggle();
-    }
+	}
 	return false;
 }
 

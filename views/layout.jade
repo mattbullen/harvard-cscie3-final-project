@@ -60,7 +60,7 @@ html(lang='en').
                             <li>Search for an image. The app runs a Google Custom Search through Google Images, then returns the first ten hits.</li>
                             <li>Select an image by either clicking on one of the Handlebars.js-generated thumbnails, or by clicking the "Select This Image" button in the modal gallery view.</li>
                             <li>Optional: enter a note to be texted with the image you select.</li>
-                            <li>The "Send it!" button prompts the server to create a new multimedia text message, then sends it to your phone.</li>
+                            <li>The send button prompts the server to create a new multimedia text message, then sends it to your phone.</li>
                             <li>Sources: The server-side uses the Twilio.com SMS/MMS API, with Node.js + Express + MongoDB + Jade running on a Heroku.com server. The client-side uses jQuery, Bootstrap.js + the Bootstrap blueimp Gallery, and Handlebars.js. </li>
                         </ol>
                     </div>
@@ -111,7 +111,7 @@ html(lang='en').
                         <div id="message-container">
                             <label id="message-label" for="message">Add an optional note?</label>
                             <input id="message" class="form-control" name="message" type="text" placeholder="This note will be sent with the image you selected.">
-                            <button id="send-text" class="btn btn-primary" name="send-text" type="button">Send it!</button> 
+                            <button id="send-text" class="btn btn-primary" name="send-text" type="button">Send</button> 
                             <input id="imageURL" name="imageURL" type="hidden">
                         </div>
             
