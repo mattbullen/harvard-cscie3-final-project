@@ -4,7 +4,7 @@
 
 #header h1 {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
 
 #panel-left h3 {
@@ -14,6 +14,10 @@
 #panel-left ol li {
     margin-bottom: 16px;
     font-size: 16px;
+}
+
+div.form-group {
+    margin-bottom: 30px;
 }
 
 #form-fieldset {
@@ -33,7 +37,7 @@ input {
 
 #send-text {
     float: left;
-    margin-top: -15px;
+    margin-top: -30px;
 }
 
 #search-bar {
