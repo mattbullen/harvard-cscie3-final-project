@@ -97,5 +97,8 @@ exports.sendMessages = function(request, response) {
         }
 
         //response.redirect('/');
+        response.send({
+            message: "Your profile has been updated"
+        });
     });
 };
