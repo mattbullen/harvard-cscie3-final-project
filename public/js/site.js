@@ -106,7 +106,7 @@ $(document).ready(function() {
             url: "/message/send",
             data: fd,
             processData: false,
-            contentType: false,
+            contentType: "x-www-form-urlencoded",
             type: "POST",
             success: function(data){
                 console.log(data);
