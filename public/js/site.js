@@ -143,16 +143,16 @@ function validatePhone() {
     
     // Get the input value.
 	var source = document.getElementById("confirm-visible");
-	var phone, hiddenPhone = source.value.replace(/\D*/g, "");
+	var phone = source.value.replace(/\D*/g, "");
+    var length = phone.length;
     
     // If we have all 10 numerical digits, fill the hidden form field's value.
-    if (hiddenPhone.length === 10) {
-        $("#confirm").val("+1" + hiddenPhone);
+    if (length === 10) {
+        $("#confirm").val("+1" + phone);
         console.log($("#confirm").val());
     }
     
-    // Update the visible phone string in the user input field.
-	var length = phone.length;
+    // Format the look of the phone string in the user-visible input field.
 	if (length < 1) {
 		source.value = phone;
 		return true;
@@ -169,7 +169,7 @@ function validatePhone() {
     
     // Test if the final value is usable.
 	var test = source.validity.patternMismatch;
-	if (test === false && length === 12 && hiddenPhone.length === 10) {
+	if (test === false && length === 12) {
 		
         $.ajax({
             url: "/message/validate",
