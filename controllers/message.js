@@ -86,8 +86,7 @@ exports.sendMessages = function(request, response) {
     var imageURL = request.body.imageURL;
     var user = request.body.confirm;
     
-    console.log(request);
-    console.log(message, imageURL, user);
+    console.log("exports.sendMessages():", request.body);
     
     // Use model function to send messages to all subscribers
     Subscriber.sendMessage(message, imageURL, user, function(err) {
@@ -97,6 +96,6 @@ exports.sendMessages = function(request, response) {
             request.flash('successes', 'Texting the image to your phone right now!');
         }
 
-        response.redirect('/');
+        //response.redirect('/');
     });
 };

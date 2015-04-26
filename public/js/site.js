@@ -98,7 +98,7 @@ $(document).ready(function() {
     /*
         Submit the form without reloading the page. Source:
             http://stackoverflow.com/questions/22163220/prevent-page-reload-after-form-submit-node-no-ajax-available
-    */
+    
     $("#text-message-form").submit(function(e) {
         e.preventDefault();
         //var fd = new FormData($(this)[0]);
@@ -118,7 +118,7 @@ $(document).ready(function() {
             }
         });
     });
-    
+    */
 }); // End $(document).ready();
 
 

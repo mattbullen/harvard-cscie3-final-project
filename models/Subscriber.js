@@ -16,7 +16,7 @@ var SubscriberSchema = new mongoose.Schema({
 // Static function to send a message to all current subscribers
 SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
     
-    console.log(message, url, user);
+    console.log("SubscriberSchema.statics.sendMessage(): " + message + " " + url + " " + user);
     
     // Find all subscribed users
     Subscriber.find({
@@ -30,7 +30,7 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
         }
 
         // Otherwise send messages to all subscribers
-        console.log(docs);
+        console.log("DOCS: ", docs);
         sendMessages(docs);
     });
 
@@ -50,7 +50,7 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
             // Send the message!
             client.sendMessage(options, function(err, response) {
                 
-                console.log(options);
+                console.log("client.sendMessage():", options);
                 
                 if (err) {
                     // Just log it for now
@@ -59,7 +59,7 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
                     // Log the last few digits of a phone number
                     var masked = subscriber.phone.substr(0, subscriber.phone.length - 5);
                     masked += '*****'; 
-                    console.log('Message sent to ' + masked);
+                    console.log("client.sendMessage() sent the message to: " + masked);
                 }
             });
         });
