@@ -145,8 +145,8 @@ function validatePhone(event) {
     
     if (event.keyCode === 8) {
         $("#confirm").val("");
-        $("#validation").fadeToggle(0);
-        $("#search-google-container").fadeToggle(0);
+        $("#validation").fadeOut();
+        $("#search-google-container").fadeOut();
         return false;
     }
     
@@ -190,18 +190,18 @@ function validatePhone(event) {
             success: function(data){
                 console.log("\nvalidatePhone(success) returned:", data.message);
                 if (data.message.valid) {
-                    toggleResponseMessage("Phone number confirmed. On to the next step!", false);
+                    toggleResponseMessage("Confirmed. On to the next step!", false);
                     window.setTimeout(function() {
                         $("#search-google-container").fadeToggle();
                     }, 1000);
                 } else {
-                    toggleResponseMessage("Invalid! Typo? Have you started the app?", true);
+                    toggleResponseMessage("Typo? Have you started the app?", true);
                     $("#confirm").focus();
                 }
             },
             error: function(data){
                 console.log("\nvalidatePhone(error) returned:", data.message);
-                toggleResponseMessage("Invalid! Typo? Have you started the app?", true);
+                toggleResponseMessage("Typo? Have you started the app?", true);
                 $("#confirm").focus();
             }
         });
