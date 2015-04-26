@@ -8,7 +8,7 @@ $(document).ready(function() {
     */
     $("#search-google-button").click(function() {
         
-        $("#gallery-content").fadeToggle();
+        $("#gallery-content").fadeToggle().html("");
         window.setTimeout(function() {
             $("#gallery-progress").fadeToggle();
         }, 500);
@@ -96,22 +96,14 @@ $(document).ready(function() {
     });
     
     /*
-        Submit the form without reloading the page. Source:
+        Submit the form without reloading the page. Modified from:
             http://stackoverflow.com/questions/22163220/prevent-page-reload-after-form-submit-node-no-ajax-available
     */
     $("#send-text").click(function(e) {
         e.preventDefault();
-        //var fd = new FormData($("#text-message-form").serialize(),);
-        /*var fd = {
-            "message": $("#message").val(),
-            "confirm": $("#confirm").val(),
-            "imageURL": $("#imageURL").val()
-        }*/
         $.ajax({
             url: "/message/send",
             data: $("#text-message-form").serialize(),
-            //processData: false,
-            //contentType: "application/json",
             type: "POST",
             success: function(data){
                 console.log(data);
