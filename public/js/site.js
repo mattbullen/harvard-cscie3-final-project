@@ -140,7 +140,11 @@ function toggleResponseMessage(text, fade) {
 }
 
 // Validate each password input field as the user types.
-function validatePhone() {
+function validatePhone(e) {
+    
+    if (e.keyCode == 8) {
+        validatePhone();
+    }
     
     // Get the input value.
 	var source = document.getElementById("confirm-visible");
@@ -170,6 +174,7 @@ function validatePhone() {
     
     // Test if the final value is usable.
 	var test = source.validity.patternMismatch;
+    length = phone.length;
 	if (test === false && length === 12) {
 		
         $.ajax({
