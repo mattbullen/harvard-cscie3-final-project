@@ -53,13 +53,9 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
                 console.log("client.sendMessage():", options);
                 
                 if (err) {
-                    // Just log it for now
                     console.error(err);
                 } else {
-                    // Log the last few digits of a phone number
-                    var masked = subscriber.phone.substr(0, subscriber.phone.length - 5);
-                    masked += '*****'; 
-                    console.log("client.sendMessage() sent the message to: " + masked);
+                    console.log("client.sendMessage() sent the message to: " + subscriber.phone);
                 }
             });
         });
