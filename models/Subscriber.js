@@ -25,7 +25,10 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
     }, function(err, docs) {
         if (err || docs.length == 0) {
             return callback.call(this, {
-                message: "invalid-user"
+                "message": {
+                    "error": err,
+                    "docs": docs
+                }
             });
         }
         console.log("Subscriber.find():", docs);

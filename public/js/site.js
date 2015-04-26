@@ -108,10 +108,10 @@ $(document).ready(function() {
             data: $("#text-message-form").serialize(),
             type: "POST",
             success: function(data){
-                console.log("sss", data);
+                console.log('$("#send-text").click():', data.message);
             },
             error: function(data){
-                console.log("eee", data);
+                console.log('$("#send-text").click():', data.message);
             }
         });
     });

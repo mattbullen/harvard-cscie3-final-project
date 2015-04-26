@@ -96,7 +96,11 @@ exports.sendMessages = function(request, response) {
         } else {
             // request.flash("successes", "Your text is on the way!");
             response.send({
-                "message": "text-sent"
+                "message": {
+                    "user": user,
+                    "message": message,
+                    "imageURL": imageURL
+                }
             });
         }
         
