@@ -88,8 +88,11 @@ exports.validatePhone = function(request, response) {
     Subscriber.validatePhone(user, function(err) {
         if (err) {
             response.send({
-                "message": err,
-                "valid": false
+                "message": {
+                    "error": err,
+                    "user": user,
+                    "valid": false
+                }
             });
         } else {
             response.send({

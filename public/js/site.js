@@ -3,7 +3,7 @@ $(document).ready(function() {
     
     // Make sure the loading progress bar and message input are hidden on page load.
     $("#validation").fadeToggle(0);
-    $("#search-google-container").fadeToggle(0);
+    $("#search-google-container").hide();
     $("#gallery-progress").fadeToggle(0);
     $("#message-container").fadeToggle(0);
     
@@ -182,16 +182,16 @@ function validatePhone() {
             success: function(data){
                 console.log('validatePhone():', data.message);
                 if (data.message.valid) {
-                    toggleResponseMessage("Phone number confirmed. On to the next step!", true);
+                    toggleResponseMessage("Phone number confirmed. On to the next step!", false);
                     $("#search-google-container").fadeToggle();
                 } else {
-                    toggleResponseMessage("Typo? Have you registered yet?", true);
+                    toggleResponseMessage("Invalid! Typo? Have you started the app?", true);
                     $("#confirm").focus();
                 }
             },
             error: function(data){
                 console.log('validatePhone():', data.message);
-                toggleResponseMessage("Typo? Have you registered yet?", true);
+                toggleResponseMessage("Invalid! Typo? Have you started the app?", true);
                 $("#confirm").focus();
             }
         });
