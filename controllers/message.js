@@ -45,7 +45,7 @@ exports.webhook = function(request, response) {
         if (msg === "start" || msg === "stop") {
             
             // Save users that send a "start" command.
-            subscriber.subscribed = msg === "start";
+            subscriber.subscribed = (msg === "start");
             subscriber.save(function(err) {
                 
                 if (err) {
