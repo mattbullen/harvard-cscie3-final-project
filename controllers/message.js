@@ -25,8 +25,8 @@ exports.webhook = function(request, response) {
                     return respond("Server error! Please try again.");
                 }
                 
-                // A non-subscribed user sends a text; prompt to subscribe.
-                respond('Text "subscribe" to begin using the app.');
+                // A non-subscribed user sends a text; prompt to start the app.
+                respond('Text "start" to begin using the app.');
             });
         } else {
             // For an existing user, process any message they send and send back a message.
@@ -41,11 +41,11 @@ exports.webhook = function(request, response) {
         var msg = request.body.Body || "";
         msg = msg.toLowerCase().trim();
 
-        // Handle valid user commands: subscribe or unsubscribe.
-        if (msg === "subscribe" || msg === "unsubscribe") {
+        // Handle valid user commands: start or stop.
+        if (msg === "start" || msg === "stop") {
             
-            // Save users that send a "subscribe" command.
-            subscriber.subscribed = msg === "subscribe";
+            // Save users that send a "start" command.
+            subscriber.subscribed = msg === "start";
             subscriber.save(function(err) {
                 
                 if (err) {
@@ -55,14 +55,14 @@ exports.webhook = function(request, response) {
                 // Otherwise, the subscription list is updated.
                 var responseMessage = "You're ready to use the app!";
                 if (!subscriber.subscribed)
-                    responseMessage = 'You are now unsubscribed. Reply with "subscribe" to use the app again.';
+                    responseMessage = 'You\'ve been removed from the app. Reply with "start" to use the app again.';
 
                 respond(responseMessage);
             });
         } else {
             
             // Handle invalid commands by prompting for a usable command.
-            var responseMessage = 'Sorry, choose either "subscribe" or "unsubscribe" and try again.';
+            var responseMessage = 'Please choose either "start" or "stop" and try again.';
 
             respond(responseMessage);
         }
