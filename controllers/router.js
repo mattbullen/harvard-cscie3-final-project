@@ -10,9 +10,10 @@ module.exports = function(app) {
     // Render the page HTML from its Jade template:
     app.get("/", pages.showForm);
 
+    // Check if a phone number is on the list of subscribed user phone numbers:
+    app.post("/message/validate", message.validatePhone);
+    
     // Form submission for texting multimedia messages to subscribed users:
     app.post("/message/send", message.sendMessages);
     
-    // Check if a phone number is on the list of subscribed user phone numbers:
-    app.post("/message/validate", message.validatePhone);
 };

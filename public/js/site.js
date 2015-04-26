@@ -131,10 +131,10 @@ $(document).ready(function() {
 // Toggles a server response message.
 function toggleResponseMessage(text, fade) {
 	var message = $("#validation").html(text);
-    message.fadeToggle();
+    message.fadeIn();
 	if (fade === true) {
 		window.setTimeout(function() {
-			message.fadeToggle({ duration: 500 });
+			message.fadeOut();
 		}, 3500);
 	}
 	return false;
@@ -194,7 +194,7 @@ function validatePhone(event) {
                 if (data.message.valid) {
                     toggleResponseMessage("Confirmed. On to the next step!", false);
                     window.setTimeout(function() {
-                        $("#search-google-container").fadeToggle();
+                        $("#search-google-container").fadeIn();
                     }, 1000);
                 } else {
                     toggleResponseMessage("Typo? Have you started the app?", true);

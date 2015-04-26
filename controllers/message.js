@@ -26,7 +26,7 @@ exports.webhook = function(request, response) {
                 }
                 
                 // A non-subscribed user sends a text; prompt to start the app.
-                respond('Text "start" to begin using the app.');
+                respond('Text "start" to start using the app.');
             });
         } else {
             // For an existing user, process any message they send and send back a message.
@@ -55,7 +55,7 @@ exports.webhook = function(request, response) {
                 // Otherwise, the subscription list is updated.
                 var responseMessage = "You're ready to use the app!";
                 if (!subscriber.subscribed)
-                    responseMessage = 'You\'ve been removed from the app. Reply with "start" to use the app again.';
+                    responseMessage = 'You\'re phone number has been removed from the app. Reply with "start" to use the app again.';
 
                 respond(responseMessage);
             });
