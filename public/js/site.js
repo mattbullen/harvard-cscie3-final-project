@@ -67,7 +67,7 @@ $(document).ready(function() {
                             
                             $("#slide-" + index).toggleClass("slide-selected");
                             
-                            $("#message-container").fadeToggle();
+                            $("#message-container").fadeToggle({ duration: 500 });
                         });
                     }
                 });
@@ -100,7 +100,7 @@ $(document).ready(function() {
                                 
         $("#slide-" + index).toggleClass("slide-selected");
         
-        $("#message-container").fadeToggle();
+        $("#message-container").fadeToggle({ duration: 500 });
     });
     
     /*
@@ -185,7 +185,7 @@ function validatePhone() {
                     toggleResponseMessage("Phone number confirmed. On to the next step!", false);
                     window.setTimeout(function() {
                         $("#search-google-container").fadeToggle();
-                    }, 500);
+                    }, 1000);
                 } else {
                     toggleResponseMessage("Invalid! Typo? Have you started the app?", true);
                     $("#confirm").focus();
