@@ -187,19 +187,19 @@ function validatePhone(event) {
             },
             type: "POST",
             success: function(data){
-                console.log("\nvalidatePhone() returned:", data.message);
+                console.log("\nvalidatePhone(success) returned:", data.message);
                 if (data.message.valid) {
                     toggleResponseMessage("Phone number confirmed. On to the next step!", false);
                     window.setTimeout(function() {
                         $("#search-google-container").fadeToggle();
                     }, 1000);
-                } //else {
-                  //  toggleResponseMessage("Invalid! Typo? Have you started the app?", true);
-                  //  $("#confirm").focus();
-                //}
+                } else {
+                    toggleResponseMessage("Invalid! Typo? Have you started the app?", true);
+                    $("#confirm").focus();
+                }
             },
             error: function(data){
-                console.log("\nvalidatePhone() returned:", data.message);
+                console.log("\nvalidatePhone(error) returned:", data.message);
                 toggleResponseMessage("Invalid! Typo? Have you started the app?", true);
                 $("#confirm").focus();
             }
