@@ -24,14 +24,16 @@ SubscriberSchema.statics.validatePhone = function(user, callback) {
         phone: user
     }, function(err, docs) {
         if (err || docs.length === 0) {
-            /*return callback.call(this, {
+            var content = {
                 "message": {
-                    "error": err,
                     "user": user,
                     "valid": false
                 }
-            });*/
-            return callback.call(this, err);
+            };
+            if (err) {
+                content.message.fail = err;
+            }
+            return callback.call(this, content);
         } else {
             /*return callback.call(this, {
                 "message": {
