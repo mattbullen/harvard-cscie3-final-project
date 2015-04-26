@@ -54,12 +54,13 @@ html(lang='en').
                     <h3>How it works:</h3>
                     
                     <ol>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
+                        <li>Text "start" to my Twilio.com phone number, 617-207-6339. The server logs your phone number in a list of users, which allows the service to send SMS and MMS text messages to your phone. To stop using the app at any time and remove your number from the list, just text "stop" to the same number.</li>
+                        <li>Enter your phone number again into the input field to the right. This both acts as confirmation that the app has the right number, and an anti-spam security precaution.</li>
+                        <li>Run a search for any kind of image. The app runs a Google Custom Search through Google Images, and returns the first ten hits (limited to ten here for the sake of conciseness).</li>
+                        <li>Select an image by either clicking on one of the Handlebars.js-generated thumbnails, or by clicking the "Select This Image" button in the modal gallery view.</li>
+                        <li>If you want, enter an option description for the image you select in the corresponding input field to the right.</li>
+                        <li>The hit "Text me!" and your text message is on the way!</li>
+                        <li>I wrote the app using the Twilio.com SMS/MMS API, with Node.js + Express + MongoDB + Jade running on a Heroku.com server. The client-side uses jQuery, Bootstrap.js + the Bootstrap blueimp Gallery, and Handlebars.js. </li>
                     </ol>
             
                 </div><!-- div#panel-left.col-md-5 -->
@@ -68,19 +69,24 @@ html(lang='en').
                     
                     <!--<form id="text-message-form" action="/message/send" method="POST">-->
                     <form id="text-message-form">
-                        <div class="form-group">
-                            <label for="confirm">Confirm your phone number:</label>
-                            <input id="confirm" class="form-control" name="confirm" type="text" placeholder="Confirm your phone number to text images to your phone.">
-                        </div>
+                    
+                        <fieldset id="form-fieldset">
                         
-                        <div class="form-group">
-                            <label for="message">Add an optional note?</label>
-                            <input id="message" class="form-control" name="message" type="text" placeholder="This note will be sent with the image you selected.">
-                        </div>
+                            <div class="form-group">
+                                <label for="confirm">Confirm your phone number:</label>
+                                <input id="confirm" class="form-control" name="confirm" type="text" placeholder="Confirm your phone number to text images to your phone.">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Add an optional note?</label>
+                                <input id="message" class="form-control" name="message" type="text" placeholder="This note will be sent with the image you selected.">
+                            </div>
+                            
+                            <button id="send-text" class="btn btn-primary" name="send-text" type="button">Text me!</button>
+                            
+                            <input id="imageURL" name="imageURL" type="hidden">
                         
-                        <button id="send-text" class="btn btn-primary" name="send-text" type="button">Text me!</button>
-                        
-                        <input id="imageURL" name="imageURL" type="hidden">
+                        </fieldset>
                         
                     </form>
                     
