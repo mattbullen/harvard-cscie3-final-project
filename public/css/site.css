@@ -24,23 +24,29 @@ form {
     margin-bottom: 30px;
 }
 
-#form-fieldset {
-    border: 1px solid #ffffff;
-}
-
 input {
     box-sizing: border-box;
 }
 
+#confirm {
+    float: left;
+    width: 326px;
+    margin-right: 16px;
+}
+
+#validation {
+    float: left;
+    width: 326px;
+}
+
 #message {
     float: left;
-    width: 570px;
+    width: 572px;
     margin-right: 16px;
 }
 
 #send-text {
     float: left;
-    margin-top: -30px;
 }
 
 #search-bar {
@@ -50,7 +56,7 @@ input {
 
 #search-google-input {
     float: left;
-    width: 480px;
+    width: 482px;
     margin: 0px 16px 0px 0px;
 }
 

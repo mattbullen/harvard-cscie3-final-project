@@ -67,30 +67,26 @@ html(lang='en').
                 
                 <div id="panel-right" class="col-md-7">
                     
-                    <!--<form id="text-message-form" action="/message/send" method="POST">-->
+                    <!--<form id="text-message-form" action="/message/send" method="POST">
                     <form id="text-message-form">
                     
-                        <fieldset id="form-fieldset">
+                        <fieldset id="form-fieldset">-->
                         
                             <div class="form-group">
                                 <label for="confirm">Confirm your phone number:</label>
                                 <input id="confirm" class="form-control" name="confirm" type="text" placeholder="Confirm your phone number to text images to your phone.">
+                                <div id="validation"></div>
                             </div>
                             
-                            <div class="form-group">
-                                <label for="message">Add an optional note?</label>
-                                <input id="message" class="form-control" name="message" type="text" placeholder="This note will be sent with the image you selected.">
-                            </div>
                             
-                            <button id="send-text" class="btn btn-primary" name="send-text" type="button">Send it!</button>
                             
-                            <input id="imageURL" name="imageURL" type="hidden">
+                            
+                            
+                        <!--</fieldset>
                         
-                        </fieldset>
-                        
-                    </form>
+                    </form>-->
                     
-                    <div id="search-bar">
+                    <div id="search-bar" class="form-group">
                         <input id="search-google-input" class="form-control" name="search-google-input" type="text" placeholder="Enter a search term to search Google Images.">
                         <button id="search-google-button" class="btn btn-primary" type="button">Search Google Images</button>
                     </div>
@@ -122,6 +118,16 @@ html(lang='en').
                         </script>
                         
                     </div><!-- div#gallery -->
+                    
+                    <div class="form-group">
+                                <label for="message">Add an optional note?</label>
+                                <input id="message" class="form-control" name="message" type="text" placeholder="This note will be sent with the image you selected.">
+                            
+                            
+                                <button id="send-text" class="btn btn-primary" name="send-text" type="button">Send it!</button>
+                            
+                                <input id="imageURL" name="imageURL" type="hidden">
+                            </div>
             
                 </div><!-- div#panel-right.col-md-7 -->
             
