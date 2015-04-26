@@ -20,7 +20,8 @@ div.form-group {
     margin-bottom: 30px;
 }
 
-form {
+form#page-form {
+    width: 670px;
     margin-bottom: 30px;
 }
 
@@ -29,7 +30,7 @@ input {
 }
 
 #confirm-container {
-    clear: both;
+    width: 670px;
 }
 
 #confirm {
