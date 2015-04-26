@@ -13,9 +13,9 @@ $(document).ready(function() {
     */
     $("#search-google-button").click(function() {
         
-        $("#gallery-content").fadeToggle().html("");
+        $("#gallery-content").fadeOut().html("");
         window.setTimeout(function() {
-            $("#gallery-progress").fadeToggle();
+            $("#gallery-progress").fadeIn();
         }, 500);
         
         $.ajax({
@@ -46,9 +46,9 @@ $(document).ready(function() {
                     if (loaded === 10) {
                         
                         window.setTimeout(function() {
-                            $("#gallery-progress").fadeToggle();
+                            $("#gallery-progress").fadeOut();
                             window.setTimeout(function() {
-                                $("#gallery-content").fadeToggle();
+                                $("#gallery-content").fadeIn();
                             }, 500);
                         }, 500);
                         
@@ -67,7 +67,7 @@ $(document).ready(function() {
                             
                             $("#slide-" + index).toggleClass("slide-selected");
                             
-                            $("#message-container").fadeToggle();
+                            $("#message-container").fadeIn();
                         });
                     }
                 });
