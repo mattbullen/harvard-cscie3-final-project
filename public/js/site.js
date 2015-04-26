@@ -2,10 +2,10 @@
 $(document).ready(function() {
     
     // Make sure the loading progress bar and message input are hidden on page load.
-    $("#validation").hide();
-    $("#search-google-container").hide();
-    $("#gallery-progress").hide();
-    $("#message-container").hide();
+    $("#validation").fadeToggle(0);
+    $("#search-google-container").fadeToggle(0);
+    $("#gallery-progress").fadeToggle(0);
+    $("#message-container").fadeToggle(0);
     
     /*
         Run a Google Custom Search for images. Reference API: 
