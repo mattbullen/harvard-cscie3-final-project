@@ -1,144 +1,27 @@
 // Main page loading function.
 $(document).ready(function() {
     
-    // Make sure the loading progress bar and message input are hidden on page load.
-    $("#validation").fadeToggle(0);
-    $("#search-google-container").fadeToggle(0);
-    $("#gallery-progress").fadeToggle(0);
-    $("#message-container").fadeToggle(0);
+    // Make sure the elements the user will see in the user interaction cascade are hidden on page load.
+    fadeOutForm();
     
-    /*
-        Run a Google Custom Search for images. Reference API: 
-            https://developers.google.com/custom-search/json-api/v1/reference/cse/list
-    */
-    $("#search-google-button").click(function() {
-        
-        $("#gallery-content").fadeOut().html("");
-        window.setTimeout(function() {
-            $("#gallery-progress").fadeIn();
-        }, 500);
-        
-        $.ajax({
-            url: "https://www.googleapis.com/customsearch/v1?key=AIzaSyBcb5-Y-_4xba-AKItQOm9EixY51bV7VNY&cx=007271074161097264321:keiwv-_atxe&num=10&imgType=photo&searchType=image&q=" + $("#search-google-input").val(),
-            type: "GET",
-            dataType: "json",  
-            success: function(response) {
-            
-                // Check the returned JSON object.
-                console.log("\nGoogle Custom Search returned:", response);
-
-                // Template out the gallery slides from the JSON object.
-                var slides = {
-                    "images": response.items
-                };
-                console.log("\nSlides to template:", slides);
-                var template = Handlebars.compile($("#gallery-template").html());
-                $("#gallery-content").html(template(slides));
-                
-                // Modified from: http://stackoverflow.com/questions/3670823/how-to-run-a-jquery-code-after-loading-all-the-images-in-my-page
-                var loaded = 0;
-                $("img.slide-image").load(function() {
-                    
-                    // Add loading bar progress updates.
-                    ++loaded;
-                    document.getElementById("gallery-progress-stripe").style.width = "" + (loaded * 10) + "%";
-
-                    if (loaded === 10) {
-                        
-                        window.setTimeout(function() {
-                            $("#gallery-progress").fadeOut();
-                            window.setTimeout(function() {
-                                $("#gallery-content").fadeIn();
-                            }, 500);
-                        }, 500);
-                        
-                        // Add image selection by clicking on a slide.
-                        $("img.slide-image").click(function() {
-                            $("div.slide-box").removeClass("slide-selected");
-                            
-                            var href = $(this).attr("src");
-                            console.log("\nHref from thumbnail selection:", href);
-                                
-                            $("#imageURL").val(href);
-                            console.log("\nHref passed to hidden form field:", $("#imageURL").val());
-                            
-                            var index = $(this).attr("data-index");
-                            console.log("\nImage index:", index);
-                            
-                            $("#slide-" + index).toggleClass("slide-selected");
-                            
-                            $("#message-container").fadeIn();
-                        });
-                    }
-                });
-    
-            },
-            
-            error: function(response) {
-                console.log("\nGoogle Custom Search returned:", response);
-            }
-            
-        }); // End $.ajax();
-        
-    }); // End $("#search").click();
-    
-    // Add an image selection button to the full-screen modal.
-    $("#modal-select-image-button").click(function() {
-        
-        $("div.slide-box").removeClass("slide-selected");
-        
-        var selected = $("li.active");
-        
-        var href = $(selected).attr("title"); 
-        console.log("\nHref from modal selection:", href);
-        
-        $("#imageURL").val(href);
-        console.log("\nHref passed to hidden form field:", $("#imageURL").val());
-        
-        var index = $(selected).attr("data-index");
-        console.log("\nImage index:", index);
-                                
-        $("#slide-" + index).toggleClass("slide-selected");
-        
-    });
-    
-    /*
-        Submit the form without reloading the page or erasing prior inputs. Modified from:
-            http://stackoverflow.com/questions/22163220/prevent-page-reload-after-form-submit-node-no-ajax-available
-    */
-    $("#send-text").click(function(e) {
-        e.preventDefault();
-        $.ajax({
-            url: "/message/send",
-            data: $("#page-form").serialize(),
-            type: "POST",
-            success: function(data){
-                console.log('\n$("#send-text").click():', data.message);
-            },
-            error: function(data){
-                console.log('\n$("#send-text").click():', data.message);
-            }
-        });
-    });
-    
-    // Add an event listener to the user-visible phone number input field.
+    // Validate the phone number entered by the user.
     $("#confirm-visible").keyup(function(event) {
         validatePhone(event);
     });
     
-}); // End $(document).ready();
+     // Run a Google Custom Search for images.
+    $("#search-google-button").click(loadGallerySlides);
+    
+    // Add an image selection button to the full-screen modal (it's not included in the modal plugin's default display state).
+    $("#modal-select-image-button").click(modalImageSelect);
+    
+    // Send a multimedia text to a user's phone.
+    $("#send-text").click(function(event) {
+        sendText(event);
+    });
 
-// Toggles a server response message.
-function toggleResponseMessage(text, fade) {
-	var message = $("#validation").html(text);
-    message.fadeIn();
-	if (fade === true) {
-		window.setTimeout(function() {
-			message.fadeOut();
-		}, 3500);
-	}
-	return false;
-}
+    return false;
+});
 
 // Fade out the form elements.
 function fadeOutForm() {
@@ -150,7 +33,7 @@ function fadeOutForm() {
     return false;
 }
 
-// Fade in the form elements based on the level of interaction the user has had with the form.
+// Fade in the form elements in a cascade pattern based on the level of interaction the user has had with the form.
 function fadeInForm() {
     $("#search-google-container").fadeIn();
     var galleryContent = $("#gallery-content").children();
@@ -163,12 +46,24 @@ function fadeInForm() {
     return false;
 }
 
+// Toggles a server response message flash bar element.
+function toggleResponseMessage(text, fade) {
+    var message = $("#validation").html(text);
+    message.fadeIn();
+    if (fade === true) {
+        window.setTimeout(function() {
+            message.fadeOut();
+        }, 3500);
+    }
+    return false;
+}
+
 // Check and format the phone number's value in the user-visible input field.
 function checkPhonePattern() {
     
     // Get the input value.
-	var source = document.getElementById("confirm-visible");
-	var phone = source.value.replace(/\D*/g, "");
+    var source = document.getElementById("confirm-visible");
+    var phone = source.value.replace(/\D*/g, "");
     var length = phone.length;
     
     // If we have all 10 numerical digits, fill the hidden form field's value.
@@ -178,22 +73,22 @@ function checkPhonePattern() {
     }
     
     // Format the look of the phone string in the user-visible input field.
-	if (length < 1) {
-		source.value = phone;
-		return true;
-	}
-	if (length > 2) {
-		phone = phone.substring(0, 3) + "-" + phone.substring(3, length);
-		length = phone.length;
-	}
-	if (length > 6) {
-		phone = phone.substring(0, 7) + "-" + phone.substring(7, length);
-		length = phone.length;
-	}
-	source.value = phone;
+    if (length < 1) {
+        source.value = phone;
+        return true;
+    }
+    if (length > 2) {
+        phone = phone.substring(0, 3) + "-" + phone.substring(3, length);
+        length = phone.length;
+    }
+    if (length > 6) {
+        phone = phone.substring(0, 7) + "-" + phone.substring(7, length);
+        length = phone.length;
+    }
+    source.value = phone;
     length = phone.length;
     
-	return (source.validity.patternMismatch === false && length === 12);
+    return (source.validity.patternMismatch === false && length === 12);
 }
 
 // Server-check to see if the user entered a valid phone number (on the list of subscribed users).
@@ -212,13 +107,13 @@ function serverValidatePhone() {
                     fadeInForm();
                 }, 1000);
             } else {
-                toggleResponseMessage("Typo? Have you started the app?", true);
+                toggleResponseMessage("Typo? Have you started the app?", false);
                 $("#confirm").focus();
             }
         },
         error: function(data){
             console.log("\nvalidatePhone(error) returned:", data.message);
-            toggleResponseMessage("Typo? Have you started the app?", true);
+            toggleResponseMessage("Typo? Have you started the app?", false);
             $("#confirm").focus();
         }
     });
@@ -239,5 +134,115 @@ function validatePhone(event) {
         serverValidatePhone();
     }
     
+    return false;
+}
+
+/*
+    Run a Google Custom Search for images and load the gallery with the returned images. Reference API:
+        https://developers.google.com/custom-search/json-api/v1/reference/cse/list
+*/
+function loadGallerySlides() {
+    
+    // Show the download progress bar and hide the gallery slides container element.
+    $("#gallery-content").fadeOut().html("");
+    window.setTimeout(function() {
+        $("#gallery-progress").fadeIn();
+    }, 500);
+        
+    $.ajax({
+        url: "https://www.googleapis.com/customsearch/v1?key=AIzaSyBcb5-Y-_4xba-AKItQOm9EixY51bV7VNY&cx=007271074161097264321:keiwv-_atxe&num=10&imgType=photo&searchType=image&q=" + $("#search-google-input").val(),
+        type: "GET",
+        dataType: "json",  
+        success: function(response) {
+        
+            // Check the returned JSON object.
+            console.log("\nloadGallerySlides(success) search returned:", response);
+
+            // Template out the gallery slides from the JSON object.
+            var slides = {
+                "images": response.items
+            };
+            console.log("\nloadGallerySlides() has these slides to template:", slides);
+            var template = Handlebars.compile($("#gallery-template").html());
+            $("#gallery-content").html(template(slides));
+
+            // Modified from: http://stackoverflow.com/questions/3670823/how-to-run-a-jquery-code-after-loading-all-the-images-in-my-page
+            var loaded = 0;
+            $("img.slide-image").load(function() {
+        
+                // Add download progress bar updates.
+                ++loaded;
+                document.getElementById("gallery-progress-stripe").style.width = "" + (loaded * 10) + "%";
+                
+                // When all 10 images have loaded, remove the download progress bar and display the new gallery.
+                if (loaded === 10) {
+
+                    window.setTimeout(function() {
+                        $("#gallery-progress").fadeOut();
+                        window.setTimeout(function() {
+                            $("#gallery-content").fadeIn();
+                        }, 500);
+                    }, 500);
+                    
+                    // Add image selection by clicking on a slide.                    
+                    slideImageSelect();
+                }
+            });
+        },       
+        error: function(response) {
+            console.log("\nloadGallerySlides(error) search returned:", response);
+        }
+
+    }); // End $.ajax();
+
+    return false;
+}
+
+// Select an image by clicking on its thumbnail in a slide, highlight its slide border, and pass the image URL to the form.
+function slideImageSelect() {
+    $("img.slide-image").click(function() {
+        $("div.slide-box").removeClass("slide-selected");       
+        var href = $(this).attr("src");
+        console.log("\nslideImageSelect() selected this image URL:", href);          
+        $("#imageURL").val(href);
+        console.log("\nslideImageSelect() passed this image URL to input#imageURL:", $("#imageURL").val());       
+        var index = $(this).attr("data-index");        
+        $("#slide-" + index).toggleClass("slide-selected");    
+        $("#message-container").fadeIn();
+    });
+    return false;
+}
+
+// Select an image using the modal's "Select This Image" button, highlight its slide border, and pass the image URL to the form.
+function modalImageSelect() {    
+    $("div.slide-box").removeClass("slide-selected");   
+    var selected = $("li.active");    
+    var href = $(selected).attr("title"); 
+    console.log("\nmodalImageSelect() selected this image URL:", href);    
+    $("#imageURL").val(href);
+    console.log("\nmodalImageSelect() passed this image URL to input#imageURL:", $("#imageURL").val());    
+    var index = $(selected).attr("data-index");        
+    $("#slide-" + index).toggleClass("slide-selected");
+    $("#message-container").fadeIn();
+    return false;
+}
+
+/*
+    Submit the form and send a multimedia text to a user without reloading the page or erasing prior inputs. Modified from:
+        http://stackoverflow.com/questions/22163220/prevent-page-reload-after-form-submit-node-no-ajax-available
+*/
+function sendText(event) {
+    event.preventDefault();
+    $.ajax({
+        url: "/message/send",
+        data: $("#page-form").serialize(),
+        type: "POST",
+        success: function(data){
+            console.log('\nsendText(success):', data.message);
+        },
+        error: function(data){
+            console.log('\nsendText(error):', data.message);
+        }
+    });
     return false;
 }
