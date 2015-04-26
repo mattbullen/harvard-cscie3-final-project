@@ -28,6 +28,10 @@ input {
     box-sizing: border-box;
 }
 
+#confirm-container {
+    clear: both;
+}
+
 #confirm {
     float: left;
     width: 326px;
@@ -58,7 +62,7 @@ input {
     float: left;
 }
 
-.gallery {
+#gallery {
     overflow: hidden;
     margin-bottom: 30px;
 }
