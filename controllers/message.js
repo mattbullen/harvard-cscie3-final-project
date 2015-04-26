@@ -11,7 +11,7 @@ exports.webhook = function(request, response) {
         phone: phone
     }, function(err, sub) {
         if (err) {
-            return respond("Whoops, please try again.");
+            return respond("Server error! Please try again.");
         }
         if (!sub) {
             
@@ -22,7 +22,7 @@ exports.webhook = function(request, response) {
 
             newSubscriber.save(function(err, newSub) {
                 if (err || !newSub) {
-                    return respond("Whoops, please try again.");
+                    return respond("Server error! Please try again.");
                 }
                 
                 // A non-subscribed user sends a text; prompt to subscribe.
@@ -49,7 +49,7 @@ exports.webhook = function(request, response) {
             subscriber.save(function(err) {
                 
                 if (err) {
-                    return respond("Whoops, please try again.");
+                    return respond("Server error! Please try again.");
                 }
                 
                 // Otherwise, the subscription list is updated.
@@ -96,7 +96,7 @@ exports.sendMessages = function(request, response) {
         } else {
             // request.flash("successes", "Your text is on the way!");
             response.send({
-                "message": "Your text is on the way!"
+                "message": "text-sent"
             });
         }
         
