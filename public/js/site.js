@@ -198,8 +198,8 @@ function validatePhone(event) {
                         var galleryContent = $("#gallery-content").children();
                         if (galleryContent.length > 0) {
                             $("#gallery-content").fadeIn();
-                            var selectedSlide = galleryContent.find(".selected-slide").length;
-                            if (selectedSlide > 0) {
+                            var selectedSlide = galleryContent.find(".selected-slide"); console.log(selectedSlide);
+                            if (selectedSlide) {
                                 $("#message-container").fadeIn();
                             }
                         }
