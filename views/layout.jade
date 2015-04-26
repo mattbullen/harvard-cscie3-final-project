@@ -43,7 +43,7 @@ html(lang='en').
             
                 <div id="panel-left" class="col-md-5 panel">
             
-                    <form id="textMessageForm" action="/message/send" method="POST">
+                    <form id="text-message-form" action="/message/send" method="POST" target="form-target">
                         
                         <div class="form-group">
                             <label for="confirm">Confirm your phone number:</label>
@@ -60,6 +60,8 @@ html(lang='en').
                         <input id="imageURL" name="imageURL" type="hidden">
                         
                     </form>
+                    
+                    <iframe id="form-target" name="uploader_iframe" style="display: none;"></iframe>
             
                 </div><!-- div#panel-left.col-md-5 -->
                 
