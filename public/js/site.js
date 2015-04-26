@@ -195,6 +195,10 @@ function validatePhone(event) {
                     toggleResponseMessage("Confirmed. On to the next step!", false);
                     window.setTimeout(function() {
                         $("#search-google-container").fadeIn();
+                        var galleryContent = $("#gallery-content").children().length;
+                        if (galleryContent > 0) {
+                            $("#gallery-content").fadeIn();
+                        }
                     }, 1000);
                 } else {
                     toggleResponseMessage("Typo? Have you started the app?", true);
