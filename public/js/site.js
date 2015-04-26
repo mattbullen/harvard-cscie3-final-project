@@ -2,10 +2,10 @@
 $(document).ready(function() {
     
     // Make sure the loading progress bar and message input are hidden on page load.
-    $("#validation").fadeToggle(0);
+    $("#validation").hide();
     $("#search-google-container").hide();
-    $("#gallery-progress").fadeToggle(0);
-    $("#message-container").fadeToggle(0);
+    $("#gallery-progress").hide();
+    $("#message-container").hide();
     
     /*
         Run a Google Custom Search for images. Reference API: 
@@ -180,17 +180,19 @@ function validatePhone() {
             },
             type: "POST",
             success: function(data){
-                console.log('validatePhone():', data.message);
+                console.log("\nvalidatePhone() returned:", data.message);
                 if (data.message.valid) {
                     toggleResponseMessage("Phone number confirmed. On to the next step!", false);
-                    $("#search-google-container").fadeToggle();
+                    window.setTimeout(function() {
+                        $("#search-google-container").fadeToggle();
+                    }, 500);
                 } else {
                     toggleResponseMessage("Invalid! Typo? Have you started the app?", true);
                     $("#confirm").focus();
                 }
             },
             error: function(data){
-                console.log('validatePhone():', data.message);
+                console.log("\nvalidatePhone() returned:", data.message);
                 toggleResponseMessage("Invalid! Typo? Have you started the app?", true);
                 $("#confirm").focus();
             }

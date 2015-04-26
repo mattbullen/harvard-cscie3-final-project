@@ -23,28 +23,26 @@ SubscriberSchema.statics.validatePhone = function(user, callback) {
         subscribed: true,
         phone: user
     }, function(err, docs) {
-        /*if (err || docs.length === 0) {
-            return callback.call(this, {
+        if (err || docs.length === 0) {
+            /*return callback.call(this, {
                 "message": {
                     "error": err,
-                    "docs": docs,
                     "user": user,
                     "valid": false
                 }
-            });
-            return callback.call(this);
+            });*/
+            return callback.call(this, err);
         } else {
-            return callback.call(this, {
+            /*return callback.call(this, {
                 "message": {
                     "docs": docs,
                     "user": user,
                     "valid": true
                 }
-            });
+            });*/
             return callback.call(this);
-        }*/
+        }
         console.log("Subscriber.find():", docs);
-        return callback.call(this);
     });
 
 };
