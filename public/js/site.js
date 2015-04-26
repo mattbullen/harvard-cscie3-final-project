@@ -122,28 +122,31 @@ $(document).ready(function() {
     });
     
     // Add an event listener to the user-visible phone number input field.
-    $("#confirm-visible").keyup(validatePhone);
+    $("#confirm-visible").keyup(function(event) {
+        validatePhone(event);
+    });
     
 }); // End $(document).ready();
 
 // Toggles a server response message.
 function toggleResponseMessage(text, fade) {
-	var message = $("#validation");
-	message.html(text);
-	message.fadeToggle();
-	if (fade) {
+	var message = $("#validation").html(text);
+	if (fade === true) {
 		window.setTimeout(function() {
 			message.fadeToggle({ duration: 500 });
 		}, 3500);
-	}
+	} else {
+        message.fadeToggle();
+    }
 	return false;
 }
 
 // Validate each password input field as the user types.
-function validatePhone(e) {
+function validatePhone(event) {
     
-    if (e.keyCode == 8) {
-        validatePhone();
+    if (event.keyCode === 8) {
+        $("#confirm").val("");
+        return false;
     }
     
     // Get the input value.
