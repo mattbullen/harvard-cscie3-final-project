@@ -113,10 +113,10 @@ $(document).ready(function() {
             data: $("#page-form").serialize(),
             type: "POST",
             success: function(data){
-                console.log('$("#send-text").click():', data.message);
+                console.log('\n$("#send-text").click():', data.message);
             },
             error: function(data){
-                console.log('$("#send-text").click():', data.message);
+                console.log('\n$("#send-text").click():', data.message);
             }
         });
     });
@@ -145,6 +145,8 @@ function validatePhone(event) {
     
     if (event.keyCode === 8) {
         $("#confirm").val("");
+        $("#validation").fadeToggle(0);
+        $("#search-google-container").fadeToggle(0);
         return false;
     }
     
