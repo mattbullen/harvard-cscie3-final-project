@@ -120,6 +120,9 @@ $(document).ready(function() {
         });
     });
     
+    // Add an event listener to the user-visible phone number input field.
+    $("#confirm-visible").keyup(validatePhone);
+    
 }); // End $(document).ready();
 
 // Toggles a server response message.
@@ -184,6 +187,3 @@ function validatePhone() {
 	}
 	return test;
 }
-
-// Add an event listener to the phone number input field.
-document.getElementById("phone").addEventListener("keyup", validatePhone, false);
