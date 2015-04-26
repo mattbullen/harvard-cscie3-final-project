@@ -53,23 +53,25 @@ html(lang='en').
             
                     <h2>How it works:</h2>
                     
-                    <ol>
-                        <li>Text "start" to my Twilio.com phone number, 617-207-6339. The server logs your phone number to a list of users, which lets it send text messages to your phone. (To remove your number from the list, just text "stop" to the same number.)</li>
-                        <li>Enter your phone number again into the input field to the right. This both acts as confirmation that the app has the right number, and as an anti-spam precaution.</li>
-                        <li>Search for an image. The app runs a Google Custom Search through Google Images, then returns the first ten hits.</li>
-                        <li>Select an image by either clicking on one of the Handlebars.js-generated thumbnails, or by clicking the "Select This Image" button in the modal gallery view.</li>
-                        <li>Optional: enter a note to be texted with the image you select.</li>
-                        <li>The "Send it!" button prompts the server to create a new multimedia text message, then sends it to your phone.</li>
-                        <li>Sources: The server-side uses the Twilio.com SMS/MMS API, with Node.js + Express + MongoDB + Jade running on a Heroku.com server. The client-side uses jQuery, Bootstrap.js + the Bootstrap blueimp Gallery, and Handlebars.js. </li>
-                    </ol>
-            
+                    <div id="instructions-container">
+                        <ol>
+                            <li>Text "start" to my Twilio.com phone number, 617-207-6339. The server logs your phone number to a list of users, which lets it send text messages to your phone. (To remove your number from the list, just text "stop" to the same number.)</li>
+                            <li>Enter your phone number again into the input field to the right. This both acts as confirmation that the app has the right number, and as an anti-spam precaution.</li>
+                            <li>Search for an image. The app runs a Google Custom Search through Google Images, then returns the first ten hits.</li>
+                            <li>Select an image by either clicking on one of the Handlebars.js-generated thumbnails, or by clicking the "Select This Image" button in the modal gallery view.</li>
+                            <li>Optional: enter a note to be texted with the image you select.</li>
+                            <li>The "Send it!" button prompts the server to create a new multimedia text message, then sends it to your phone.</li>
+                            <li>Sources: The server-side uses the Twilio.com SMS/MMS API, with Node.js + Express + MongoDB + Jade running on a Heroku.com server. The client-side uses jQuery, Bootstrap.js + the Bootstrap blueimp Gallery, and Handlebars.js. </li>
+                        </ol>
+                    </div>
+                    
                 </div><!-- div#panel-left.col-md-5 -->
                 
                 <div id="panel-right" class="col-md-7">
                     
-                    <form id="page-form">
- 
-                        <h2>Let's get started!</h2>
+                    <h2>Let's get started!</h2>
+                    
+                    <form id="page-form"> 
                         
                         <div id="confirm-container">
                             <label id="confirm-label" for="confirm">Text "start" to 617-207-6339, then enter your phone number below:</label>

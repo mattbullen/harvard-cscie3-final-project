@@ -8,10 +8,15 @@
 }
 
 h2 {
-    margin: 0px 0px 16px 0px;
+    margin: 0px 0px 30px 0px;
 }
 
-#panel-left ol li {
+#instructions-container {
+    padding: 0px 16px;
+    border: 1px solid rgb(66, 139, 202);
+}
+
+#instructions-container ol li {
     margin-bottom: 16px;
     font-size: 14px;
 }
