@@ -85,7 +85,7 @@ exports.validatePhone = function(request, response) {
     var user = request.body.confirm;
     
     // Use model function to validate a user's phone number.
-    Subscriber.sendMessage(user, function(err) {
+    Subscriber.validatePhone(user, function(err) {
         if (err) {
             response.send({
                 "message": err,

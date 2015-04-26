@@ -13,6 +13,6 @@ module.exports = function(app) {
     // Form submission for texting multimedia messages to subscribed users:
     app.post("/message/send", message.sendMessages);
     
-    // Form submission for texting multimedia messages to subscribed users:
+    // Check if a phone number is on the list of subscribed user phone numbers:
     app.post("/message/validate", message.validatePhone);
 };
