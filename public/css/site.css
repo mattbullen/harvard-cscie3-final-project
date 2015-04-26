@@ -7,6 +7,10 @@
     margin-bottom: 50px;
 }
 
+#panel-left {
+    border: 1px solid #rgb(66, 139, 202);
+}
+
 #panel-left h2 {
     margin: 0px 0px 16px 0px;
 }
@@ -66,13 +70,19 @@ input {
     float: left;
 }
 
-#gallery {
+#gallery-container {
     overflow: hidden;
     margin-bottom: 30px;
 }
 
+#gallery-content,
 #gallery-progress {
     margin-top: 30px;
+}
+
+#gallery-content div:nth-child(5),
+#gallery-content div:nth-child(10) {
+    margin-right: 0px;
 }
 
 .slide-selected {
@@ -88,11 +98,6 @@ input {
     margin: 0px 17px 17px 0px;
     padding: 5px;
     border: 1px solid rgb(204, 204, 204);
-}
-
-#gallery-content div:nth-child(5),
-#gallery-content div:nth-child(10) {
-    margin-right: 0px;
 }
 
 /*
