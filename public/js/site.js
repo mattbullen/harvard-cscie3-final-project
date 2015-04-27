@@ -122,7 +122,7 @@ function serverValidatePhone() {
         success: function(data){
             console.log("\nvalidatePhone(success) returned:", data.message);
             if (data.message.valid) {
-                toggleResponseMessage("Confirmed. On to the next step!", false, "blue");
+                toggleResponseMessage("App started. On to the next step!", false, "blue");
                 window.setTimeout(function() {
                     fadeInForm();
                 }, 1000);
