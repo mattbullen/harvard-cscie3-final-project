@@ -150,7 +150,7 @@ function loadGallerySlides() {
     
     // Show the download progress bar; hide the gallery slides container element and text message note input (if shown).
     $("#gallery-content").fadeOut().html("");
-    $("#message-container").fadeOut(duration);
+    $("#message-container").fadeOut(0);
     window.setTimeout(function() {
         $("#gallery-progress").fadeIn();
     }, 500);
@@ -190,8 +190,14 @@ function loadGallerySlides() {
                         }, 500);
                     }, 500);
                     
-                    // Add image selection by clicking on a slide.                    
+                    // Add image selection by clicking on a slide. Needs to happen here, since the slides are dynamically generated.                 
                     slideImageSelect();
+                    
+                    // For the case where the user entered some text in the note input field, then ran a new Google search:
+                    var noteContent = $("#message").val();
+                    if (noteContent !== "" && noteContent.length > 0) {
+                        $("#message-container").fadeIn();
+                    }
                 }
             });
         },       
