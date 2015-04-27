@@ -43,7 +43,7 @@ function fadeInForm() {
     var galleryContent = $("#gallery-content").children();
     if (galleryContent.length > 0) {
         $("#gallery-content").fadeIn();
-        var selectedSlideExists = $(".selected-slide").length; console.log("**************", selectedSlideExists);
+        var selectedSlideExists = $(".slide-selected").length; console.log("**************", selectedSlideExists);
         if (selectedSlideExists !== 0) {
             $("#message-container").fadeIn();
         }
