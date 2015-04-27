@@ -41,7 +41,7 @@ html(lang='en').
             
                 <div id="header" class="col-md-12">
             
-                    <h1>Dynamic Image Galleries with Node.js and Twilio</h1>
+                    <h1>Dynamic Image Galleries with <a href="https://nodejs.org/" title="nodejs.org">Node.js</a> and the <a href="https://www.twilio.com" title="twilio.com">Cloud</a></h1>
                     <h3><em>Or how to text an image from a website to your phone!</em></h3>
                     
                 </div>
@@ -56,11 +56,11 @@ html(lang='en').
                     
                     <div id="instructions-container">
                         <ol>
-                            <li>Text "start" to my Twilio.com phone number, 617-207-6339. The server logs your phone number to a list of users, which lets it send text messages to your phone. (To remove your number from the list, text "stop" to the same number.)</li>
+                            <li>Start the app: text "start" to my Twilio.com phone number, 617-207-6339 - Twilio.com provides cloud-based phone exchange servers that let a website text a cell phone. (To stop the app, text "stop" to the same number.)</li>
                             <li>Two-factor authentication: enter your phone number again into the input field to the right. This both acts as confirmation that the app has the right number, and as an anti-spam precaution.</li>
                             <li>Search for an image: the app runs a Google Custom Search through Google Images, then returns the first ten hits.</li>
-                            <li>Select an image by either clicking on one of the Handlebars.js-generated thumbnails, or by clicking on the "Select This Image" button in the modal gallery view.</li>
-                            <li>Optional: enter a note to be texted with the image you select; you can also send yourself a text-only SMS message, too.</li>
+                            <li>Select an image either by clicking on one of the Handlebars.js-generated thumbnails, or by clicking on the "Select This Image" button in the modal gallery view.</li>
+                            <li>Optional: you can add a note to be texted with the image you select, or send yourself a text-only SMS message, too.</li>
                             <li>The send button prompts the server to create a new text message, then sends it to your phone. It might take a minute or two to arrive!</li>
                             <li>Sources: The server-side uses the Twilio.com SMS/MMS API, with Node.js + Express + MongoDB + Jade running on a Heroku.com server. The client-side uses jQuery, Bootstrap.js, blueimp.js, and Handlebars.js.</li>
                         </ol>
