@@ -2,7 +2,7 @@
 $(document).ready(function() {
     
     // Make sure the elements the user will see in the user interaction cascade are hidden on page load.
-    fadeOutForm();
+    fadeOutForm(0);
     
     // Validate the phone number entered by the user.
     $("#confirm-visible").keyup(function(event) {
@@ -24,13 +24,16 @@ $(document).ready(function() {
 });
 
 // Fade out the form elements.
-function fadeOutForm() {
+function fadeOutForm(duration) {
+    if (!duration) {
+        var duration = 400;
+    }
     $("#confirm").val("");
-    $("#validation").fadeOut();
-    $("#search-google-container").fadeOut();
-    $("#gallery-progress").fadeOut();
-    $("#gallery-content").fadeOut();
-    $("#message-container").fadeOut();
+    $("#validation").fadeOut(duration);
+    $("#search-google-container").fadeOut(duration);
+    $("#gallery-progress").fadeOut(duration);
+    $("#gallery-content").fadeOut(duration);
+    $("#message-container").fadeOut(duration);
     return false;
 }
 
@@ -40,7 +43,8 @@ function fadeInForm() {
     var galleryContent = $("#gallery-content").children();
     if (galleryContent.length > 0) {
         $("#gallery-content").fadeIn();
-        if (galleryContent.find(".selected-slide").length > 0) {
+        var selectedSlideExists = galleryContent.find(".selected-slide"); console.log(selectedSlideExists);
+        if (selectedSlideExists.length > 0) {
             $("#message-container").fadeIn();
         }
     }
