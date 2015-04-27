@@ -10,14 +10,21 @@ $(document).ready(function() {
     });
     
      // Run a Google Custom Search for images.
-    $("#search-google-button").click(loadGallerySlides);
+    $("#search-google-button").click(function() {
+        loadGallerySlides();
+        $(this).blur();
+    );
     
     // Add an image selection button to the full-screen modal (it's not included in the modal plugin's default display state).
-    $("#modal-select-image-button").click(modalImageSelect);
+    $("#modal-select-image-button").click(function() {
+        modalImageSelect();
+        $(this).blur();
+    );
     
     // Send a multimedia text to a user's phone.
-    $("#send-text").click(function(event) {
+    $("#message-send-button").click(function(event) {
         sendText(event);
+        $(this).blur();
     });
 
     return false;
@@ -43,7 +50,7 @@ function fadeInForm() {
     var galleryContent = $("#gallery-content").children();
     if (galleryContent.length > 0) {
         $("#gallery-content").fadeIn();
-        var selectedSlideExists = $(".slide-selected").length; console.log("**************", selectedSlideExists);
+        var selectedSlideExists = $(".slide-selected").length;
         if (selectedSlideExists !== 0) {
             $("#message-container").fadeIn();
         }
@@ -51,9 +58,17 @@ function fadeInForm() {
     return false;
 }
 
-// Toggles a server response message flash bar element.
-function toggleResponseMessage(text, fade) {
-    var message = $("#validation").html(text);
+// Toggles a server response message flash bar element next to the phone input field.
+function toggleResponseMessage(text, fade, color) {
+    if (!color || color === "blue") {
+        var color = "rgb(66, 139, 202)";
+    }
+    if (color === "red") {
+        var color = "rgb(175, 36, 38)";
+    }
+    var message = $("#validation").html(text).css({
+        "background-color": color
+    });
     message.fadeIn();
     if (fade === true) {
         window.setTimeout(function() {
@@ -107,18 +122,18 @@ function serverValidatePhone() {
         success: function(data){
             console.log("\nvalidatePhone(success) returned:", data.message);
             if (data.message.valid) {
-                toggleResponseMessage("Confirmed. On to the next step!", false);
+                toggleResponseMessage("Confirmed. On to the next step!", false, "blue");
                 window.setTimeout(function() {
                     fadeInForm();
                 }, 1000);
             } else {
-                toggleResponseMessage("Typo? Have you started the app?", false);
+                toggleResponseMessage("Typo? Have you started the app?", false, "red");
                 $("#confirm").focus();
             }
         },
         error: function(data){
             console.log("\nvalidatePhone(error) returned:", data.message);
-            toggleResponseMessage("Typo? Have you started the app?", false);
+            toggleResponseMessage("Typo? Have you started the app?", false, "blue");
             $("#confirm").focus();
         }
     });
@@ -126,19 +141,16 @@ function serverValidatePhone() {
 }
 
 // Validate each password input field as the user types.
-function validatePhone(event) {
-    
+function validatePhone(event) {   
     // Capture the backspace keyboard event and hide the form elements until the user supplies a valid phone number.
     if (event.keyCode === 8) {
         fadeOutForm();
         return false;
     }
-    
     // Check that the phone number is usable (on the list of subscribed user phone numbers).
     if (checkPhonePattern()) {
         serverValidatePhone();
     }
-    
     return false;
 }
 
