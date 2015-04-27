@@ -13,13 +13,13 @@ $(document).ready(function() {
     $("#search-google-button").click(function() {
         loadGallerySlides();
         $(this).blur();
-    );
+    });
     
     // Add an image selection button to the full-screen modal (it's not included in the modal plugin's default display state).
     $("#modal-select-image-button").click(function() {
         modalImageSelect();
         $(this).blur();
-    );
+    });
     
     // Send a multimedia text to a user's phone.
     $("#message-send-button").click(function(event) {
