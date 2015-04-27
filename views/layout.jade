@@ -56,13 +56,13 @@ html(lang='en').
                     
                     <div id="instructions-container">
                         <ol>
-                            <li>Text "start" to my Twilio.com phone number, 617-207-6339. The server logs your phone number to a list of users, which lets it send text messages to your phone. (To remove your number from the list, just text "stop" to the same number.)</li>
-                            <li>Enter your phone number again into the input field to the right. This both acts as confirmation that the app has the right number, and as an anti-spam precaution.</li>
-                            <li>Search for an image. The app runs a Google Custom Search through Google Images, then returns the first ten hits.</li>
-                            <li>Select an image by either clicking on one of the Handlebars.js-generated thumbnails, or by clicking the "Select This Image" button in the modal gallery view.</li>
+                            <li>Text "start" to my Twilio.com phone number, 617-207-6339. The server logs your phone number to a list of users, which lets it send text messages to your phone. (To remove your number from the list, text "stop" to the same number.)</li>
+                            <li>Two-factor authentication: enter your phone number again into the input field to the right. This both acts as confirmation that the app has the right number, and as an anti-spam precaution.</li>
+                            <li>Search for an image: the app runs a Google Custom Search through Google Images, then returns the first ten hits.</li>
+                            <li>Select an image by either clicking on one of the Handlebars.js-generated thumbnails, or by clicking on the "Select This Image" button in the modal gallery view.</li>
                             <li>Optional: enter a note to be texted with the image you select; you can also send yourself a text-only SMS message, too.</li>
                             <li>The send button prompts the server to create a new text message, then sends it to your phone. It might take a minute or two to arrive!</li>
-                            <li>Sources: The server-side uses the Twilio.com SMS/MMS API, with Node.js + Express + MongoDB + Jade running on a Heroku.com server. The client-side uses jQuery, Bootstrap.js + the Bootstrap blueimp Gallery, and Handlebars.js. </li>
+                            <li>Sources: The server-side uses the Twilio.com SMS/MMS API, with Node.js + Express + MongoDB + Jade running on a Heroku.com server. The client-side uses jQuery, Bootstrap.js + Bootstrap blueimp, and Handlebars.js.</li>
                         </ol>
                     </div>
                     
@@ -75,7 +75,7 @@ html(lang='en').
                     <form id="page-form"> 
                         
                         <div id="confirm-container">
-                            <label id="confirm-label" for="confirm">Text "start" to 617-207-6339, then enter your phone number below:</label>
+                            <label id="confirm-label" for="confirm">Text "start" to 617-207-6339, then enter your phone number here:</label>
                             <br>
                             <input id="confirm-visible" class="form-control" name="confirm-visible" type="text" placeholder="Be sure to include your area code!" maxlength="12" pattern="\d{3}-\d{3}-\d{4}">
                             <input id="confirm" name="confirm" type="hidden">
@@ -85,7 +85,7 @@ html(lang='en').
                         <div id="search-google-container">
                             <label id="search-google-input-label" for="search-google-input">Run a search for an image on Google Images:</label>
                             <br>
-                            <input id="search-google-input" class="form-control" name="search-google-input" type="text" placeholder="Enter a search term to search Google Images.">
+                            <input id="search-google-input" class="form-control" name="search-google-input" type="text" placeholder="Enter a search term.">
                             <button id="search-google-button" class="btn btn-primary" type="button">Search Google Images</button>
                         </div>
                         
