@@ -187,17 +187,17 @@ function loadGallerySlides() {
                         $("#gallery-progress").fadeOut();
                         window.setTimeout(function() {
                             $("#gallery-content").fadeIn();
+                            // For the case where the user entered some text in the note input field, then ran a new Google search:
+                            var noteContent = $("#message").val();
+                            if (noteContent !== "" && noteContent.length > 0) {
+                                $("#message-container").fadeIn();
+                            }
                         }, 500);
                     }, 500);
                     
                     // Add image selection by clicking on a slide. Needs to happen here, since the slides are dynamically generated.                 
                     slideImageSelect();
-                    
-                    // For the case where the user entered some text in the note input field, then ran a new Google search:
-                    var noteContent = $("#message").val();
-                    if (noteContent !== "" && noteContent.length > 0) {
-                        $("#message-container").fadeIn();
-                    }
+
                 }
             });
         },       
