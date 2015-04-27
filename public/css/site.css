@@ -31,7 +31,8 @@
 }
 
 #header h1,
-#header h3 {
+#header h3,
+#header h3 em {
     font-family: Museo, Equip, Arial, sans-serif !important;
     text-align: center;
 }
