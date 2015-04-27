@@ -41,7 +41,8 @@ html(lang='en').
             
                 <div id="header" class="col-md-12">
             
-                    <h1>Texting Images from a Website to a Phone</h1>
+                    <h1>Dynamic Image Galleries with Node.js and Twilio</h1>
+                    <h3>Or, how to text an image from a website to your phone!</h3>
                     
                 </div>
             
@@ -59,8 +60,8 @@ html(lang='en').
                             <li>Enter your phone number again into the input field to the right. This both acts as confirmation that the app has the right number, and as an anti-spam precaution.</li>
                             <li>Search for an image. The app runs a Google Custom Search through Google Images, then returns the first ten hits.</li>
                             <li>Select an image by either clicking on one of the Handlebars.js-generated thumbnails, or by clicking the "Select This Image" button in the modal gallery view.</li>
-                            <li>Optional: enter a note to be texted with the image you select.</li>
-                            <li>The send button prompts the server to create a new multimedia text message, then sends it to your phone.</li>
+                            <li>Optional: enter a note to be texted with the image you select; you can also send yourself a text-only SMS message, too.</li>
+                            <li>The send button prompts the server to create a new text message, then sends it to your phone. It might take a minute or two to arrive!</li>
                             <li>Sources: The server-side uses the Twilio.com SMS/MMS API, with Node.js + Express + MongoDB + Jade running on a Heroku.com server. The client-side uses jQuery, Bootstrap.js + the Bootstrap blueimp Gallery, and Handlebars.js. </li>
                         </ol>
                     </div>
@@ -109,7 +110,7 @@ html(lang='en').
                         </div><!-- div#gallery -->
                         
                         <div id="message-container">
-                            <label id="message-label" for="message">Add an optional note?</label>
+                            <label id="message-label" for="message">Add a note to the text message?</label>
                             <input id="message" class="form-control" name="message" type="text" placeholder="This note will be sent with the image you selected.">
                             <button id="message-send-button" class="btn btn-primary" name="message-send-button" type="button">Send</button> 
                             <input id="imageURL" name="imageURL" type="hidden">
