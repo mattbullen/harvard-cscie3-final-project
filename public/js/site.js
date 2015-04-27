@@ -148,8 +148,9 @@ function validatePhone(event) {
 */
 function loadGallerySlides() {
     
-    // Show the download progress bar and hide the gallery slides container element.
+    // Show the download progress bar; hide the gallery slides container element and text message note input (if shown).
     $("#gallery-content").fadeOut().html("");
+    $("#message-container").fadeOut(duration);
     window.setTimeout(function() {
         $("#gallery-progress").fadeIn();
     }, 500);
