@@ -53,6 +53,8 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
             return callback.call(this, "Phone Number Not Found");
         }
         
+        console.log("Subscriber.find(found):", docs);
+        
         Subscriber.update(
             { phone: user },
             { $push: { 
@@ -75,8 +77,8 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
             }
         );
         
-        console.log("Subscriber.find(update history):", docs);
-        sendMessages(docs);
+        //console.log("Subscriber.find(update history):", docs);
+        //sendMessages(docs);
     });
     /*
     // Then send the text message.
