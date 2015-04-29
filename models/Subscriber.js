@@ -12,10 +12,10 @@ var SubscriberSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    history: {
-        type: Array, 
-        default: []
-    }
+    history: [{
+        "url": String,
+        "text": String
+    }]
 });
 
 // Static function to validate a subscribed user's phone number.
@@ -90,9 +90,10 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
         },
         function(err, docs) {
             if (err) {
+                console.log("Subscriber.findByIdAndUpdate(error):", docs);
                 return callback.call(this, "Phone Number Not Found");
             }
-            console.log("Subscriber.find(update history):", docs);
+            console.log("Subscriber.findByIdAndUpdate(success):", docs);
             sendMessages(docs);
         }
     );
