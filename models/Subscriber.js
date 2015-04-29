@@ -118,6 +118,10 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
     */
     // Inner function to send a text message to a matched user's phone.
     function sendMessages(docs) {
+        
+        console.log("Subscriber.sendMessages():", docs);
+        
+        
         docs.forEach(function(subscriber) {
             
             // Message contents:
