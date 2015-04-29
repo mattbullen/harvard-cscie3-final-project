@@ -44,25 +44,41 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
     console.log("SubscriberSchema.statics.sendMessage(): " + message + " " + url + " " + user);
     
     // Find the requested user by phone number and update the user's message history.
-    /*Subscriber.find({
+    Subscriber.find({
         phone: user,
         subscribed: true
     }, function(err, docs) {
-        if (err || docs.length === 0) {
+        if (err) {
+            console.log("Subscriber.find(error):", err);
             return callback.call(this, "Phone Number Not Found");
         }
         
         Subscriber.update(
             { phone: user },
-            { $addToSet: { 
-                 
-            } }
+            { $push: { 
+                "history": {
+                    url: url,
+                    text: message
+                } 
+            } },
+            //{
+            //    safe: true, 
+            //    upsert: true 
+            //},
+            function(err, docs) {
+                if (err) {
+                    console.log("Subscriber.update(error):", docs);
+                    return callback.call(this, "Phone Number Not Found");
+                }
+                console.log("Subscriber.update(success):", docs);
+                sendMessages(docs);
+            }
         );
         
         console.log("Subscriber.find(update history):", docs);
         sendMessages(docs);
     });
-    
+    /*
     // Then send the text message.
     Subscriber.find({
         phone: user,
@@ -75,9 +91,9 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
         sendMessages(docs);
     });
     
-    */
+    
     Subscriber.findByIdAndUpdate(
-        user,
+        { phone: user },
         { $push: { 
             "history": {
                 url: url,
@@ -97,7 +113,7 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
             sendMessages(docs);
         }
     );
-    
+    */
     // Inner function to send a text message to a matched user's phone.
     function sendMessages(docs) {
         docs.forEach(function(subscriber) {
