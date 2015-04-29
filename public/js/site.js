@@ -121,7 +121,7 @@ function serverValidatePhone() {
         type: "POST",
         success: function(data){
             console.log("\nvalidatePhone(success) returned:", data.message);
-            if (data.valid) {
+            if (data.message.valid) {
                 toggleResponseMessage("confirm-validation", "Valid phone number. App running!", false, "blue");
                 window.setTimeout(function() {
                     fadeInForm();
@@ -263,7 +263,7 @@ function sendText(event) {
         type: "POST",
         success: function(data){
             console.log('\nsendText(success):', data.message);
-            if (data.sent) {
+            if (data.message.sent) {
                 toggleResponseMessage("message-validation", "Your text is on the way! Check your phone in a minute or two.", true, "blue");
             } else {
                 toggleResponseMessage("message-validation", "The server couldn't send your text. Try again in a few minutes.", true, "red");
