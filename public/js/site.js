@@ -36,11 +36,12 @@ function fadeOutForm(duration) {
         var duration = 400;
     }
     $("#confirm").val("");
-    $("#validation").fadeOut(duration);
+    $("#confirm-validation").fadeOut(duration);
     $("#search-google-container").fadeOut(duration);
     $("#gallery-progress").fadeOut(duration);
     $("#gallery-content").fadeOut(duration);
     $("#message-container").fadeOut(duration);
+    $("#message-validation").fadeOut(duration);
     return false;
 }
 
