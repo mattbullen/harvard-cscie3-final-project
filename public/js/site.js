@@ -59,14 +59,14 @@ function fadeInForm() {
 }
 
 // Toggles a server response message flash bar element next to the phone input field.
-function toggleResponseMessage(text, fade, color) {
+function toggleResponseMessage(id, text, fade, color) {
     if (!color || color === "blue") {
         var color = "rgb(66, 139, 202)";
     }
     if (color === "red") {
         var color = "rgb(175, 36, 38)";
     }
-    var message = $("#validation").html(text).css({
+    var message = $("#" + id).html(text).css({
         "background-color": color
     });
     message.fadeIn();
@@ -122,18 +122,18 @@ function serverValidatePhone() {
         success: function(data){
             console.log("\nvalidatePhone(success) returned:", data.message);
             if (data.message.valid) {
-                toggleResponseMessage("Valid phone number. App running!", false, "blue");
+                toggleResponseMessage("confirm-validation", "Valid phone number. App running!", false, "blue");
                 window.setTimeout(function() {
                     fadeInForm();
                 }, 1000);
             } else {
-                toggleResponseMessage("Typo? Have you started the app?", false, "red");
+                toggleResponseMessage("confirm-validation", "Typo? Have you started the app?", false, "red");
                 $("#confirm").focus();
             }
         },
         error: function(data){
             console.log("\nvalidatePhone(error) returned:", data.message);
-            toggleResponseMessage("Typo? Have you started the app?", false, "blue");
+            toggleResponseMessage("confirm-validation", "Typo? Have you started the app?", false, "blue");
             $("#confirm").focus();
         }
     });
@@ -263,9 +263,15 @@ function sendText(event) {
         type: "POST",
         success: function(data){
             console.log('\nsendText(success):', data.message);
+            if (data.message.valid) {
+                toggleResponseMessage("message-validation", "Your text is on the way! Check your phone in a minute or two.", true, "blue");
+            } else {
+                toggleResponseMessage("message-validation", "The server couldn't send your text. Try again in a few minutes.", true, "red");
+            }
         },
         error: function(data){
             console.log('\nsendText(error):', data.message);
+            toggleResponseMessage("message-validation", "The server couldn't send your text. Try again in a few minutes.", true, "red");
         }
     });
     return false;

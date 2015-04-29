@@ -1,6 +1,6 @@
 {
-  "name": "Marketing Notifications",
-  "description": "An example application demonstrating SMS notifications for mobile marketing",
+  "name": "CSCI E-3 Final Project",
+  "description": "An app that texts images from a website to a phone.",
   "keywords": [
     "twilio",
     "node.js",
@@ -10,22 +10,22 @@
   ],
   "env": {
     "TWILIO_ACCOUNT_SID": {
-      "description": "API username - find your account SID at https://www.twilio.com/user/account/voice-messaging",
+      "description": "API username",
       "required": true
     },
     "TWILIO_AUTH_TOKEN": {
-      "description": "API password - find your auth token at https://www.twilio.com/user/account/voice-messaging",
+      "description": "API password",
       "required": true
     },
     "TWILIO_NUMBER": {
-      "description": "A number in your Twilio account to use with this application in E.164 format (e.g. +16518675309) - view your numbers at https://www.twilio.com/user/account/phone-numbers/incoming",
+      "description": "+16172076339",
       "required": true
     }
   },
-  "website": "https://github.com/TwilioDevEd/marketing-notifications-node",
-  "repository": "https://github.com/TwilioDevEd/marketing-notifications-node",
+  "website": "https://radiant-shelf-9720.herokuapp.com/",
+  "repository": "https://github.com/mattbullen/twilio",
   "logo": "https://s3.amazonaws.com/howtodocs/twilio-logo.png",
-  "success_url": "/landing.html",
+  "success_url": "/index.html",
   "addons": [
     "mongolab"
   ]

@@ -1,14 +1,14 @@
 {
-  "name": "sms-notifications-node",
+  "name": "CSCI E-3 Final Project",
   "version": "1.0.0",
-  "description": "An example application demonstrating SMS notifications for mobile marketing",
+  "description": "An app that texts images from a website to a phone.",
   "main": "index.js",
   "scripts": {
     "test": "mocha test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/TwilioDevEd/sms-notifications-node"
+    "url": "https://github.com/mattbullen/twilio"
   },
   "keywords": [
     "twilio",
@@ -18,12 +18,12 @@
     "webhooks",
     "voip"
   ],
-  "author": "Kevin Whinnery",
+  "author": "Matthew Bullen, based on the example app written by Kevin Whinnery @ https://github.com/TwilioDevEd/sms-notifications-node",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/TwilioDevEd/sms-notifications-node/issues"
+    "url": "https://github.com/mattbullen/twilio/issues"
   },
-  "homepage": "https://github.com/TwilioDevEd/sms-notifications-node",
+  "homepage": "https://radiant-shelf-9720.herokuapp.com/",
   "dependencies": {
     "body-parser": "^1.12.0",
     "connect-flash": "^0.1.1",
