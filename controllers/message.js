@@ -88,18 +88,18 @@ exports.validatePhone = function(request, response) {
     Subscriber.validatePhone(user, function(err) {
         if (err) {
             response.send({
-                "message": {
+                //"message": {
                     "fail": err,
                     "user": user,
                     "valid": false
-                }
+                //}
             });
         } else {
             response.send({
-                "message": {
+                //"message": {
                     "user": user,
                     "valid": true
-                }
+                //}
             });
         }
     });
@@ -118,21 +118,21 @@ exports.sendMessages = function(request, response) {
     Subscriber.sendMessage(message, imageURL, user, function(err, docs) {
         if (err) {
             response.send({
-                "message": {
+                //"message": {
                     "sent": false,
                     "fail": err,
-                    "history": docs
-                }
+                    "user": user
+                //}
             });
         } else {
             response.send({
-                "message": {
+                //"message": {
                     "sent": true,
-                    "user": user,
-                    "message": message,
-                    "imageURL": imageURL,
-                    "history": docs
-                }
+                    //"user": user,
+                    //"message": message,
+                    //"imageURL": imageURL,
+                    "docs": docs
+                //}
             });
         }
         

@@ -11,7 +11,11 @@ var SubscriberSchema = new mongoose.Schema({
     subscribed: {
         type: Boolean,
         default: false
-    }
+    },
+    history: [{
+        url: String,
+        text: String
+    }]
 });
 
 // Static function to validate a subscribed user's phone number.
@@ -39,19 +43,42 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
     
     console.log("SubscriberSchema.statics.sendMessage(): " + message + " " + url + " " + user);
     
-    // Find all subscribed users.
+    // Find the requested user by phone number and update the user's message history.
     Subscriber.find({
-        subscribed: true,
-        phone: user
+        phone: user,
+        subscribed: true
     }, function(err, docs) {
         if (err || docs.length === 0) {
             return callback.call(this, "Phone Number Not Found");
         }
-        console.log("Subscriber.find():", docs);
+        
+        Subscriber.update(
+            { phone: user },
+            { $addToSet: { 
+                history: {
+                    url: url,
+                    text: message
+                } 
+            } }
+        );
+        
+        console.log("Subscriber.find(update history):", docs);
         sendMessages(docs);
     });
-
-    // Send a text message to a matched user.
+    
+    // Then send the text message.
+    Subscriber.find({
+        phone: user,
+        subscribed: true
+    }, function(err, docs) {
+        if (err || docs.length === 0) {
+            return callback.call(this, "Phone Number Not Found");
+        }
+        console.log("Subscriber.find(after update):", docs);
+        sendMessages(docs);
+    });
+    
+    // Inner function to send a text message to a matched user's phone.
     function sendMessages(docs) {
         docs.forEach(function(subscriber) {
             
