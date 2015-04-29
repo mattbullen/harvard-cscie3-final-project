@@ -115,24 +115,24 @@ exports.sendMessages = function(request, response) {
     var user = request.body.confirm;
     
     // Use model function to send a multimedia text message to a subscribed user.
-    Subscriber.sendMessage(message, imageURL, user, function(err, docs) {
+    Subscriber.sendMessage(message, imageURL, user, function(err) {
         if (err) {
             response.send({
-                //"message": {
+                "message": {
                     "sent": false,
                     "fail": err,
                     "user": user
-                //}
+                }
             });
         } else {
             response.send({
-                //"message": {
+                "message": {
                     "sent": true,
                     //"user": user,
                     //"message": message,
                     //"imageURL": imageURL,
                     "docs": docs
-                //}
+                }
             });
         }
         

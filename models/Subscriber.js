@@ -12,10 +12,10 @@ var SubscriberSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    history: [{
-        url: String,
-        text: String
-    }]
+    history: {
+        type: Array, 
+        default: []
+    }
 });
 
 // Static function to validate a subscribed user's phone number.
@@ -44,7 +44,7 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
     console.log("SubscriberSchema.statics.sendMessage(): " + message + " " + url + " " + user);
     
     // Find the requested user by phone number and update the user's message history.
-    Subscriber.find({
+    /*Subscriber.find({
         phone: user,
         subscribed: true
     }, function(err, docs) {
@@ -55,10 +55,7 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
         Subscriber.update(
             { phone: user },
             { $addToSet: { 
-                history: {
-                    url: url,
-                    text: message
-                } 
+                 
             } }
         );
         
@@ -78,6 +75,28 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
         sendMessages(docs);
     });
     
+    */
+    Subscriber.findByIdAndUpdate(
+        user,
+        { $push: { 
+            "history": {
+                url: url,
+                text: message
+            } 
+        } },
+        {
+            safe: true, 
+            upsert: true 
+        },
+        function(err, docs) {
+            if (err) {
+                return callback.call(this, "Phone Number Not Found");
+            }
+            console.log("Subscriber.find(update history):", docs);
+            sendMessages(docs);
+        }
+    );
+    
     // Inner function to send a text message to a matched user's phone.
     function sendMessages(docs) {
         docs.forEach(function(subscriber) {
@@ -95,18 +114,20 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
             }
             
             // Send the message.
-            client.sendMessage(options, function(err, response, docs) {
+            client.sendMessage(options, function(err, response) {
                 console.log("client.sendMessage():", options);
                 if (err) {
                     console.error("client.sendMessage() failed:", err);
+                    callback.call(this, err);
                 } else {
                     console.log("client.sendMessage() sent a text to: ", subscriber.phone);
+                    callback.call(this);
                 }
             });
         });
 
         // Don't wait on success/failure, just indicate that the queue is ready for delivery.
-        callback.call(this);
+        // callback.call(this);
     }
 };
 
