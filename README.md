@@ -1,10 +1,10 @@
-### CSCI E-3 Final Project
+# CSCI E-3 Final Project
 
 My final project is an app that lets a user text images from a website to a phone.
 
-##### Try it out: https://radiant-shelf-9720.herokuapp.com/
+#### Try it out: https://radiant-shelf-9720.herokuapp.com/
 
-##### How it works:
+#### How it works:
 
 1. Text "start" to my Twilio.com phone number, 617-207-6339. Twilio.com provides cloud-based phone exchange servers that let a website text a cell phone. (To stop the app, text "stop" to the same number.)
 
