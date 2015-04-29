@@ -263,7 +263,7 @@ function sendText(event) {
         type: "POST",
         success: function(data){
             console.log('\nsendText(success):', data.message);
-            if (data.message.valid) {
+            if (data.message.sent) {
                 toggleResponseMessage("message-validation", "Your text is on the way! Check your phone in a minute or two.", true, "blue");
             } else {
                 toggleResponseMessage("message-validation", "The server couldn't send your text. Try again in a few minutes.", true, "red");

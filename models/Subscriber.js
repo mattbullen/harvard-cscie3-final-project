@@ -68,12 +68,12 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
             }
             
             // Send the message.
-            client.sendMessage(options, function(err, response) {
+            client.sendMessage(options, function(err, response, docs) {
                 console.log("client.sendMessage():", options);
                 if (err) {
                     console.error("client.sendMessage() failed:", err);
                 } else {
-                    console.log("client.sendMessage() sent a text to: " + subscriber.phone);
+                    console.log("client.sendMessage() sent a text to: ", subscriber.phone);
                 }
             });
         });
