@@ -267,13 +267,14 @@ function modalImageSelect() {
 }
 
 /*
-    Get a timezone-adjusted date and timestamp. Modified from:
+    Get a time zone-adjusted date and timestamp. Modified from:
+        http://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
         http://stackoverflow.com/questions/5416920/timestamp-to-human-readable-format
 */
 function getTimestamp() {
-    var timestamp = 1301090400;
-    var d = new Date();
-    return new Date((timestamp * 1000) + (d.getTimezoneOffset() * 60000));
+    var date = Date.now();
+    var zone = new Date().getTimezoneOffset();
+    return new Date(date + zone);
 }
 
 /*
