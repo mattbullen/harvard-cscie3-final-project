@@ -14,12 +14,10 @@ exports.webhook = function(request, response) {
             return respond("Server error! Please try again.");
         }
         if (!sub) {
-            
             // If there's no user associated with this phone number, create an entry for one.
             var newSubscriber = new Subscriber({
                 phone: phone
             });
-
             newSubscriber.save(function(err, newSub) {
                 if (err || !newSub) {
                     return respond("Server error! Please try again.");
@@ -46,24 +44,19 @@ exports.webhook = function(request, response) {
             
             // Save users that send a "start" command.
             subscriber.subscribed = (msg === "start");
-            subscriber.save(function(err) {
-                
+            subscriber.save(function(err) { 
                 if (err) {
                     return respond("Server error! Please try again.");
                 }
-                
-                // Otherwise, the subscription list is updated.
                 var responseMessage = "You're ready to use the app!";
-                if (!subscriber.subscribed)
+                if (!subscriber.subscribed) {
                     responseMessage = 'You\'re phone number has been removed from the app. Reply with "start" to use the app again.';
-
+                }
                 respond(responseMessage);
             });
         } else {
-            
             // Handle invalid commands by prompting for a usable command.
             var responseMessage = 'Please choose either "start" or "stop" and try again.';
-
             respond(responseMessage);
         }
     }

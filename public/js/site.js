@@ -26,12 +26,13 @@ $(document).ready(function() {
         sendText(event);
         $(this).blur();
     });
-    
-    $("#view-message-history-button").click(function(event) {
-                        viewHistory(event);
-                        $(this).blur();
-                    });
 
+    // Add a button to view the user's sent text message history.
+    $("#view-message-history-button").click(function(event) {
+        viewHistory(event);
+        $(this).blur();
+    });
+    
     return false;
 });
 
@@ -42,7 +43,6 @@ function fadeOutForm(duration) {
     }
     $("#confirm").val("");
     $("#confirm-validation").fadeOut(duration);
-    //$("#view-message-history-button").fadeOut(duration);
     $("#search-google-container").fadeOut(duration);
     $("#gallery-progress").fadeOut(duration);
     $("#gallery-content").fadeOut(duration);
@@ -55,18 +55,15 @@ function fadeOutForm(duration) {
 function fadeInForm() {
     $("#search-google-container").fadeIn();
     $("#search-google-input").focus();
-    //window.setTimeout(function() {
-        //$("#view-message-history-button").fadeIn();
-        var galleryContent = $("#gallery-content").children();
-        if (galleryContent.length > 0) {
-            $("#gallery-content").fadeIn();
-            var selectedSlideExists = $(".slide-selected").length;
-            if (selectedSlideExists !== 0) {
-                $("#message-container").fadeIn();
-                $("#message").focus();
-            }
+    var galleryContent = $("#gallery-content").children();
+    if (galleryContent.length > 0) {
+        $("#gallery-content").fadeIn();
+        var selectedSlideExists = $(".slide-selected").length;
+        if (selectedSlideExists !== 0) {
+            $("#message-container").fadeIn();
+            $("#message").focus();
         }
-    //}, 400);
+    }
     return false;
 }
 
@@ -137,10 +134,6 @@ function serverValidatePhone() {
                 toggleResponseMessage("confirm-validation", "Valid phone number. App running!", false, "blue");
                 window.setTimeout(function() {
                     fadeInForm();
-                    //$("#view-message-history-button").click(function(event) {
-                    //    viewHistory(event);
-                    //    $(this).blur();
-                    //});
                 }, 1000);
             } else {
                 toggleResponseMessage("confirm-validation", "Typo? Have you started the app?", false, "red");
@@ -282,7 +275,7 @@ function getTimestamp() {
     return new Date(date + zone);
 }
 
-// Add in some default values, if some of the form input fields are empty.
+// Add in some default values, if some of the form input fields are empty, or any form value errors crop up.
 function checkFormValues() {
     var imageURL = $("#imageURL").val();
     if (!imageURL || imageURL === "") {
