@@ -66,23 +66,15 @@ html(lang='en').
                         </ol>
                     </div>
                     
-                    <div id="history-container"></div>
-                    
-                    <script id="history-template" type="text/x-handlebars-template">
-                        {{#texts}}
-                            <div id="history-{{@index}}" class="history-box">
-                                <img class="history-image" src="{{thumbnailLink}}" alt="{{width}}px x {{height}}px" data-index="{{@index}}" />    
-                            </div>
-                        {{/texts}}
-                    </script>
-                    
                 </div><!-- div#panel-left.col-md-5 -->
                 
                 <div id="panel-right" class="col-md-7">
                     
                     <h2>Let's get started!</h2>
                     
-                    <form id="page-form"> 
+                    <button id="view-message-history" type="button" class="btn btn-primary" type="button" data-toggle="modal" data-target="#message-history">View Message History</button>
+
+                    <form id="page-form">
                         
                         <div id="confirm-container">
                             <label id="confirm-label" for="confirm">Text "start" to 617-207-6339, then enter your phone number here:</label>
@@ -136,7 +128,7 @@ html(lang='en').
             
         </div><!-- div#main -->
         
-        <!-- Modal Gallery -->
+        <!-- Modal for the image selection gallery -->
         <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-use-bootstrap-modal="false">
             <div class="slides"></div>
             <button id="modal-select-image-button" class="btn btn-default" type="button">Select This Image</button>
@@ -168,5 +160,30 @@ html(lang='en').
                 </div>
             </div>
         </div>
+        
+        <!-- Modal for the message history view panel -->
+        <div id="message-history" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Text Message History</h4>
+                    </div>
+                    <div id="message-history-content" class="modal-body"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <script id="message-history-template" type="text/x-handlebars-template">
+            {{#texts}}
+                <div id="history-{{@index}}" class="history-box">
+                    <div class="history-text">{{text}}</div>
+                    <img class="history-image" src="{{thumbnail}}"/>
+                </div>
+            {{/texts}}
+        </script>
+                    
     </body>
