@@ -277,6 +277,23 @@ function getTimestamp() {
     return new Date(date + zone);
 }
 
+// Add in some default values, if some of the form input fields are empty.
+function checkFormValues() {
+    var imageURL = $("#imageURL").val();
+    if (!imageURL || imageURL === "") {
+        $("#imageURL").val("http://en.wikipedia.org/wiki/Harvard_Extension_School#/media/File:ExtensionFlag.png");
+    }
+    var thumbnailURL = $("#thumbnailURL").val();
+    if (!thumbnailURL || thumbnailURL === "") {
+        $("#thumbnailURL").val("http://en.wikipedia.org/wiki/Harvard_Extension_School#/media/File:ExtensionFlag.png");
+    }
+    var message = $("#message").val();
+    if (!message || message === "") {
+        $("#message").val("[No Text Content Provided]");
+    }
+    return false;
+}
+
 /*
     Submit the form and send a multimedia text to a user without reloading the page or erasing prior inputs. Modified from:
         http://stackoverflow.com/questions/22163220/prevent-page-reload-after-form-submit-node-no-ajax-available
@@ -284,6 +301,7 @@ function getTimestamp() {
 function sendText(event) {
     event.preventDefault();
     $("#date").val(getTimestamp());
+    checkFormValues();
     $.ajax({
         url: "/message/send",
         data: $("#page-form").serialize(),
