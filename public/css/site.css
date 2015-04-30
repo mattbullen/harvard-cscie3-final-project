@@ -35,9 +35,10 @@
     text-align: center;
 }
 
-#header h3 {
+#header h3 em {
     margin-bottom: 60px;
     text-align: center;
+    font-size: 23px;
 }
 
 #header a {
@@ -224,6 +225,10 @@ h3.title {
 
 .modal-body {
     overflow: hidden;
+}
+
+.modal-content {
+    margin-top: 118px;
 }
 
 #message-history-label {
