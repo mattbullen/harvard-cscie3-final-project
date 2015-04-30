@@ -72,7 +72,7 @@ html(lang='en').
                     
                     <h2>Let's get started!</h2>
                     
-                    <button id="view-message-history-button" type="button" class="btn btn-primary" type="button" data-toggle="modal" data-target="#message-history">Text Message History</button>
+                    <button id="view-message-history-button" type="button" class="btn btn-primary" type="button" data-toggle="modal" data-target="#message-history">History</button>
 
                     <form id="page-form">
                         
@@ -180,13 +180,13 @@ html(lang='en').
 
         <script id="message-history-template" type="text/x-handlebars-template">
             {{#texts}}
-                {{#conditionals thumbnail '&&' text '&&' date}}
+                {{#if date}}
                     <div class="message-history-box">
                         <img class="message-history-image" src="{{thumbnail}}"/>
                         <div class="message-history-text">{{text}}</div>
                         <div class="message-history-date">{{date}}</div>
                     </div>
-                {{/conditionals}}
+                {{/if}}
             {{/texts}}
         </script>
                     

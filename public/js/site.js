@@ -26,33 +26,6 @@ $(document).ready(function() {
         sendText(event);
         $(this).blur();
     });
-    
-    /*
-        Add conditionals to the Handlebars.js templates. Source:
-            http://stackoverflow.com/questions/8853396/logical-operator-in-a-handlebars-js-if-conditional
-    */
-    Handlebars.registerHelper("conditionals", function(v1, operator, v2, options) {
-        switch(operator) {
-            case "==":
-                return (v1 == v2) ? options.fn(this) : options.inverse(this);
-            case "===":
-                return (v1 === v2) ? options.fn(this) : options.inverse(this);
-            case "<":
-                return (v1 < v2) ? options.fn(this) : options.inverse(this);
-            case "<=":
-                return (v1 <= v2) ? options.fn(this) : options.inverse(this);
-            case ">":
-                return (v1 > v2) ? options.fn(this) : options.inverse(this);
-            case ">=":
-                return (v1 >= v2) ? options.fn(this) : options.inverse(this);
-            case "&&":
-                return (v1 && v2) ? options.fn(this) : options.inverse(this);
-            case "||":
-                return (v1 || v2) ? options.fn(this) : options.inverse(this);
-            default:
-                return options.inverse(this);
-        }
-    });
 
     return false;
 });
