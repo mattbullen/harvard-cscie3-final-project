@@ -167,7 +167,7 @@ html(lang='en').
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Text Message History</h4>
+                        <h4 id="message-history-label" class="modal-title">Text Message History</h4>
                     </div>
                     <div id="message-history-content" class="modal-body"></div>
                     <div class="modal-footer">
@@ -179,10 +179,12 @@ html(lang='en').
 
         <script id="message-history-template" type="text/x-handlebars-template">
             {{#texts}}
-                <div id="history-{{@index}}" class="history-box">
-                    <div class="history-text">{{text}}</div>
-                    <img class="history-image" src="{{thumbnail}}"/>
-                </div>
+                {{#if thumbnail}}
+                    <div class="history-box">
+                        <img class="message-history-image" src="{{thumbnail}}"/>
+                        <div class="message-history-text">{{text}}</div>
+                    </div>
+                {{/if}}
             {{/texts}}
         </script>
                     
