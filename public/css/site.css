@@ -219,6 +219,10 @@ h3.title {
     margin-top: -64px;
 }
 
+.modal-backdrop {
+    cursor: pointer;
+}
+
 .modal-dialog {
     z-index: 5000;
 }
@@ -233,11 +237,12 @@ h3.title {
 
 #message-history-label {
     font-family: Museo, Equip, Arial, sans-serif !important;
-    font-weight: bold;
 }
 
 #message-history-content {
     padding-left: 99px;
+    max-height: 768px;
+    overflow-y: scroll;
 }
 
 .message-history-box {
@@ -267,6 +272,7 @@ h3.title {
 .message-history-date {
     float: left;
     width: 100%;
+    margin-top: 3px;
     font-size: 9px;
     font-style: italic;
 }

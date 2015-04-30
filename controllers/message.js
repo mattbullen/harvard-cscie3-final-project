@@ -139,6 +139,7 @@ exports.sendMessages = function(request, response) {
     
     // Get message info from form submission.
     console.log("exports.sendMessages():", request.body);
+    var date = request.body.date;
     var message = request.body.message;
     var imageURL = request.body.imageURL;
     var thumbnailURL = request.body.thumbnailURL;
