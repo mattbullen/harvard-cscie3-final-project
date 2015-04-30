@@ -48,6 +48,7 @@ function fadeOutForm(duration) {
 // Fade in the form elements in a cascade pattern based on the level of interaction the user has had with the form.
 function fadeInForm() {
     $("#search-google-container").fadeIn();
+    $("#search-google-input").focus();
     var galleryContent = $("#gallery-content").children();
     if (galleryContent.length > 0) {
         $("#gallery-content").fadeIn();

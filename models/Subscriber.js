@@ -82,6 +82,10 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
         //console.log("Subscriber.find(update history):", docs);
         //sendMessages(docs);
     });
+    
+    // db.collection.update({}, { $set : {'myArray': [] }} , {multi:true} )
+    
+    
     /*
     // Then send the text message.
     Subscriber.find({
