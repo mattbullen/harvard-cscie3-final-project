@@ -26,6 +26,12 @@ $(document).ready(function() {
         sendText(event);
         $(this).blur();
     });
+    
+    // View a user's text message history in a modal.
+    $("#message-send-button").click(function(event) {
+        viewHistory(event);
+        $(this).blur();
+    });
 
     return false;
 });
@@ -279,6 +285,38 @@ function sendText(event) {
         error: function(data){
             console.log('\nsendText(error):', data.message);
             toggleResponseMessage("message-validation", "The server couldn't send your text. Try again in a few minutes.", true, "red");
+        }
+    });
+    return false;
+}
+
+// View a user's text message history in a modal.
+function viewHistory(event) {
+    event.preventDefault();
+    $.ajax({
+        url: "/message/history",
+        data: {
+            "confirm": $("#confirm").val()
+        },
+        type: "POST",
+        success: function(data){
+            console.log('\nviewHistory(success):', data.message);
+            if (data.message.valid) {
+                // Template out the text message history from the JSON object.
+                var texts = {
+                    "texts": data.history;
+                };
+                console.log("\nviewHistory() has these messages to template:", texts);
+                var template = Handlebars.compile($("#message-history-template").html());
+                $("#message-history-content").html(template(texts));
+                $("#message-history").modal("show");
+            } else {
+                toggleResponseMessage("message-validation", "The server couldn't find your message history. Try again.", true, "red");
+            }
+        },
+        error: function(data){
+            console.log('\nviewHistory(error):', data.message);
+            toggleResponseMessage("message-validation", "The server couldn't find your message history. Try again.", true, "red");
         }
     });
     return false;
