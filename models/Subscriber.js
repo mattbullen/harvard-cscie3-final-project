@@ -42,7 +42,7 @@ SubscriberSchema.statics.validatePhone = function(user, callback) {
 SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
     
     console.log("SubscriberSchema.statics.sendMessage(): " + message + " " + url + " " + user);
-    
+    /*
     // Find the requested user by phone number and update the user's message history.
     Subscriber.find({
         phone: user,
@@ -55,9 +55,9 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
         
         console.log("Subscriber.find(found):", docs);
         
-        //var temp = db.model("temp", SubscriberSchema);
+        var temp = Subscriber.model("temp", SubscriberSchema);
         
-        SubscriberSchema.update(
+        temp.update(
             { phone: user },
             { $push: { 
                 "history": {
@@ -83,10 +83,6 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
         //sendMessages(docs);
     });
     
-    // db.collection.update({}, { $set : {'myArray': [] }} , {multi:true} )
-    
-    
-    /*
     // Then send the text message.
     Subscriber.find({
         phone: user,
@@ -99,7 +95,7 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
         sendMessages(docs);
     });
     
-    
+    */
     Subscriber.findByIdAndUpdate(
         { phone: user },
         { $push: { 
@@ -109,7 +105,7 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
             } 
         } },
         {
-            safe: true, 
+            //safe: true, 
             upsert: true 
         },
         function(err, docs) {
@@ -121,7 +117,7 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
             sendMessages(docs);
         }
     );
-    */
+    
     // Inner function to send a text message to a matched user's phone.
     function sendMessages(docs) {
         
