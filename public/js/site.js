@@ -21,6 +21,11 @@ $(document).ready(function() {
         $(this).blur();
     });
     
+    // Focus the input field for the optional text message note when the user clicks inside the modal gallery viewer.
+    $("#blueimp-gallery").click(function() {
+        $("#message-input").focus();
+    });    
+    
     // Send a multimedia text to a user's phone.
     $("#message-send-button").click(function(event) {
         sendText(event);
