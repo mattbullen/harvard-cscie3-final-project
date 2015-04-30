@@ -157,7 +157,7 @@ function validatePhone(event) {
         return false;
     }
     // Check that the phone number is usable (on the list of subscribed user phone numbers).
-    if (checkPhonePattern()) {
+    if (checkPhonePattern() === true) {
         serverValidatePhone();
     }
     return false;
