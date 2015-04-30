@@ -60,9 +60,9 @@ SubscriberSchema.statics.getHistory = function(user, callback) {
 };
 
 // Static function to send a multimedia text message to a subscribed user.
-SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
+SubscriberSchema.statics.sendMessage = function(user, message, imageURL, thumbnailURL, callback) {
     
-    console.log("SubscriberSchema.statics.sendMessage(): " + message + " " + url + " " + user);
+    // console.log("SubscriberSchema.statics.sendMessage(): " + message + " " + url + " " + user);
     
     // Find the requested user by phone number and update the user's message history.
     Subscriber.find({
@@ -84,7 +84,8 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
             id,
             { $push: { 
                 "history": {
-                    "url": url,
+                    "url": imageURL,
+                    "thumbnail": thumbnailURL,
                     "text": message
                 } 
             } },
@@ -117,8 +118,8 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
         };
 
         // Include the image URL, if the user chose an image.
-        if (url) {
-            options.mediaUrl = url;
+        if (imageURL) {
+            options.mediaUrl = imageURL;
         }
             
         // Text the message to the subscriber.

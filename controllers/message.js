@@ -141,11 +141,11 @@ exports.sendMessages = function(request, response) {
     console.log("exports.sendMessages():", request.body);
     var message = request.body.message;
     var imageURL = request.body.imageURL;
+    var thumbnailURL = request.body.thumbnailURL;
     var user = request.body.confirm;
-    //var history = "";
     
     // Use model function to send a multimedia text message to a subscribed user.
-    Subscriber.sendMessage(message, imageURL, user, function(history, err) {
+    Subscriber.sendMessage(user, message, imageURL, thumbnailURL, function(history, err) {
         console.log("client response:", response);
         if (err) {
             response.send({
