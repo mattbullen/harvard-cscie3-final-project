@@ -26,12 +26,6 @@ $(document).ready(function() {
         sendText(event);
         $(this).blur();
     });
-    
-    // View a user's text message history in a modal.
-    $("#view-message-history-button").click(function(event) {
-        viewHistory(event);
-        $(this).blur();
-    });
 
     return false;
 });
@@ -43,6 +37,7 @@ function fadeOutForm(duration) {
     }
     $("#confirm").val("");
     $("#confirm-validation").fadeOut(duration);
+    $("#view-message-history-button").fadeOut(duration);
     $("#search-google-container").fadeOut(duration);
     $("#gallery-progress").fadeOut(duration);
     $("#gallery-content").fadeOut(duration);
@@ -53,6 +48,7 @@ function fadeOutForm(duration) {
 
 // Fade in the form elements in a cascade pattern based on the level of interaction the user has had with the form.
 function fadeInForm() {
+    $("#view-message-history-button").fadeIn();
     $("#search-google-container").fadeIn();
     $("#search-google-input").focus();
     var galleryContent = $("#gallery-content").children();
@@ -134,6 +130,10 @@ function serverValidatePhone() {
                 toggleResponseMessage("confirm-validation", "Valid phone number. App running!", false, "blue");
                 window.setTimeout(function() {
                     fadeInForm();
+                    $("#view-message-history-button").click(function(event) {
+                        viewHistory(event);
+                        $(this).blur();
+                    });
                 }, 1000);
             } else {
                 toggleResponseMessage("confirm-validation", "Typo? Have you started the app?", false, "red");
@@ -314,9 +314,9 @@ function viewHistory(event) {
                 var template = Handlebars.compile($("#message-history-template").html());
                 $("#message-history-content").html(template(texts));
                 $("#message-history").modal("show");
-            } else {
-                toggleResponseMessage("message-validation", "The server couldn't find your message history. Try again.", true, "red");
-            }
+            } //else {
+              //  toggleResponseMessage("message-validation", "The server couldn't find your message history. Try again.", true, "red");
+            //}
         },
         error: function(data){
             console.log('\nviewHistory(error):', data.message);
