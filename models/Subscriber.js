@@ -167,7 +167,14 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, history, cal
                     callback.call(this, err);
                 } else {
                     console.log("client.sendMessage() sent a text to: ", docs.phone);
-                    callback.call(this);
+                    callback.call(this, {
+                        "message": {
+                            "sent": true,
+                            //"user": user,
+                            //"message": message,
+                            //"imageURL": imageURL,
+                            "history": history
+                    });
                 }
             });
         //});
