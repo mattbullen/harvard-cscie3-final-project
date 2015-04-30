@@ -61,6 +61,7 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, history, cal
         
         //Subscriber.update(
             //{ phone: user },
+        // Source: http://stackoverflow.com/questions/15621970/pushing-object-into-array-schema-in-mongoose
         Subscriber.findByIdAndUpdate(
             id,
             { $push: { 
@@ -139,9 +140,9 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, history, cal
     // Inner function to send a text message to a matched user's phone.
     function sendMessages(docs) {
         
-        console.log("Subscriber.sendMessages(docs):", docs[0]);
+        console.log("Subscriber.sendMessages(docs):", docs);
         
-        history = docs[0].history;
+        history = docs.history;
         console.log("Subscriber.sendMessages(docs.history):", history);
         
         docs.forEach(function(subscriber) {
