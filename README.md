@@ -14,8 +14,8 @@ My final project is an app that lets a user text images from a website to a phon
 
 4. Select an image either by clicking on one of the Handlebars.js-generated thumbnails, or by using the "Select This Image" button in the modal gallery view.
 
-5. Optional: you can add a note to be texted with the image you select, or send yourself a text-only SMS message, too.
+5. Optional: add a note to be texted with the image you've chosen.
 
-6. The send button prompts the server to create a new text message, which it then sends to your phone.
+6. The "Send" button prompts the server to create and send a new MMS text message. A MongoDB schema then stores the message details in a JSON array on the server, which you can view using the "History" button.
 
 7. Resources: The server-side uses the Twilio.com SMS/MMS API, with Node.js + Express.js + MongoDB + Jade running on a Heroku.com server. The client-side uses jQuery, Bootstrap.js, blueimp.js, and Handlebars.js.
