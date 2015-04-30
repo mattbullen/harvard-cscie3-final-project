@@ -143,13 +143,13 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, history, cal
         console.log("Subscriber.sendMessages(docs):", docs);
         
         history = docs.history;
-        console.log("Subscriber.sendMessages(docs.history):", history);
+        //console.log("Subscriber.sendMessages(docs.history):", history);
         
-        docs.forEach(function(subscriber) {
+        //docs.forEach(function(subscriber) {
             
             // Message contents:
             var options = {
-                to: subscriber.phone,
+                to: docs.phone,
                 from: config.twilioNumber,
                 body: message
             };
@@ -166,11 +166,11 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, history, cal
                     console.error("client.sendMessage() failed:", err);
                     callback.call(this, err);
                 } else {
-                    console.log("client.sendMessage() sent a text to: ", subscriber.phone);
+                    console.log("client.sendMessage() sent a text to: ", docs.phone);
                     callback.call(this);
                 }
             });
-        });
+        //});
 
         // Don't wait on success/failure, just indicate that the queue is ready for delivery.
         // callback.call(this);
