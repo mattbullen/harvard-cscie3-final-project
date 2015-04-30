@@ -289,8 +289,9 @@ function checkFormValues() {
     var message = $("#message-input").val();
     if (!message || message === "") {
         $("#message").val("[No Text]");
+    } else {
+        $("#message").val($("#message-input").val());
     }
-    $("#message").val($("#message-input").val());
     $("#date").val(getTimestamp());
     return false;
 }
