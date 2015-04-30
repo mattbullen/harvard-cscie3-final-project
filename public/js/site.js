@@ -304,7 +304,7 @@ function viewHistory(event) {
             if (data.message.valid) {
                 // Template out the text message history from the JSON object.
                 var texts = {
-                    "texts": data.history;
+                    "texts": data.history
                 };
                 console.log("\nviewHistory() has these messages to template:", texts);
                 var template = Handlebars.compile($("#message-history-template").html());
