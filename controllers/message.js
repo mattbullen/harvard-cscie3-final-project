@@ -131,7 +131,7 @@ exports.sendMessages = function(request, response) {
                     //"user": user,
                     //"message": message,
                     //"imageURL": imageURL,
-                    //"docs": this
+                    "history": history
                 }
             });
         }

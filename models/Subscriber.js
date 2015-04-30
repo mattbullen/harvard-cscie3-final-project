@@ -55,7 +55,7 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
         
         console.log("Subscriber.find(found):", docs);
         
-        var temp = Subscriber.model("temp", SubscriberSchema);
+        var temp = mongoose.model("temp", SubscriberSchema);
         console.log("temp:", temp);
         
         temp.update(
@@ -125,6 +125,7 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
         
         console.log("Subscriber.sendMessages():", docs);
         
+        var history = docs.history;
         
         docs.forEach(function(subscriber) {
             
