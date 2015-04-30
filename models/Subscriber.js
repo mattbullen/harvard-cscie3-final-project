@@ -58,7 +58,7 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
         //var temp = mongoose.model("temp", SubscriberSchema);
         //console.log("temp:", temp);
         
-        SubscriberSchema.update(
+        docs[0].update(
             { phone: user },
             { $push: { 
                 "history": {
