@@ -233,7 +233,7 @@ function slideImageSelect() {
         console.log("\nslideImageSelect() selected this image URL:", href);          
         $("#imageURL").val(href);
         console.log("\nslideImageSelect() passed this image URL to input#imageURL:", $("#imageURL").val());
-        var thumbnail = $(this).find("img").attr("src"); console.log(thumbnail);
+        var thumbnail = $(this).find(">:first-child").attr("src"); console.log(thumbnail);
         $("#thumbnailURL").val(thumbnail);
         var index = $(this).attr("data-index");        
         $("#slide-" + index).toggleClass("slide-selected");    
