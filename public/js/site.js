@@ -301,10 +301,14 @@ function viewHistory(event) {
         type: "POST",
         success: function(data){
             console.log('\nviewHistory(success):', data.message);
+            if (data.message.history.length < 1) {
+                $("#message-history-content").html("You haven't sent any text messages yet!");
+                return false;
+            }
             if (data.message.valid) {
                 // Template out the text message history from the JSON object.
                 var texts = {
-                    "texts": data.history
+                    "texts": data.message.history
                 };
                 console.log("\nviewHistory() has these messages to template:", texts);
                 var template = Handlebars.compile($("#message-history-template").html());

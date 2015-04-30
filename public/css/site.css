@@ -215,5 +215,9 @@ h3.title {
 
 #view-message-history-button {
     float: right;
-    margin-top: -30px;
+    margin-top: -64px;
+}
+
+.modal-dialog {
+    z-index: 5000;
 }
