@@ -50,16 +50,18 @@ function fadeOutForm(duration) {
 function fadeInForm() {
     $("#search-google-container").fadeIn();
     $("#search-google-input").focus();
-    $("#view-message-history-button").fadeIn(200);
-    var galleryContent = $("#gallery-content").children();
-    if (galleryContent.length > 0) {
-        $("#gallery-content").fadeIn();
-        var selectedSlideExists = $(".slide-selected").length;
-        if (selectedSlideExists !== 0) {
-            $("#message-container").fadeIn();
-            $("#message").focus();
+    window.setTimeout(function() {
+        $("#view-message-history-button").fadeIn(200);
+        var galleryContent = $("#gallery-content").children();
+        if (galleryContent.length > 0) {
+            $("#gallery-content").fadeIn();
+            var selectedSlideExists = $(".slide-selected").length;
+            if (selectedSlideExists !== 0) {
+                $("#message-container").fadeIn();
+                $("#message").focus();
+            }
         }
-    }
+    }, 400);
     return false;
 }
 
