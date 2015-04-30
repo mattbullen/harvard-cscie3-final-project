@@ -337,8 +337,8 @@ function viewHistory(event) {
         },
         type: "POST",
         success: function(data){
-            console.log('\nviewHistory(success):', data.message);
-            if (data.fail || (data.message.history && data.message.history.length < 1)) {
+            console.log('\nviewHistory(success):', data);
+            if (data.message.fail || (data.message.history && data.message.history.length < 1)) {
                 $("#message-history-content").html('<div class="message-history-box" style="text-align: center; line-height: 40px;">Have you sent any text messages yet?</div>');
                 $("#message-history").modal("show");
                 return false;
@@ -358,7 +358,7 @@ function viewHistory(event) {
             }
         },
         error: function(data){
-            console.log('\nviewHistory(error):', data.message);
+            console.log('\nviewHistory(error):', data);
             $("#message-history-content").html('<div class="message-history-box" style="text-align: center; line-height: 40px;">Message history not found: try again!</div>');
             $("#message-history").modal("show");
         }
