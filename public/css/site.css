@@ -240,7 +240,7 @@ h3.title {
 }
 
 #message-history-content {
-    max-height: 573px;
+    max-height: 450px;
     padding: 15px 0px 0px 90px;
     overflow-y: scroll;
 }
