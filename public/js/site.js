@@ -302,7 +302,8 @@ function viewHistory(event) {
         success: function(data){
             console.log('\nviewHistory(success):', data.message);
             if (data.message.history.length < 1) {
-                $("#message-history-content").html("You haven't sent any text messages yet!");
+                $("#message-history-content").html('<div class="message-history-box" style="text-align: center;">You haven\'t sent any text messages yet!</div>');
+                $("#message-history").modal("show");
                 return false;
             }
             if (data.message.valid) {
@@ -314,13 +315,15 @@ function viewHistory(event) {
                 var template = Handlebars.compile($("#message-history-template").html());
                 $("#message-history-content").html(template(texts));
                 $("#message-history").modal("show");
-            } //else {
-              //  toggleResponseMessage("message-validation", "The server couldn't find your message history. Try again.", true, "red");
-            //}
+            } else {
+                $("#message-history-content").html('<div class="message-history-box" style="text-align: center;">Message history not found: try again!</div>');
+                $("#message-history").modal("show");
+            }
         },
         error: function(data){
             console.log('\nviewHistory(error):', data.message);
-            toggleResponseMessage("message-validation", "The server couldn't find your message history. Try again.", true, "red");
+            $("#message-history-content").html('<div class="message-history-box" style="text-align: center;">Message history not found: try again!</div>');
+            $("#message-history").modal("show");
         }
     });
     return false;
