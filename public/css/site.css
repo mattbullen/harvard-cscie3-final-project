@@ -225,8 +225,16 @@ h3.title {
     color: #333333;
 }
 
+.message-history-box {
+    padding: 15px 30px;
+    margin-bottom: 15px;
+    border: 1px solid rgb(204, 204, 204);
+}
+
 .message-history-text {
     float: left;
+    margin-left: 15px;
+    font-size: 16px;
 }
 
 .message-history-image {
