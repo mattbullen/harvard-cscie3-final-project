@@ -1,8 +1,8 @@
 # CSCI E-3 Final Project
 
-I had the idea for my final project when I was browsing online for wallpaper images - have you ever found a great image on a desktop site that you wanted to use for your phone's wallpaper, but didn't want to go through the usual steps of downloading it and transferring to your phone manually? Or looking up the site on your phone, especially for sites that haven't been made mobile-ready?
+I had the idea for my final project when I was browsing online for wallpaper images - have you ever found a great image on a desktop site that you wanted to use for your phone's wallpaper, but didn't want to go through the usual steps of downloading it and transferring to your phone manually?
 
-My final project is an app that demonstrates a solution for transferring images directly from a desktop site to a phone via MMS text messaging.
+My final project is an app that demonstrates a solution for transferring images from a desktop site to a phone via MMS text messaging.
 
 #### Try it out: https://radiant-shelf-9720.herokuapp.com/
 
