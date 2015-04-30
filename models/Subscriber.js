@@ -58,7 +58,7 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
         //var temp = mongoose.model("temp", SubscriberSchema);
         //console.log("temp:", temp);
         
-        docs[0].update(
+        Subscriber.update(
             { phone: user },
             { $push: { 
                 "history": {
@@ -70,12 +70,12 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
             //    safe: true, 
                 upsert: true 
             },
-            function(err, docs) {
+            function(err, docs, rawResponse) {
                 if (err || docs.length === 0) {
-                    console.log("Subscriber.update(error):", docs[0]);
+                    console.log("Subscriber.update(error):", rawResponse);
                     return callback.call(this, "History Update Error");
                 }
-                console.log("Subscriber.update(success):", docs[0]);
+                console.log("Subscriber.update(success):", rawResponse);
                 //sendMessages(docs);
             }
         );
