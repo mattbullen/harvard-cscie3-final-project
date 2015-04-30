@@ -343,7 +343,7 @@ function viewHistory(event) {
             if (data.message.valid) {
                 // Template out the text message history from the JSON object.
                 var texts = {
-                    "texts": data.message.history
+                    "texts": (data.message.history).reverse();
                 };
                 console.log("\nviewHistory() has these messages to template:", texts);
                 var template = Handlebars.compile($("#message-history-template").html());
