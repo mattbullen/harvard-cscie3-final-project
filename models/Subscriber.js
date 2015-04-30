@@ -39,7 +39,7 @@ SubscriberSchema.statics.validatePhone = function(user, callback) {
 };
 
 // Static function to send a multimedia text message to a subscribed user.
-SubscriberSchema.statics.sendMessage = function(message, url, user, history, callback) {
+SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
     
     console.log("SubscriberSchema.statics.sendMessage(): " + message + " " + url + " " + user);
     
@@ -48,19 +48,16 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, history, cal
         phone: user,
         subscribed: true
     }, function(err, docs) {
+        
         if (err || docs.length === 0) {
             console.log("Subscriber.find(error):", err);
             return callback.call(this, "Phone Number Not Found");
         }
         
+        // So the internal ID isn't exposed to the browser or the user.
         var id = docs[0]._id;
         console.log("Subscriber.find(id):", id);
         
-        //var temp = mongoose.model("temp", SubscriberSchema);
-        //console.log("temp:", temp);
-        
-        //Subscriber.update(
-            //{ phone: user },
         // Source: http://stackoverflow.com/questions/15621970/pushing-object-into-array-schema-in-mongoose
         Subscriber.findByIdAndUpdate(
             id,
@@ -71,7 +68,6 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, history, cal
                 } 
             } },
             {
-            //    safe: true, 
                 upsert: true 
             },
             function(err, docs) {
@@ -80,101 +76,42 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, history, cal
                     return callback.call(this, "History Update Error");
                 }
                 console.log("Subscriber.findByIdAndUpdate(success):", docs);
-                
-                /*
-                Subscriber.find({
-                    phone: user,
-                    subscribed: true
-                }, function(err, docs) {
-                    if (err || docs.length === 0) {
-                        return callback.call(this, "Phone Number Not Found");
-                    }
-                    console.log("Subscriber.find(after history update):", docs[0]);
-                    sendMessages(docs);
-                });
-                */
-                sendMessages(docs);
-                
+                sendMessages(docs);  
             }
         );
-        
-        //console.log("Subscriber.find(update history):", docs);
-        //sendMessages(docs);
     });
-    /*
-    // Then send the text message. WORKING FIRST
-    Subscriber.find({
-        phone: user,
-        subscribed: true
-    }, function(err, docs) {
-        if (err || docs.length === 0) {
-            return callback.call(this, "Phone Number Not Found");
-        }
-        console.log("Subscriber.find(after history update):", docs[0]);
-        sendMessages(docs);
-    });
-    */
-    /*
-    Subscriber.findByIdAndUpdate(
-        { phone: user },
-        { $push: { 
-            "history": {
-                url: url,
-                text: message
-            } 
-        } },
-        {
-            //safe: true, 
-            upsert: true 
-        },
-        function(err, docs) {
-            if (err) {
-                console.log("Subscriber.findByIdAndUpdate(error):", docs);
-                return callback.call(this, "Phone Number Not Found");
-            }
-            console.log("Subscriber.findByIdAndUpdate(success):", docs);
-            sendMessages(docs);
-        }
-    );
-    */
+
     // Inner function to send a text message to a matched user's phone.
     function sendMessages(docs) {
         
-        console.log("Subscriber.sendMessages(docs):", docs);
-        
+        // Catch the entry.
+        console.log("Subscriber.sendMessages(docs):", docs);        
         history = docs.history;
-        //console.log("Subscriber.sendMessages(docs.history):", history);
-        
-        //docs.forEach(function(subscriber) {
-            
-            // Message contents:
-            var options = {
-                to: docs.phone,
-                from: config.twilioNumber,
-                body: message
-            };
 
-            // Include the image URL, if the user chose an image.
-            if (url) {
-                options.mediaUrl = url;
+        // Message contents:
+        var options = {
+            to: docs.phone,
+            from: config.twilioNumber,
+            body: message
+        };
+
+        // Include the image URL, if the user chose an image.
+        if (url) {
+            options.mediaUrl = url;
+        }
+            
+        // Text the message to the subscriber.
+        client.sendMessage(options, function(err, response) {
+            console.log("client.sendMessage():", options);
+            console.log("client.sendMessage():", this);
+            if (err) {
+                console.error("client.sendMessage() failed:", err);
+                callback.call(this, history, err);
+            } else {
+                console.log("client.sendMessage() sent a text to: ", docs.phone);
+                callback.call(this, history);
             }
-            
-            // Send the message.
-            client.sendMessage(options, function(err, response) {
-                console.log("client.sendMessage():", options);
-                console.log("client.sendMessage():", this);
-                if (err) {
-                    console.error("client.sendMessage() failed:", err);
-                    callback.call(this, history, err);
-                } else {
-                    console.log("client.sendMessage() sent a text to: ", docs.phone);
-                    callback.call(this, history);
-                }
-            });
-        //});
-
-        // Don't wait on success/failure, just indicate that the queue is ready for delivery.
-        // callback.call(this);
+        });
     }
 };
 
