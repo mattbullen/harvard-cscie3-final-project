@@ -55,9 +55,9 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
         
         console.log("Subscriber.find(found):", docs);
         
-        var temp = db.model("temp", SubscriberSchema);
+        //var temp = db.model("temp", SubscriberSchema);
         
-        temp.update(
+        SubscriberSchema.update(
             { phone: user },
             { $push: { 
                 "history": {
