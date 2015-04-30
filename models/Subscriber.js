@@ -129,10 +129,10 @@ SubscriberSchema.statics.sendMessage = function(user, message, imageURL, thumbna
             console.log("client.sendMessage():", this);
             if (err) {
                 console.error("client.sendMessage() failed:", err);
-                callback.call(this, history, err);
+                callback.call(this, err);
             } else {
                 console.log("client.sendMessage() sent a text to: ", docs.phone);
-                callback.call(this, history);
+                callback.call(this);
             }
         });
     }

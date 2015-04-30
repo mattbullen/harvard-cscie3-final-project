@@ -226,6 +226,10 @@ h3.title {
     font-family: Museo, Equip, Arial, sans-serif !important;
 }
 
+.modal-body {
+    overflow: hidden;
+}
+
 .message-history-box {
     height: 55px;
     padding: 15px 30px;

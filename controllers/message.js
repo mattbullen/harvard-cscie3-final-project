@@ -158,8 +158,7 @@ exports.sendMessages = function(request, response) {
         } else {
             response.send({
                 "message": {
-                    "sent": true,
-                    "history": history
+                    "sent": true
                 }
             });
         }
