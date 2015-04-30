@@ -232,7 +232,9 @@ function slideImageSelect() {
         var href = $(this).attr("src");
         console.log("\nslideImageSelect() selected this image URL:", href);          
         $("#imageURL").val(href);
-        console.log("\nslideImageSelect() passed this image URL to input#imageURL:", $("#imageURL").val());       
+        console.log("\nslideImageSelect() passed this image URL to input#imageURL:", $("#imageURL").val());
+        var thumbnail = $(this img).attr("src"); console.log(thumbnail);
+        $("#thumbnailURL").val(thumbnail);
         var index = $(this).attr("data-index");        
         $("#slide-" + index).toggleClass("slide-selected");    
         $("#message-container").fadeIn();
@@ -247,7 +249,9 @@ function modalImageSelect() {
     var href = $(selected).attr("title"); 
     console.log("\nmodalImageSelect() selected this image URL:", href);    
     $("#imageURL").val(href);
-    console.log("\nmodalImageSelect() passed this image URL to input#imageURL:", $("#imageURL").val());    
+    console.log("\nmodalImageSelect() passed this image URL to input#imageURL:", $("#imageURL").val());
+    var thumbnail = $(a[href="" + href] img).attr("src"); console.log(thumbnail);
+    $("#thumbnailURL").val(thumbnail);
     var index = $(selected).attr("data-index");        
     $("#slide-" + index).toggleClass("slide-selected");
     $("#message-container").fadeIn();

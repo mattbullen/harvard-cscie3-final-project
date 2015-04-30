@@ -13,6 +13,9 @@ module.exports = function(app) {
     // Check if a phone number is on the list of subscribed user phone numbers:
     app.post("/message/validate", message.validatePhone);
     
+    // Get a user's history of sent text messages:
+    app.post("/message/history", message.getHistory);
+    
     // Form submission for texting multimedia messages to subscribed users:
     app.post("/message/send", message.sendMessages);
     

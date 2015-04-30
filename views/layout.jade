@@ -66,6 +66,16 @@ html(lang='en').
                         </ol>
                     </div>
                     
+                    <div id="history-container"></div>
+                    
+                    <script id="history-template" type="text/x-handlebars-template">
+                        {{#texts}}
+                            <div id="history-{{@index}}" class="history-box">
+                                <img class="history-image" src="{{thumbnailLink}}" alt="{{width}}px x {{height}}px" data-index="{{@index}}" />    
+                            </div>
+                        {{/texts}}
+                    </script>
+                    
                 </div><!-- div#panel-left.col-md-5 -->
                 
                 <div id="panel-right" class="col-md-7">
@@ -114,6 +124,7 @@ html(lang='en').
                             <input id="message" class="form-control" name="message" type="text" placeholder="This note will be sent with the image you selected." autofocus>
                             <button id="message-send-button" class="btn btn-primary" name="message-send-button" type="button">Send</button> 
                             <input id="imageURL" name="imageURL" type="hidden">
+                            <input id="thumbnailURL" name="thumbnailURL" type="hidden">
                             <div id="message-validation"></div>
                         </div>
                         

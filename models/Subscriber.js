@@ -33,7 +33,28 @@ SubscriberSchema.statics.validatePhone = function(user, callback) {
         } else {
             return callback.call(this);
         }
-        console.log("Subscriber.find():", docs);
+        console.log("SubscriberSchema.statics.validatePhone():", docs);
+    });
+
+};
+
+// Static function to get a user's history of sent text messages.
+SubscriberSchema.statics.getHistory = function(user, callback) {
+    
+    console.log("SubscriberSchema.statics.getHistory: " + user);
+    
+    // Check if a submitted phone number is on the list of subscribed user phone numbers.
+    Subscriber.find({
+        subscribed: true,
+        phone: user
+    }, function(err, docs) {
+        if (err || docs.length === 0) {
+            return callback.call(this, "", "Phone Number Not Found");
+        } else {
+            history = docs[0].history;
+            return callback.call(this, history);
+        }
+        console.log("SubscriberSchema.statics.getHistory():", docs);
     });
 
 };

@@ -105,6 +105,35 @@ exports.validatePhone = function(request, response) {
     });
 };
 
+// Get a user's history of sent text messages.
+exports.getHistory = function(request, response) {
+    
+    // Get phone number from form submission.
+    console.log("exports.getHistory():", request.body);
+    var user = request.body.confirm;
+    
+    // Use model function to validate a user's phone number.
+    Subscriber.getHistory(user, function(history, err) {
+        if (err) {
+            response.send({
+                "message": {
+                    "fail": err,
+                    "user": user,
+                    "valid": false
+                }
+            });
+        } else {
+            response.send({
+                "message": {
+                    "user": user,
+                    "valid": true,
+                    "history": history
+                }
+            });
+        }
+    });
+};
+
 // Handle form submission for sending a multimedia text message to a subscribed user.
 exports.sendMessages = function(request, response) {
     
