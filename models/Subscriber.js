@@ -76,7 +76,7 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
                     return callback.call(this, "History Update Error");
                 }
                 console.log("Subscriber.update(success):", docs);
-                sendMessages(docs);
+                //sendMessages(docs);
             }
         );
         
@@ -84,7 +84,6 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
         //sendMessages(docs);
     });
     
-    /*
     // Then send the text message. WORKING FIRST
     Subscriber.find({
         phone: user,
@@ -96,7 +95,7 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
         console.log("Subscriber.find(after update):", docs);
         sendMessages(docs);
     });
-    */
+    
     /*
     Subscriber.findByIdAndUpdate(
         { phone: user },
