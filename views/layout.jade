@@ -113,11 +113,12 @@ html(lang='en').
                         
                         <div id="message-container">
                             <label id="message-label" for="message">Add a note to the text message?</label>
-                            <input id="message" class="form-control" name="message" type="text" placeholder="This note will be sent with the image you selected." autofocus>
+                            <input id="message-input" class="form-control" name="message-input" type="text" placeholder="This note will be sent with the image you selected." autofocus>
                             <button id="message-send-button" class="btn btn-primary" name="message-send-button" type="button">Send</button> 
+                            <input id="date" name="date" type="hidden">
                             <input id="imageURL" name="imageURL" type="hidden">
                             <input id="thumbnailURL" name="thumbnailURL" type="hidden">
-                            <input id="date" name="date" type="hidden">
+                            <input id="message" name="message" type="hidden">
                             <div id="message-validation"></div>
                         </div>
                         

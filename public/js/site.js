@@ -275,7 +275,7 @@ function getTimestamp() {
     return new Date(date + zone);
 }
 
-// Add in some default values, if some of the form input fields are empty, or any form value errors crop up.
+// Add a timestamp and some default values, if some of the form input fields are empty, or any form value errors crop up.
 function checkFormValues() {
     var imageURL = $("#imageURL").val();
     if (!imageURL || imageURL === "") {
@@ -285,10 +285,13 @@ function checkFormValues() {
     if (!thumbnailURL || thumbnailURL === "") {
         $("#thumbnailURL").val("http://en.wikipedia.org/wiki/Harvard_Extension_School#/media/File:ExtensionFlag.png");
     }
-    var message = $("#message").val();
+    // To keep the placeholder visible, but add a note to the actual form values used on the server-side.
+    var message = $("#message-input").val();
     if (!message || message === "") {
         $("#message").val("[No Text]");
     }
+    $("#message").val($("#message-input").val());
+    $("#date").val(getTimestamp());
     return false;
 }
 
@@ -298,7 +301,6 @@ function checkFormValues() {
 */
 function sendText(event) {
     event.preventDefault();
-    $("#date").val(getTimestamp());
     checkFormValues();
     $.ajax({
         url: "/message/send",
