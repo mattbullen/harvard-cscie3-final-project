@@ -26,6 +26,11 @@ $(document).ready(function() {
         sendText(event);
         $(this).blur();
     });
+    
+    $("#view-message-history-button").click(function(event) {
+                        viewHistory(event);
+                        $(this).blur();
+                    });
 
     return false;
 });
@@ -132,10 +137,10 @@ function serverValidatePhone() {
                 toggleResponseMessage("confirm-validation", "Valid phone number. App running!", false, "blue");
                 window.setTimeout(function() {
                     fadeInForm();
-                    $("#view-message-history-button").click(function(event) {
-                        viewHistory(event);
-                        $(this).blur();
-                    });
+                    //$("#view-message-history-button").click(function(event) {
+                    //    viewHistory(event);
+                    //    $(this).blur();
+                    //});
                 }, 1000);
             } else {
                 toggleResponseMessage("confirm-validation", "Typo? Have you started the app?", false, "red");
@@ -333,8 +338,8 @@ function viewHistory(event) {
         type: "POST",
         success: function(data){
             console.log('\nviewHistory(success):', data.message);
-            if (data.message.history.length < 1) {
-                $("#message-history-content").html('<div class="message-history-box" style="text-align: center;">You haven\'t sent any text messages yet!</div>');
+        if (data.fail || (data.message.history && data.message.history.length < 1)) {
+                $("#message-history-content").html('<div class="message-history-box" style="text-align: center;">Have you sent any text messages yet?</div>');
                 $("#message-history").modal("show");
                 return false;
             }
