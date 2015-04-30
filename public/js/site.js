@@ -129,7 +129,7 @@ function serverValidatePhone() {
             "confirm": $("#confirm").val()
         },
         type: "POST",
-        success: function(data){
+        success: function(data) {
             console.log("\nvalidatePhone(success) returned:", data.message);
             if (data.message.valid) {
                 toggleResponseMessage("confirm-validation", "Valid phone number. App running!", false, "blue");
@@ -141,7 +141,7 @@ function serverValidatePhone() {
                 $("#confirm").focus();
             }
         },
-        error: function(data){
+        error: function(data) {
             console.log("\nvalidatePhone(error) returned:", data.message);
             toggleResponseMessage("confirm-validation", "Typo? Have you started the app?", false, "blue");
             $("#confirm").focus();
@@ -158,6 +158,7 @@ function validatePhone(event) {
         return false;
     }
     // Check that the phone number is usable (on the list of subscribed user phone numbers).
+    console.log(checkPhonePattern());
     if (checkPhonePattern() === true) {
         serverValidatePhone();
     }
