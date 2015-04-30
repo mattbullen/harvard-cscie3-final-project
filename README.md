@@ -14,7 +14,7 @@ My final project is an app that lets a user text images from a website to a phon
 
 4. Select an image either by clicking on one of the Handlebars.js-generated thumbnails, or by using the "Select This Image" button in the modal gallery view.
 
-5. Optional: add a note to be texted with the image you've chosen.
+5. Optional: add a note to be sent with the image you've chosen.
 
 6. The "Send" button prompts the server to create and send a new MMS text message. A MongoDB schema then stores the message details in a JSON array on the server, which you can view using the "History" button.
 
