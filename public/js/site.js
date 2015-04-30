@@ -51,7 +51,7 @@ function fadeInForm() {
     $("#search-google-container").fadeIn();
     $("#search-google-input").focus();
     window.setTimeout(function() {
-        $("#view-message-history-button").fadeIn(200);
+        $("#view-message-history-button").fadeIn();
         var galleryContent = $("#gallery-content").children();
         if (galleryContent.length > 0) {
             $("#gallery-content").fadeIn();

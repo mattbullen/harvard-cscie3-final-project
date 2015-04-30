@@ -232,7 +232,7 @@ h3.title {
 }
 
 .modal-content {
-    margin-top: 118px;
+    margin-top: 180px;
 }
 
 #message-history-label {
@@ -240,8 +240,8 @@ h3.title {
 }
 
 #message-history-content {
-    padding-left: 99px;
     max-height: 768px;
+    padding: 15px 0px 0px 90px;
     overflow-y: scroll;
 }
 
