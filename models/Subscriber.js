@@ -54,7 +54,7 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, history, cal
         }
         
         var id = docs[0]._id;
-        console.log("Subscriber.find(found):", id);
+        console.log("Subscriber.find(id):", id);
         
         //var temp = mongoose.model("temp", SubscriberSchema);
         //console.log("temp:", temp);
@@ -75,10 +75,10 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, history, cal
             },
             function(err, docs) {
                 if (err || docs.length === 0) {
-                    console.log("Subscriber.update(error):", docs[0]);
+                    console.log("Subscriber.findByIdAndUpdate(error):", docs);
                     return callback.call(this, "History Update Error");
                 }
-                console.log("Subscriber.update(success):", docs[0]);
+                console.log("Subscriber.findByIdAndUpdate(success):", docs);
                 
                 /*
                 Subscriber.find({
