@@ -13,6 +13,7 @@ var SubscriberSchema = new mongoose.Schema({
         default: false
     },
     history: [{
+        "date": String,
         "url": String,
         "thumbnail": String,
         "text": String
@@ -61,9 +62,7 @@ SubscriberSchema.statics.getHistory = function(user, callback) {
 };
 
 // Static function to send a multimedia text message to a subscribed user.
-SubscriberSchema.statics.sendMessage = function(user, message, imageURL, thumbnailURL, callback) {
-    
-    // console.log("SubscriberSchema.statics.sendMessage(): " + message + " " + url + " " + user);
+SubscriberSchema.statics.sendMessage = function(user, date, message, imageURL, thumbnailURL, callback) {
     
     // Find the requested user by phone number and update the user's message history.
     Subscriber.find({
@@ -85,6 +84,7 @@ SubscriberSchema.statics.sendMessage = function(user, message, imageURL, thumbna
             id,
             { $push: { 
                 "history": {
+                    "date": date,
                     "url": imageURL,
                     "thumbnail": thumbnailURL,
                     "text": message

@@ -117,6 +117,7 @@ html(lang='en').
                             <button id="message-send-button" class="btn btn-primary" name="message-send-button" type="button">Send</button> 
                             <input id="imageURL" name="imageURL" type="hidden">
                             <input id="thumbnailURL" name="thumbnailURL" type="hidden">
+                            <input id="date" name="date" type="hidden">
                             <div id="message-validation"></div>
                         </div>
                         
@@ -183,6 +184,7 @@ html(lang='en').
                     <div class="message-history-box">
                         <img class="message-history-image" src="{{thumbnail}}"/>
                         <div class="message-history-text">{{text}}</div>
+                        <div class="message-history-date">{{date}}</div>
                     </div>
                 {{/if}}
             {{/texts}}

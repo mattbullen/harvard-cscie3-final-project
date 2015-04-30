@@ -265,11 +265,22 @@ function modalImageSelect() {
 }
 
 /*
+    Get a timezone-adjusted date and timestamp. Modified from:
+        http://stackoverflow.com/questions/5416920/timestamp-to-human-readable-format
+*/
+function getTimestamp() {
+    var timestamp = 1301090400;
+    var d = new Date();
+    return new Date((timestamp * 1000) + (d.getTimezoneOffset() * 60000));
+}
+
+/*
     Submit the form and send a multimedia text to a user without reloading the page or erasing prior inputs. Modified from:
         http://stackoverflow.com/questions/22163220/prevent-page-reload-after-form-submit-node-no-ajax-available
 */
 function sendText(event) {
     event.preventDefault();
+    $("#date").val(getTimestamp());
     $.ajax({
         url: "/message/send",
         data: $("#page-form").serialize(),
