@@ -174,6 +174,7 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, history, cal
                             //"message": message,
                             //"imageURL": imageURL,
                             "history": history
+                        }
                     });
                 }
             });

@@ -55,6 +55,7 @@ function fadeInForm() {
         var selectedSlideExists = $(".slide-selected").length;
         if (selectedSlideExists !== 0) {
             $("#message-container").fadeIn();
+            $("#message").focus();
         }
     }
     return false;
