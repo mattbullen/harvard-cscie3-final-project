@@ -294,7 +294,7 @@ function checkFormValues() {
     }
     var message = $("#message").val();
     if (!message || message === "") {
-        $("#message").val("[No Text Content Provided]");
+        $("#message").val("[No Text Content Entered]");
     }
     return false;
 }
@@ -338,8 +338,8 @@ function viewHistory(event) {
         type: "POST",
         success: function(data){
             console.log('\nviewHistory(success):', data.message);
-        if (data.fail || (data.message.history && data.message.history.length < 1)) {
-                $("#message-history-content").html('<div class="message-history-box" style="text-align: center;">Have you sent any text messages yet?</div>');
+            if (data.fail || (data.message.history && data.message.history.length < 1)) {
+                $("#message-history-content").html('<div class="message-history-box" style="text-align: center; line-height: 40px;">Have you sent any text messages yet?</div>');
                 $("#message-history").modal("show");
                 return false;
             }
@@ -353,13 +353,13 @@ function viewHistory(event) {
                 $("#message-history-content").html(template(texts));
                 $("#message-history").modal("show");
             } else {
-                $("#message-history-content").html('<div class="message-history-box" style="text-align: center;">Message history not found: try again!</div>');
+                $("#message-history-content").html('<div class="message-history-box" style="text-align: center; line-height: 40px;">Message history not found: try again!</div>');
                 $("#message-history").modal("show");
             }
         },
         error: function(data){
             console.log('\nviewHistory(error):', data.message);
-            $("#message-history-content").html('<div class="message-history-box" style="text-align: center;">Message history not found: try again!</div>');
+            $("#message-history-content").html('<div class="message-history-box" style="text-align: center; line-height: 40px;">Message history not found: try again!</div>');
             $("#message-history").modal("show");
         }
     });
