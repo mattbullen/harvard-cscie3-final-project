@@ -122,7 +122,6 @@ function checkPhonePattern() {
 
 // Server-check to see if the user entered a valid phone number (on the list of subscribed users).
 function serverValidatePhone() {
-    console.log("SVP");
     $.ajax({
         url: "/message/validate",
         data: {
@@ -158,7 +157,6 @@ function validatePhone(event) {
         return false;
     }
     // Check that the phone number is usable (on the list of subscribed user phone numbers).
-    console.log(checkPhonePattern());
     if (checkPhonePattern() === true) {
         serverValidatePhone();
     }
