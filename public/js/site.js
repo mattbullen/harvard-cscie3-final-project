@@ -26,6 +26,33 @@ $(document).ready(function() {
         sendText(event);
         $(this).blur();
     });
+    
+    /*
+        Add conditionals to the Handlebars.js templates. Source:
+            http://stackoverflow.com/questions/8853396/logical-operator-in-a-handlebars-js-if-conditional
+    */
+    Handlebars.registerHelper("conditionals", function(v1, operator, v2, options) {
+        switch(operator) {
+            case "==":
+                return (v1 == v2) ? options.fn(this) : options.inverse(this);
+            case "===":
+                return (v1 === v2) ? options.fn(this) : options.inverse(this);
+            case "<":
+                return (v1 < v2) ? options.fn(this) : options.inverse(this);
+            case "<=":
+                return (v1 <= v2) ? options.fn(this) : options.inverse(this);
+            case ">":
+                return (v1 > v2) ? options.fn(this) : options.inverse(this);
+            case ">=":
+                return (v1 >= v2) ? options.fn(this) : options.inverse(this);
+            case "&&":
+                return (v1 && v2) ? options.fn(this) : options.inverse(this);
+            case "||":
+                return (v1 || v2) ? options.fn(this) : options.inverse(this);
+            default:
+                return options.inverse(this);
+        }
+    });
 
     return false;
 });
@@ -48,9 +75,9 @@ function fadeOutForm(duration) {
 
 // Fade in the form elements in a cascade pattern based on the level of interaction the user has had with the form.
 function fadeInForm() {
-    $("#view-message-history-button").fadeIn();
     $("#search-google-container").fadeIn();
     $("#search-google-input").focus();
+    $("#view-message-history-button").fadeIn(200);
     var galleryContent = $("#gallery-content").children();
     if (galleryContent.length > 0) {
         $("#gallery-content").fadeIn();
