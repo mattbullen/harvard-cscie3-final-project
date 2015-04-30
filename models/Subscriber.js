@@ -55,10 +55,10 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
         
         console.log("Subscriber.find(found):", docs);
         
-        var temp = mongoose.model("temp", SubscriberSchema);
-        console.log("temp:", temp);
+        //var temp = mongoose.model("temp", SubscriberSchema);
+        //console.log("temp:", temp);
         
-        temp.update(
+        SubscriberSchema.update(
             { phone: user },
             { $push: { 
                 "history": {
@@ -72,10 +72,10 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
             },
             function(err, docs) {
                 if (err || docs.length === 0) {
-                    console.log("Subscriber.update(error):", docs);
+                    console.log("Subscriber.update(error):", docs[0]);
                     return callback.call(this, "History Update Error");
                 }
-                console.log("Subscriber.update(success):", docs);
+                console.log("Subscriber.update(success):", docs[0]);
                 //sendMessages(docs);
             }
         );
@@ -92,7 +92,7 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
         if (err || docs.length === 0) {
             return callback.call(this, "Phone Number Not Found");
         }
-        console.log("Subscriber.find(after update):", docs);
+        console.log("Subscriber.find(after history update):", docs[0]);
         sendMessages(docs);
     });
     
@@ -122,9 +122,9 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
     // Inner function to send a text message to a matched user's phone.
     function sendMessages(docs) {
         
-        console.log("Subscriber.sendMessages(docs):", docs);
+        console.log("Subscriber.sendMessages(docs):", docs[0]);
         
-        var history = docs.history;
+        var history = docs[0].history;
         console.log("Subscriber.sendMessages(docs.history):", history);
         
         docs.forEach(function(subscriber) {
