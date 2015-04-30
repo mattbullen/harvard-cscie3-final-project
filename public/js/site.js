@@ -37,7 +37,7 @@ function fadeOutForm(duration) {
     }
     $("#confirm").val("");
     $("#confirm-validation").fadeOut(duration);
-    $("#view-message-history-button").fadeOut(duration);
+    //$("#view-message-history-button").fadeOut(duration);
     $("#search-google-container").fadeOut(duration);
     $("#gallery-progress").fadeOut(duration);
     $("#gallery-content").fadeOut(duration);
@@ -50,8 +50,8 @@ function fadeOutForm(duration) {
 function fadeInForm() {
     $("#search-google-container").fadeIn();
     $("#search-google-input").focus();
-    window.setTimeout(function() {
-        $("#view-message-history-button").fadeIn();
+    //window.setTimeout(function() {
+        //$("#view-message-history-button").fadeIn();
         var galleryContent = $("#gallery-content").children();
         if (galleryContent.length > 0) {
             $("#gallery-content").fadeIn();
@@ -61,7 +61,7 @@ function fadeInForm() {
                 $("#message").focus();
             }
         }
-    }, 400);
+    //}, 400);
     return false;
 }
 
