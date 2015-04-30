@@ -39,7 +39,7 @@ SubscriberSchema.statics.validatePhone = function(user, callback) {
 };
 
 // Static function to send a multimedia text message to a subscribed user.
-SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
+SubscriberSchema.statics.sendMessage = function(message, url, user, history, callback) {
     
     console.log("SubscriberSchema.statics.sendMessage(): " + message + " " + url + " " + user);
     
@@ -53,13 +53,16 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
             return callback.call(this, "Phone Number Not Found");
         }
         
-        console.log("Subscriber.find(found):", docs);
+        var id = docs[0]._id;
+        console.log("Subscriber.find(found):", id);
         
         //var temp = mongoose.model("temp", SubscriberSchema);
         //console.log("temp:", temp);
         
-        Subscriber.update(
-            { phone: user },
+        //Subscriber.update(
+            //{ phone: user },
+        Subscriber.findByIdAndUpdate(
+            { _id: id },
             { $push: { 
                 "history": {
                     "url": url,
@@ -70,20 +73,34 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
             //    safe: true, 
                 upsert: true 
             },
-            function(err, docs, rawResponse) {
+            function(err, docs) {
                 if (err || docs.length === 0) {
-                    console.log("Subscriber.update(error):", rawResponse);
+                    console.log("Subscriber.update(error):", docs[0]);
                     return callback.call(this, "History Update Error");
                 }
-                console.log("Subscriber.update(success):", rawResponse);
-                //sendMessages(docs);
+                console.log("Subscriber.update(success):", docs[0]);
+                
+                /*
+                Subscriber.find({
+                    phone: user,
+                    subscribed: true
+                }, function(err, docs) {
+                    if (err || docs.length === 0) {
+                        return callback.call(this, "Phone Number Not Found");
+                    }
+                    console.log("Subscriber.find(after history update):", docs[0]);
+                    sendMessages(docs);
+                });
+                */
+                sendMessages(docs);
+                
             }
         );
         
         //console.log("Subscriber.find(update history):", docs);
         //sendMessages(docs);
     });
-    
+    /*
     // Then send the text message. WORKING FIRST
     Subscriber.find({
         phone: user,
@@ -95,7 +112,7 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
         console.log("Subscriber.find(after history update):", docs[0]);
         sendMessages(docs);
     });
-    
+    */
     /*
     Subscriber.findByIdAndUpdate(
         { phone: user },
@@ -124,7 +141,7 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
         
         console.log("Subscriber.sendMessages(docs):", docs[0]);
         
-        var history = docs[0].history;
+        history = docs[0].history;
         console.log("Subscriber.sendMessages(docs.history):", history);
         
         docs.forEach(function(subscriber) {
