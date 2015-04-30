@@ -14,6 +14,7 @@ var SubscriberSchema = new mongoose.Schema({
     },
     history: [{
         "url": String,
+        "thumbnail": String,
         "text": String
     }]
 });
