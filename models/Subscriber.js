@@ -42,13 +42,13 @@ SubscriberSchema.statics.validatePhone = function(user, callback) {
 SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
     
     console.log("SubscriberSchema.statics.sendMessage(): " + message + " " + url + " " + user);
-    /*
+    
     // Find the requested user by phone number and update the user's message history.
     Subscriber.find({
         phone: user,
         subscribed: true
     }, function(err, docs) {
-        if (err) {
+        if (err || docs.length === 0) {
             console.log("Subscriber.find(error):", err);
             return callback.call(this, "Phone Number Not Found");
         }
@@ -56,6 +56,7 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
         console.log("Subscriber.find(found):", docs);
         
         var temp = Subscriber.model("temp", SubscriberSchema);
+        console.log("temp:", temp);
         
         temp.update(
             { phone: user },
@@ -70,9 +71,9 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
                 upsert: true 
             },
             function(err, docs) {
-                if (err) {
+                if (err || docs.length === 0) {
                     console.log("Subscriber.update(error):", docs);
-                    return callback.call(this, "Phone Number Not Found");
+                    return callback.call(this, "History Update Error");
                 }
                 console.log("Subscriber.update(success):", docs);
                 sendMessages(docs);
@@ -83,7 +84,8 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
         //sendMessages(docs);
     });
     
-    // Then send the text message.
+    /*
+    // Then send the text message. WORKING FIRST
     Subscriber.find({
         phone: user,
         subscribed: true
@@ -94,8 +96,8 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
         console.log("Subscriber.find(after update):", docs);
         sendMessages(docs);
     });
-    
     */
+    /*
     Subscriber.findByIdAndUpdate(
         { phone: user },
         { $push: { 
@@ -117,7 +119,7 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, callback) {
             sendMessages(docs);
         }
     );
-    
+    */
     // Inner function to send a text message to a matched user's phone.
     function sendMessages(docs) {
         
