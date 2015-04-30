@@ -288,7 +288,7 @@ function checkFormValues() {
     // To keep the placeholder visible, but add a note to the actual form values used on the server-side.
     var message = $("#message-input").val();
     if (!message || message === "") {
-        $("#message").val("[No Text]");
+        $("#message").val("[No Message]");
     } else {
         $("#message").val($("#message-input").val());
     }
