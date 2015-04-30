@@ -28,7 +28,7 @@ $(document).ready(function() {
     });
     
     // View a user's text message history in a modal.
-    $("#message-send-button").click(function(event) {
+    $("#view-message-history-button").click(function(event) {
         viewHistory(event);
         $(this).blur();
     });

@@ -212,3 +212,8 @@ h3.title {
     text-align: center;
     background-color: rgb(66, 139, 202);
 }
+
+#view-message-history-button {
+    float: right;
+    margin-top: -30px;
+}
