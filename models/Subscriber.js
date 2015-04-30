@@ -162,20 +162,13 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, history, cal
             // Send the message.
             client.sendMessage(options, function(err, response) {
                 console.log("client.sendMessage():", options);
+                console.log("client.sendMessage():", this);
                 if (err) {
                     console.error("client.sendMessage() failed:", err);
-                    callback.call(this, err);
+                    callback.call(this, history, err);
                 } else {
                     console.log("client.sendMessage() sent a text to: ", docs.phone);
-                    callback.call(this, {
-                        "message": {
-                            "sent": true,
-                            //"user": user,
-                            //"message": message,
-                            //"imageURL": imageURL,
-                            "history": history
-                        }
-                    });
+                    callback.call(this, history);
                 }
             });
         //});

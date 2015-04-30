@@ -116,7 +116,8 @@ exports.sendMessages = function(request, response) {
     var history = "";
     
     // Use model function to send a multimedia text message to a subscribed user.
-    Subscriber.sendMessage(message, imageURL, user, history, function(err) {
+    Subscriber.sendMessage(message, imageURL, user, history, function(history, err) {
+        console.log("client response:", response);
         if (err) {
             response.send({
                 "message": {
