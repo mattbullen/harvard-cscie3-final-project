@@ -287,7 +287,7 @@ function checkFormValues() {
     }
     var message = $("#message").val();
     if (!message || message === "") {
-        $("#message").val("[No Text Content Entered]");
+        $("#message").val("[No Text]");
     }
     return false;
 }
@@ -308,6 +308,7 @@ function sendText(event) {
             console.log('\nsendText(success):', data.message);
             if (data.message.sent) {
                 toggleResponseMessage("message-validation", "Your text is on the way! Check your phone in a minute or two.", true, "blue");
+                $("#message").val("");
             } else {
                 toggleResponseMessage("message-validation", "The server couldn't send your text. Try again in a few minutes.", true, "red");
             }
