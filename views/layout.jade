@@ -90,7 +90,7 @@ html
             #confirm-container
               label#confirm-label(for="confirm") Text "start" to 617-207-6339, then enter your phone number:
               br
-              input#confirm-visible.form-control(type="text", name="confirm-visible", placeholder="Be sure to include your area code!", maxlength="12", pattern="\d{3}-\d{3}-\d{4}")
+              input#confirm-visible.form-control(type="text", name="confirm-visible", placeholder="Be sure to include your area code!", maxlength="12", pattern="\\d{3}-\\d{3}-\\d{4}")
               input#confirm(type="hidden", name="confirm")
               #confirm-validation
             #search-google-container
