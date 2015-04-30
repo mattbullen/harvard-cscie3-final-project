@@ -229,11 +229,11 @@ function loadGallerySlides() {
 function slideImageSelect() {
     $("img.slide-image").click(function() {
         $("div.slide-box").removeClass("slide-selected");       
-        var href = $(this).attr("src");
+        var href = $(this).parent().attr("href");
         console.log("\nslideImageSelect() selected this image URL:", href);          
         $("#imageURL").val(href);
         console.log("\nslideImageSelect() passed this image URL to input#imageURL:", $("#imageURL").val());
-        var thumbnail = $(this).find(">:first-child").attr("src"); console.log(thumbnail);
+        var thumbnail = $(this).attr("src"); console.log(thumbnail);
         $("#thumbnailURL").val(thumbnail);
         var index = $(this).attr("data-index");        
         $("#slide-" + index).toggleClass("slide-selected");    
