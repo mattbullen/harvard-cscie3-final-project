@@ -222,16 +222,22 @@ h3.title {
     z-index: 5000;
 }
 
-#modal-history-title {
-    font-family: Museo, Equip, Arial, sans-serif !important;
-}
-
 .modal-body {
     overflow: hidden;
 }
 
+#message-history-label {
+    font-family: Museo, Equip, Arial, sans-serif !important;
+    font-weight: bold;
+}
+
+#message-history-content {
+    padding-left: 99px;
+}
+
 .message-history-box {
     height: 55px;
+    width: 400px;
     padding: 15px 30px;
     margin-bottom: 15px;
     border: 1px solid rgb(204, 204, 204);
