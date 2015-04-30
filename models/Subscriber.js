@@ -62,7 +62,7 @@ SubscriberSchema.statics.sendMessage = function(message, url, user, history, cal
         //Subscriber.update(
             //{ phone: user },
         Subscriber.findByIdAndUpdate(
-            { _id: id },
+            id,
             { $push: { 
                 "history": {
                     "url": url,
