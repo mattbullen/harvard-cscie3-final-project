@@ -4,7 +4,7 @@ I had the idea for my final project when I was browsing online for wallpaper ima
 
 My final project is an app that demonstrates a solution for transferring images from a desktop site to a phone via MMS text messaging.
 
-#### Try it out: https://radiant-shelf-9720.herokuapp.com/
+#### Try it out: https://cscie3.herokuapp.com/
 
 #### How it works:
 
