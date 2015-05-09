@@ -1,6 +1,6 @@
 # Harvard CSCI E-3 Final Project
 
-This is my final project for Harvard's CSCI E-3 JavaScript programming class, Spring 2015 semester. It's a small Node.js app that demonstrates a solution for transferring images from a desktop site to a phone via MMS/multimedia text messaging over the cloud . . . in other words, how to have a website text your phone!
+This is my final project for Harvard's CSCI E-3 JavaScript programming class, Spring 2015 semester. It's a small Node.js app that demonstrates a solution for transferring images from a desktop site to a phone via multimedia text messaging over the cloud . . . in other words, how to have a website text your phone!
 
 #### Try it out: https://cscie3.herokuapp.com/
 
