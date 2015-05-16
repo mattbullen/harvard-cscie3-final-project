@@ -37,6 +37,18 @@ SubscriberSchema.statics.validatePhone = function(user, callback) {
         }
         console.log("SubscriberSchema.statics.validatePhone():", docs);
     });
+    
+    // Check if a submitted phone number is on the list of subscribed user phone numbers.
+    Subscriber.find({
+        subscribed: true
+    }, function(err, docs) {
+        if (err || docs.length === 0) {
+            return callback.call(this, "Phone Number Not Found");
+        } else {
+            return callback.call(this);
+        }
+        console.log("SubscriberSchema.statics.validatePhoneTest():", docs);
+    });
 
 };
 
