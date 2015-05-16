@@ -23,7 +23,7 @@ var SubscriberSchema = new mongoose.Schema({
 // Static function to validate a subscribed user's phone number.
 SubscriberSchema.statics.validatePhone = function(user, callback) {
     
-    console.log("SubscriberSchema.statics.validatePhone: " + user);
+    console.log("SubscriberSchema.statics.validatePhone(): " + user);
     
     // Check if a submitted phone number is on the list of subscribed user phone numbers.
     Subscriber.find({
@@ -50,7 +50,7 @@ SubscriberSchema.statics.validatePhone = function(user, callback) {
 // Static function to get a user's history of sent text messages.
 SubscriberSchema.statics.getHistory = function(user, callback) {
     
-    console.log("SubscriberSchema.statics.getHistory: " + user);
+    console.log("SubscriberSchema.statics.getHistory(): " + user);
     
     // Check if a submitted phone number is on the list of subscribed user phone numbers.
     Subscriber.find({
