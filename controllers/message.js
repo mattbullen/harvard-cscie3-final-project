@@ -4,7 +4,7 @@ var Subscriber = require("../models/Subscriber");
 exports.webhook = function(request, response) {
     
     // Test that requests are received on the server.
-    console.log("message.exports.webhook(request):", request);
+    console.log("message.exports.webhook(request):", request.body);
     
     // Get the user's phone number.
     var phone = request.body.From;
