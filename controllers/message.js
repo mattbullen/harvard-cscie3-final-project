@@ -55,7 +55,7 @@ exports.webhook = function(request, response) {
                 }
                 var responseMessage = "You're ready to use the app!";
                 if (!subscriber.subscribed) {
-                    responseMessage = 'You\'re phone number has been removed from the app. Reply with "start" to use the app again.';
+                    responseMessage = 'Your phone number has been removed from the app. Reply with "start" to use the app again.';
                 }
                 respond(responseMessage);
             });
