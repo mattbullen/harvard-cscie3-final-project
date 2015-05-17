@@ -31,6 +31,7 @@ exports.webhook = function(request, response) {
             });
         } else {
             // For an existing user, process any message they send and send back a message.
+            console.log("message.exports.webhook(sub):", sub);
             processMessage(sub);
         }
     });
@@ -39,6 +40,7 @@ exports.webhook = function(request, response) {
     function processMessage(subscriber) {
         
         // Get the text message command sent by the user.
+        console.log("message.exports.webhook(msg):", msg);
         var msg = request.body.Body || "";
         msg = msg.toLowerCase().trim();
 
