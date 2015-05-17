@@ -3,6 +3,8 @@ var Subscriber = require("../models/Subscriber");
 // Handle Twilio SMS / MMS webhook requests:
 exports.webhook = function(request, response) {
     
+    respond("Received");
+    
     // Test that requests are received on the server.
     console.log("message.exports.webhook(request):", request.body);
     
