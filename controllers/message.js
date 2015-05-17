@@ -71,7 +71,7 @@ exports.webhook = function(request, response) {
     // Set Content-Type response header and render XML (TwiML) response in a Jade template - sends a text message back to user.
     function respond(message) {
         response.type("text/xml");
-        response.render("twiml", {
+        response.render("../views/twiml", {
             message: message
         });
     }
