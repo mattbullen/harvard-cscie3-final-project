@@ -4,4 +4,4 @@ This is my final project for the Spring 2015 CSCI E-3 JavaScript programming gra
 
 The server-side uses the Twilio.com cloud-based SMS/MMS API, with Node.js + Express.js + MongoDB + Jade running on a Heroku.com server. The client-side uses jQuery, Bootstrap.js, blueimp.js, and Handlebars.js.
 
-##### Try it out: https://cscie3.herokuapp.com/
+##### Try it out: http://radiant-shelf-9720.herokuapp.com/
