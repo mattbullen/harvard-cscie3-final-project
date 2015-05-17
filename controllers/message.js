@@ -3,8 +3,6 @@ var Subscriber = require("../models/Subscriber");
 // Handle Twilio SMS / MMS webhook requests:
 exports.webhook = function(request, response) {
     
-    respond("Received");
-    
     // Test that requests are received on the server.
     console.log("message.exports.webhook(request):", request.body);
     
@@ -71,7 +69,7 @@ exports.webhook = function(request, response) {
     // Set Content-Type response header and render XML (TwiML) response in a Jade template - sends a text message back to user.
     function respond(message) {
         response.type("text/xml");
-        response.render("../views/twiml", {
+        response.render("twiml", {
             message: message
         });
     }
